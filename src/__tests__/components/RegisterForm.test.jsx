@@ -17,6 +17,7 @@ describe('RegisterForm', () => {
     wrapper = shallow(<RegisterForm {...props} />);
   });
 
+  // test my whole form dom elements using snapshot
   it('renders without crashing', () => {
     const pathname = {
       pathname: "/"
@@ -27,11 +28,17 @@ describe('RegisterForm', () => {
     expect(rendered.toJSON()).toMatchSnapshot();
   });
 
+  // Test that registerform component has a form
   it('should have a `<form>` element', () => {
     expect(
       wrapper.find('form').length
     ).toBe(1);
   });
+
+
+  //=================
+  // Tests form logic 
+  // ================
 
   it('should call handlesubmit when form is submitted', () => {
     const handleSubmit = jest.fn();
@@ -40,5 +47,23 @@ describe('RegisterForm', () => {
     form.simulate('submit');
     expect(handleSubmit).toBeCalled;
   });
+
+  it('Input should call handleChange it changes', () => {
+    const handleChange = jest.fn();
+    wrapper = mount(<Router><RegisterForm /></Router>);
+    const input = wrapper.find('form').childAt(1);
+    input.simulate('change');
+    expect(handleChange).toBeCalled;
+  });
+
+  it('Input should check password match confirm password', () => {
+    const confirmPass = jest.fn();
+    wrapper = mount(<Router><RegisterForm /></Router>);
+    const input = wrapper.find('form').childAt(11);
+    input.simulate('change');
+    expect(confirmPass).toBeCalled;
+  });
+
+
 
 });
