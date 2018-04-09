@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm renders without crashing 1`] = `
+<div
+  className="container wrapper"
+>
+  <div
+    className="main-center"
+  >
+    <div
+      className="card"
+    >
+      <div
+        className="card-body"
+      >
+        <img
+          alt="login"
+          className="profile-img"
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        />
+        <p
+          className="profile-name-card"
+          id="profile-name"
+        />
+        <form
+          className="form"
+          onSubmit={[Function]}
+        >
+          <label
+            htmlFor="username"
+          >
+            Username
+          </label>
+          <input
+            className="form-control"
+            name="username"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <label
+            htmlFor="password"
+          >
+            password
+          </label>
+          <input
+            className="form-control"
+            name="password"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <br />
+          <button
+            className="btn btn-lg btn-success btn-block btn-signin"
+            type="submit"
+          >
+            Login
+          </button>
+          <p
+            className="message"
+          >
+            Not registered? 
+            <a
+              href="/register"
+              onClick={[Function]}
+            >
+              Create an account
+            </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

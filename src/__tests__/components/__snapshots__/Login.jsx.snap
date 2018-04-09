@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login renders without crashing 1`] = `
+<div>
+  <nav
+    className="navbar navbar-expand-lg navhome navbar-light bg-transparent fixed-top"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="white"
+      >
+        WeConnect
+      </span>
+    </a>
+    <button
+      aria-controls="topnav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      className="navbar-toggler"
+      data-target="#topnav"
+      data-toggle="collapse"
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      id="topnav"
+    >
+      <ul
+        className="navbar-nav ml-auto white"
+      >
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link"
+            href="/"
+            onClick={[Function]}
+          >
+            Home
+          </a>
+        </li>
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link"
+            href="/register"
+            onClick={[Function]}
+          >
+            Signup
+          </a>
+        </li>
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link"
+            href="/login"
+            onClick={[Function]}
+          >
+            Login
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+  <div
+    className="container wrapper"
+  >
+    <div
+      className="main-center"
+    >
+      <div
+        className="card"
+      >
+        <div
+          className="card-body"
+        >
+          <img
+            alt="login"
+            className="profile-img"
+            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          />
+          <p
+            className="profile-name-card"
+            id="profile-name"
+          />
+          <form
+            className="form"
+            onSubmit={[Function]}
+          >
+            <label
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <input
+              className="form-control"
+              name="username"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+            <label
+              htmlFor="password"
+            >
+              password
+            </label>
+            <input
+              className="form-control"
+              name="password"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+            <br />
+            <button
+              className="btn btn-lg btn-success btn-block btn-signin"
+              type="submit"
+            >
+              Login
+            </button>
+            <p
+              className="message"
+            >
+              Not registered? 
+              <a
+                href="/register"
+                onClick={[Function]}
+              >
+                Create an account
+              </a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
