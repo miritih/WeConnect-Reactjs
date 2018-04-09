@@ -1,18 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+// import components
+import Home from './Components/Home';
+import Register from './Components/Register';
+import Login from './Components/Auth/Login';
+// import PrivateRoute from './Components/Auth/PrivateRoute';
+import { ToastContainer } from 'react-toastify';
+//import css
 import './App.css';
 
-class App extends Component {
+// import react router deps
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+
+//create a router 
+const router = (
+  <Router>
+  <div>
+    <Route exact path='/' component={Home}/>
+    <Route exact path='/register' component={Register}/>
+    <Route exact path='/login' component={Login}/>
+    <ToastContainer />
+  </div>
+</Router>
+);
+
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Weconnect React App</h1>
-        </header>
-        <p className="App-intro">
-          This app will consume the Weconnect Flask Api
-        </p>
-      </div>
+      router
     );
   }
 }
+
 export default App;
