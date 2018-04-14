@@ -147,3 +147,5 @@ exports[`Login renders without crashing 1`] = `
   </div>
 </div>
 `;
+
+exports[`PrivateRoute renders without crashing 1`] = `null`;

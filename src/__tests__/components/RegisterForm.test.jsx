@@ -2,9 +2,10 @@ import React from 'react';
 import RegisterForm from '../../Components/forms/Register';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
-
 // import renderer for snapshot testing
 import renderer from 'react-test-renderer';
+/* global expect,jest*/
+
 
 describe('RegisterForm', () => {
   let props, wrapper;
@@ -50,10 +51,12 @@ describe('RegisterForm', () => {
 
   it('Input should call handleChange it changes', () => {
     const handleChange = jest.fn();
+    const toast = jest.fn();
     wrapper = mount(<Router><RegisterForm /></Router>);
     const input = wrapper.find('form').childAt(1);
     input.simulate('change');
     expect(handleChange).toBeCalled;
+    expect(toast).toBeCalled;
   });
 
   it('Input should check password match confirm password', () => {

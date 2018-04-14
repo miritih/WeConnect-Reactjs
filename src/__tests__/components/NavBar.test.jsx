@@ -1,16 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import NavBar from '../../Components/NavBar';
-import { shallow } from 'enzyme';
+import Authservice from '../../Components/Auth/AuthService';
+import { mount } from 'enzyme';
+// import react router from react-router-dom
 import { MemoryRouter as Router } from 'react-router-dom';
+// import renderer for snapshot testing
+import renderer from 'react-test-renderer';
+
 describe('NavBar', () => {
-  // test that the component will render properly without crushing 
+
+  let wrapper;
+  const pathname = {
+    pathname: "/login"
+  };
+
   it('renders without crashing', () => {
-    const pathname = {
-      pathname: "/login"
-    };
-    const div = document.createElement('div');
-    ReactDOM.render(<Router><NavBar location={pathname} /></Router>, div);
+    const rendered = renderer.create(
+      <Router><NavBar location={pathname} /></Router>
+    );
+    expect(rendered.toJSON()).toMatchSnapshot();
   });
 
+  it('should call handlesubmit when form is submitted', () => {
+    const handleLogout = jest.fn();
+    wrapper = mount(<Router><NavBar location={pathname}/></Router>);
+    const li = wrapper.find('ul').childAt(2);
+    li.simulate('click');
+    expect(handleLogout).toBeCalled;
+  });
 });

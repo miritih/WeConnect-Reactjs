@@ -14,7 +14,7 @@ export default class Authservice {
     };
     return axios({
       method: 'post',
-      url: 'https://bootcamp-ericmwenda.c9users.io:8081/api/v2/auth/login',
+      url: this.domain + '/auth/login',
       data: data,
       responseType: 'json',
       headers: {
@@ -51,7 +51,7 @@ export default class Authservice {
       return decode(this.getToken());
     }
     else {
-      return []
+      return [];
     }
 
   }
@@ -64,8 +64,8 @@ export default class Authservice {
 
   isTokenExpired(token) {
     try {
-      const decoded = decode(token);
-      if (decoded.exp < Date.now() / 1000) { // Checking if token is expired.
+      const { exp } = decode(token);
+      if (exp < Date.now() / 1000) { // Checking if token is expired.
         return true;
       }
       else

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Authservice from '../Auth/AuthService';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import baseURL from '../../utils/Config';
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class RegisterForm extends React.Component {
       method: 'post',
       url: 'auth/register',
       data: user,
-      baseURL: 'https://bootcamp-ericmwenda.c9users.io:8081/api/v2/',
+      baseURL: baseURL,
       responseType: 'json',
       headers: {
         'Content-Type': 'application/json'

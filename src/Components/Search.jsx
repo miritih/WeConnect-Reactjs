@@ -11,21 +11,13 @@ class Search extends React.Component {
             </div>
             <div className="card-body">
               <form className="form-inline">
-                
                   <label className="sr-only">Business Name</label>
                   <input type="text" className="form-control ml-auto" placeholder="Search by name" name="bsname"/>
-              
-               
                   <label className="sr-only">Location</label>
                   <input type="text" className="form-control ml-auto" placeholder="Search by Location" name="location"/>
-              
-              
                   <label className="sr-only">Category</label>
                   <input type="text" className="form-control ml-auto" placeholder="Search by Catogory" name="category"/>
-          
-               
                   <button className="btn btn-success ml-auto">Search</button>
-                
               </form>
             </div>
           </div>

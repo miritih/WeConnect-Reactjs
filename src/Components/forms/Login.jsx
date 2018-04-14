@@ -38,17 +38,13 @@ class LoginForm extends Component {
           });
           // create the error message container
           // this willl be shown in our notification
-          const Msg = ({ closeToast }) => (
+          toast.error(({ closeToast }) =>
             <div>
              <h3>Opps!!</h3>
               <p>Something is Wrong,
               check you are sending the correct username or password</p>
             </div>
           );
-          toast.error(<Msg />, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 10000
-          });
         }
       })
       .catch(err => {
@@ -56,7 +52,6 @@ class LoginForm extends Component {
           <h3>Opps!!</h3>
               <p>Sorry! Something went wrong. If the problem persist, contact support</p>
           </div>);
-
       });
   }
   componentWillMount() {
