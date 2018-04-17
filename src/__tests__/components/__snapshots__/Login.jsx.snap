@@ -2,77 +2,82 @@
 
 exports[`Login renders without crashing 1`] = `
 <div>
-  <nav
-    className="navbar navbar-expand-lg navhome navbar-light bg-transparent fixed-top"
-  >
-    <a
-      className="navbar-brand"
-      href="/"
-      onClick={[Function]}
+  <div>
+    <nav
+      className="navbar navbar-expand-lg navhome navbar-light bg-transparent fixed-top"
     >
-      <span
-        className="white"
+      <div
+        className="container"
       >
-        WeConnect
-      </span>
-    </a>
-    <button
-      aria-controls="topnav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      className="navbar-toggler"
-      data-target="#topnav"
-      data-toggle="collapse"
-      type="button"
-    >
-      <span
-        className="navbar-toggler-icon"
-      />
-    </button>
-    <div
-      className="collapse navbar-collapse"
-      id="topnav"
-    >
-      <ul
-        className="navbar-nav ml-auto white"
-      >
-        <li
-          className="nav-item"
+        <a
+          className="navbar-brand"
+          href="/"
+          onClick={[Function]}
         >
-          <a
-            className="nav-link"
-            href="/"
-            onClick={[Function]}
+          <span
+            className="white"
           >
-            Home
-          </a>
-        </li>
-        <li
-          className="nav-item"
+            WeConnect
+          </span>
+        </a>
+        <button
+          aria-controls="topnav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          className="navbar-toggler"
+          data-target="#topnav"
+          data-toggle="collapse"
+          type="button"
         >
-          <a
-            className="nav-link"
-            href="/register"
-            onClick={[Function]}
-          >
-            Signup
-          </a>
-        </li>
-        <li
-          className="nav-item"
+          <span
+            className="navbar-toggler-icon"
+          />
+        </button>
+        <div
+          className="collapse navbar-collapse"
+          id="topnav"
         >
-          <a
-            className="nav-link"
-            href="/login"
-            onClick={[Function]}
+          <ul
+            className="navbar-nav ml-auto white"
           >
-            Login
-          </a>
-        </li>
-        
-      </ul>
-    </div>
-  </nav>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link"
+                href="/"
+                onClick={[Function]}
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link"
+                href="/register"
+                onClick={[Function]}
+              >
+                Signup
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link"
+                href="/login"
+                onClick={[Function]}
+              >
+                Login
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
   <div
     className="container wrapper"
   >

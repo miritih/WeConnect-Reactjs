@@ -1,75 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavBar renders without crashing 1`] = `
-<nav
-  className="navbar navbar-expand-lg navbar-light fixed-top navbarcolor"
->
-  <a
-    className="navbar-brand"
-    href="/"
-    onClick={[Function]}
+<div>
+  <nav
+    className="navbar navbar-expand-lg navbar-light fixed-top navbarcolor"
   >
-    <span
-      className=""
+    <div
+      className="container"
     >
-      WeConnect
-    </span>
-  </a>
-  <button
-    aria-controls="topnav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    className="navbar-toggler"
-    data-target="#topnav"
-    data-toggle="collapse"
-    type="button"
-  >
-    <span
-      className="navbar-toggler-icon"
-    />
-  </button>
-  <div
-    className="collapse navbar-collapse"
-    id="topnav"
-  >
-    <ul
-      className="navbar-nav ml-auto "
-    >
-      <li
-        className="nav-item"
+      <a
+        className="navbar-brand"
+        href="/"
+        onClick={[Function]}
       >
-        <a
-          className="nav-link"
-          href="/"
-          onClick={[Function]}
+        <span
+          className=""
         >
-          Home
-        </a>
-      </li>
-      <li
-        className="nav-item"
+          WeConnect
+        </span>
+      </a>
+      <button
+        aria-controls="topnav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        className="navbar-toggler"
+        data-target="#topnav"
+        data-toggle="collapse"
+        type="button"
       >
-        <a
-          className="nav-link"
-          href="/register"
-          onClick={[Function]}
-        >
-          Signup
-        </a>
-      </li>
-      <li
-        className="nav-item"
+        <span
+          className="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        className="collapse navbar-collapse"
+        id="topnav"
       >
-        <a
-          className="nav-link"
-          href="/login"
-          onClick={[Function]}
+        <ul
+          className="navbar-nav ml-auto "
         >
-          Login
-        </a>
-      </li>
-      
-    </ul>
-  </div>
-</nav>
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link"
+              href="/"
+              onClick={[Function]}
+            >
+              Home
+            </a>
+          </li>
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link"
+              href="/register"
+              onClick={[Function]}
+            >
+              Signup
+            </a>
+          </li>
+          <li
+            className="nav-item"
+          >
+            <a
+              className="nav-link"
+              href="/login"
+              onClick={[Function]}
+            >
+              Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
 `;
