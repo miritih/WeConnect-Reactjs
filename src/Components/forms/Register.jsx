@@ -3,7 +3,7 @@ import axios from 'axios';
 import Authservice from '../Auth/AuthService';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import baseURL from '../../utils/Config';
+import { baseURL } from '../../utils/Config';
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -122,9 +122,11 @@ class RegisterForm extends React.Component {
                       <label htmlFor="first_name">First Name</label>
                       <input 
                       type="text" 
-                      className={"form-control " + (
-                      this.state.errors['first_name'] === undefined ? "" : "is-invalid"
-                      )}
+                      className = {
+                        "form-control " + (
+                          this.state.errors['first_name'] === undefined ? "" : "is-invalid"
+                        )
+                      }
                       name="first_name"
                       value= {this.state.first_name}
                       onChange={this.handleChange}

@@ -1,5 +1,5 @@
 import decode from 'jwt-decode';
-import baseURL from '../../utils/Config';
+import { baseURL } from '../../utils/Config';
 import axios from 'axios';
 
 export default class Authservice {
@@ -30,7 +30,6 @@ export default class Authservice {
   getToken() {
     try {
       return window.localStorage.getItem('auth_token');
-
     }
     catch (e) {
       return false;
