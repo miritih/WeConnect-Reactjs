@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Authservice from '../Auth/AuthService';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import InputField from '../inputs/InputField';
 
 class LoginForm extends Component {
 	constructor() {
@@ -41,8 +42,7 @@ class LoginForm extends Component {
 					toast.error(({ closeToast }) =>
 						<div>
 							<h3>Opps!!</h3>
-							<p>Something is Wrong,
-							check you are sending the correct username or password</p>
+							<p>Wrong Username or password entered</p>
 						</div>
 					);
 				}
@@ -67,23 +67,24 @@ class LoginForm extends Component {
 							<img className="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="login" />
 							<p id="profile-name" className="profile-name-card"></p>
 							<form className="form" onSubmit={this.handleSubmit}>
-								<label htmlFor="username" >Username</label>
-								<input
-									type="text"
+								<InputField
+									type='text'
+									name='username'
+									label='Username'
+									onChange={this.handleChange}
+									placeholder='enter username'
 									value={this.state.username}
-									className="form-control"
-									name="username"
-									onChange={this.handleChange}
+									required='required'
 								/>
-								<label htmlFor="password">password</label>
-								<input
-									type="text"
-									className="form-control"
+								<InputField
+									type='password'
+									name='password'
+									label='Password'
+									required='required'
+									onChange={this.handleChange}
+									placeholder='enter password'
 									value={this.state.password}
-									name="password"
-									onChange={this.handleChange}
 								/>
-								<br />
 								<button
 									type="submit"
 									className="btn btn-lg btn-success btn-block btn-signin">

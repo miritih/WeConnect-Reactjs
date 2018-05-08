@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Authservice from '../Auth/AuthService';
 import { baseURL as url } from '../../utils/Config';
+import InputField from '../inputs/InputField';
+
 
 class RegisterForm extends React.Component {
 	constructor(props) {
@@ -89,92 +91,60 @@ class RegisterForm extends React.Component {
 						<div className="card-body">
 							<h3>Create Account</h3>
 							<form className="form" noValidate onSubmit={this.handleSubmit}>
-								<label htmlFor="username" >Username</label>
-								<input
-									type="text"
-									className={'form-control ' + (
-										this.state.errors['username'] === undefined ? '' : 'is-invalid')}
-									name="username"
+								<InputField
+									type='text'
+									name='username'
+									label='Username'
+									onChange={this.handleChange}
+									placeholder='username'
 									value={this.state.username}
-									onChange={this.handleChange}
+									error={this.state.errors['username']}
 								/>
-								{(this.state.errors['username'] !== undefined) && (<small className="text-danger">
-									{this.state.errors['username'].join()}
-									<br />
-								</small>)
-								}
-								<label htmlFor="email">Email</label>
-								<input
-									type="email"
-									className={'form-control ' + (
-										this.state.errors['email'] === undefined ? '' : 'is-invalid')}
-									name="email"
+								<InputField
+									type='email'
+									name='email'
+									label='Email'
+									onChange={this.handleChange}
+									placeholder='email'
 									value={this.state.email}
-									onChange={this.handleChange}
+									error={this.state.errors['email']}
 								/>
-								{(this.state.errors['email'] !== undefined) &&
-									(<small className="text-danger">
-										{this.state.errors['email'].join()}
-										<br />
-									</small>)
-								}
-								<label htmlFor="first_name">First Name</label>
-								<input
-									type="text"
-									className={'form-control ' + (
-										this.state.errors['first_name'] === undefined ? '' : 'is-invalid')}
-									name="first_name"
+								<InputField
+									type='text'
+									name='first_name'
+									label='First Name'
+									onChange={this.handleChange}
+									placeholder='First Name'
 									value={this.state.first_name}
-									onChange={this.handleChange}
+									error={this.state.errors['first_name']}
 								/>
-								{(this.state.errors['first_name'] !== undefined) &&
-									(<small className="text-danger">
-										{this.state.errors['first_name'].join()}
-										<br />
-									</small>)
-								}
-								<label htmlFor="last_name">Last Name</label>
-								<input
-									type="text"
-									className={'form-control ' + (
-										this.state.errors['last_name'] === undefined ? '' : 'is-invalid')}
-									name="last_name"
-									value={this.state.lastModifiedDate}
+								<InputField
+									type='text'
+									name='last_name'
+									label='Last Name'
 									onChange={this.handleChange}
+									placeholder='Last Name'
+									value={this.state.last_name}
+									error={this.state.errors['last_name']}
 								/>
-								{(this.state.errors['last_name'] !== undefined) &&
-									(<small className="text-danger">
-										{this.state.errors['last_name'].join()}
-										<br />
-									</small>)}
-								<label htmlFor="password">Password</label>
-								<input
-									type="password"
-									ref="password"
-									className={'form-control ' + (
-										this.state.errors['password'] === undefined ? '' : 'is-invalid')}
-									name="password"
+								<InputField
+									type='password'
+									name='password'
+									label='Password'
 									onChange={this.handleChange}
+									placeholder='password'
+									value={this.state.password}
+									error={this.state.errors['password']}
 								/>
-								{(this.state.errors['password'] !== undefined) &&
-									(<small className="text-danger">
-										{this.state.errors['password'].join()}
-										<br />
-									</small>)}
-								<label htmlFor="confirm_password">Confirm Password</label>
-								<input
-									type="password"
-									className={'form-control ' +
-										(this.state.cpassword !== this.state.password ? 'is-invalid' : '')}
-									name="confirm_password"
+								<InputField
+									type='password'
+									name='confirm_password'
+									label='Confirm Password'
 									onChange={this.confirmPass}
+									placeholder='confirm password'
+									value={this.state.cpassword}
+									error={(this.state.cpassword !== this.state.password) && 'Password mismatch'}
 								/>
-								{(this.state.cpassword !== this.state.password) &&
-									(<small className="text-danger">
-										Password mismatch
-										<br />
-									</small>)}
-								<br />
 								<button
 									type="submit"
 									className="btn btn-lg btn-success btn-block btn-signin">Register
