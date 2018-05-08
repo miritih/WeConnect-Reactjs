@@ -6,13 +6,13 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 describe('Home', () => {
-  it('renders without crashing', () => {
-    const pathname = {
-      pathname: "/"
-    };
-    const rendered = renderer.create(
-      <Router><Home location={pathname} /></Router>
-    );
-    expect(rendered.toJSON()).toMatchSnapshot();
-  });
+	it('renders without crashing', () => {
+		const pathname = {
+			pathname: '/'
+		};
+		const rendered = renderer.create(
+			<Router><Home location={pathname} /></Router>
+		);
+		expect(rendered.toJSON()).toMatchSnapshot();
+	});
 });

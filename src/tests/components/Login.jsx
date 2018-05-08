@@ -7,29 +7,29 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 /* global expect,jest*/
 describe('Login', () => {
-  it('renders without crashing', () => {
-    const pathname = {
-      pathname: "/"
-    };
-    const rendered = renderer.create(
-      <Router><Login location={pathname} /></Router>
-    );
-    expect(rendered.toJSON()).toMatchSnapshot();
-  });
+	it('renders without crashing', () => {
+		const pathname = {
+			pathname: '/'
+		};
+		const rendered = renderer.create(
+			<Router><Login location={pathname} /></Router>
+		);
+		expect(rendered.toJSON()).toMatchSnapshot();
+	});
 });
 
 describe('PrivateRoute', () => {
-  let wrapper;
-  it('renders without crashing', () => {
-    const rendered = renderer.create(
-      <Router><PrivateRoute /></Router>
-    );
-    expect(rendered.toJSON()).toMatchSnapshot();
-  });
+	let wrapper;
+	it('renders without crashing', () => {
+		const rendered = renderer.create(
+			<Router><PrivateRoute /></Router>
+		);
+		expect(rendered.toJSON()).toMatchSnapshot();
+	});
 
-  it('Input should call isLoggedIn', () => {
-    const isLoggedIn = jest.fn();
-    wrapper = mount(<Router><PrivateRoute /></Router>);
-    expect(isLoggedIn).toBeCalled;
-  });
+	it('Input should call isLoggedIn', () => {
+		const isLoggedIn = jest.fn();
+		wrapper = mount(<Router><PrivateRoute /></Router>);
+		expect(isLoggedIn).toBeCalled;
+	});
 });
