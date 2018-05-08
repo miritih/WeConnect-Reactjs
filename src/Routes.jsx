@@ -1,7 +1,7 @@
 import React from 'react';
 // import components
 import Home from './Components/Home';
-import Register from './Components/Register';
+import RegisterPage from './Components/RegisterPage';
 import Profile from './Components/Profile';
 import ResetPass from './Components/ResetPass';
 import Login from './Components/Auth/Login';
@@ -16,12 +16,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 const router = (
 	<Router>
 		<div>
-		<Route exact path='/' component={Home} />
-		<Route exact path='/register' component={Register} />
-		<Route exact path='/login' component={Login} />
-		<PrivateRoute exact path='/profile/update' component={Profile} />
-		<PrivateRoute exact path='/profile/admin' component={ResetPass} />
-		<ToastContainer />
+			<Route exact path='/' component={Home} />
+			<Route exact path='/register' component={RegisterPage} />
+			<Route exact path='/login' component={Login} />
+			<PrivateRoute exact path='/profile/update' component={Profile} />
+			<PrivateRoute exact path='/profile/admin' component={ResetPass} />
+			<ToastContainer />
 		</div>
 	</Router>
 );

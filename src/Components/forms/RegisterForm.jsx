@@ -24,7 +24,7 @@ class RegisterForm extends React.Component {
 	}
 	componentDidMount() {
 		if (this.auth.isLoggedIn()) {
-			this.props.history.replace('/');
+			//this.props.history.replace('/');
 		}
 	}
 
@@ -60,10 +60,10 @@ class RegisterForm extends React.Component {
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
 				this.props.history.replace('/login');
-				toast.success(() => 
+				toast.success(() =>
 					(<div>
 						<h3>Success</h3>
-						<p>Your Account was successfully Created<br/> 
+						<p>Your Account was successfully Created<br />
 							Login now with your username and password
 						</p>
 					</div>)
@@ -90,91 +90,91 @@ class RegisterForm extends React.Component {
 							<h3>Create Account</h3>
 							<form className="form" noValidate onSubmit={this.handleSubmit}>
 								<label htmlFor="username" >Username</label>
-								<input 
-									type="text" 
+								<input
+									type="text"
 									className={'form-control ' + (
 										this.state.errors['username'] === undefined ? '' : 'is-invalid')}
 									name="username"
-									value= {this.state.username}
+									value={this.state.username}
 									onChange={this.handleChange}
 								/>
 								{(this.state.errors['username'] !== undefined) && (<small className="text-danger">
 									{this.state.errors['username'].join()}
-									<br/>
-								</small> )
-								}             
+									<br />
+								</small>)
+								}
 								<label htmlFor="email">Email</label>
 								<input
 									type="email"
 									className={'form-control ' + (
 										this.state.errors['email'] === undefined ? '' : 'is-invalid')}
 									name="email"
-									value= {this.state.email}
+									value={this.state.email}
 									onChange={this.handleChange}
 								/>
-								{(this.state.errors['email'] !== undefined) && 
+								{(this.state.errors['email'] !== undefined) &&
 									(<small className="text-danger">
 										{this.state.errors['email'].join()}
-										<br/>
-									</small> )
-								}  
+										<br />
+									</small>)
+								}
 								<label htmlFor="first_name">First Name</label>
-								<input 
-									type="text" 
-									className = {'form-control ' + (
+								<input
+									type="text"
+									className={'form-control ' + (
 										this.state.errors['first_name'] === undefined ? '' : 'is-invalid')}
 									name="first_name"
-									value= {this.state.first_name}
+									value={this.state.first_name}
 									onChange={this.handleChange}
 								/>
-								{(this.state.errors['first_name'] !== undefined) && 
+								{(this.state.errors['first_name'] !== undefined) &&
 									(<small className="text-danger">
 										{this.state.errors['first_name'].join()}
-										<br/>
-									</small> )
-								}  
+										<br />
+									</small>)
+								}
 								<label htmlFor="last_name">Last Name</label>
 								<input
 									type="text"
 									className={'form-control ' + (
 										this.state.errors['last_name'] === undefined ? '' : 'is-invalid')}
 									name="last_name"
-									value= {this.state.lastModifiedDate}
-									onChange={this.handleChange}  
+									value={this.state.lastModifiedDate}
+									onChange={this.handleChange}
 								/>
-								{(this.state.errors['last_name'] !== undefined) && 
+								{(this.state.errors['last_name'] !== undefined) &&
 									(<small className="text-danger">
 										{this.state.errors['last_name'].join()}
-										<br/>
-									</small> )} 
+										<br />
+									</small>)}
 								<label htmlFor="password">Password</label>
-								<input 
-									type="password" 
+								<input
+									type="password"
 									ref="password"
 									className={'form-control ' + (
 										this.state.errors['password'] === undefined ? '' : 'is-invalid')}
 									name="password"
 									onChange={this.handleChange}
 								/>
-								{(this.state.errors['password'] !== undefined) && 
+								{(this.state.errors['password'] !== undefined) &&
 									(<small className="text-danger">
 										{this.state.errors['password'].join()}
-										<br/>
-									</small> )}
+										<br />
+									</small>)}
 								<label htmlFor="confirm_password">Confirm Password</label>
-								<input 
-									type="password" 
-									className={'form-control ' + 
-									(this.state.cpassword !== this.state.password ? 'is-invalid' : '')}
+								<input
+									type="password"
+									className={'form-control ' +
+										(this.state.cpassword !== this.state.password ? 'is-invalid' : '')}
 									name="confirm_password"
 									onChange={this.confirmPass}
 								/>
-								{(this.state.cpassword !== this.state.password) && 
+								{(this.state.cpassword !== this.state.password) &&
 									(<small className="text-danger">
-									Password mismatch
-										<br/>
-									</small> )}
-								<br/>
+										Password mismatch
+										<br />
+									</small>)}
+								<br />
 								<button
 									type="submit"
 									className="btn btn-lg btn-success btn-block btn-signin">Register
