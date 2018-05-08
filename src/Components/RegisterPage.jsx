@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import components 
 import Form from './forms/RegisterForm';
-import Nav from './nav';
+import Nav from './common/nav';
 import * as RegisterUserActions from '../actions/UserAction';
 
 class RegisterPage extends React.Component {
@@ -14,7 +14,7 @@ class RegisterPage extends React.Component {
 				<Nav
 					history={props.history}
 					loggedIn={props.loggedIn}
-					user={props.currentUser}
+					user={props.currentUser.user}
 					location={props.location}
 				/>
 				<Form history={props.history} />

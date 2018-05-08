@@ -1,20 +1,22 @@
 import React from 'react';
 // import $ from 'jquery'
 import Search from './Search';
-import NavBar from './NavBar';
+import Nav from './common/nav';
 
 class Home extends React.Component {
-  render() {
-    return (
-      <div className="jumbotron jumbotron-home">
-      <NavBar 
-        history={this.props.history} 
-        location={this.props.location} 
-      />
-      <Search/>
-    </div>
-    );
-  }
+	render() {
+		const loggedIn = false;
+		return (
+			<div className="jumbotron jumbotron-home">
+				<Nav
+					loggedIn={loggedIn}
+					history={this.props.history}
+					location={this.props.location}
+				/>
+				<Search />
+			</div>
+		);
+	}
 }
 
 export default Home;
