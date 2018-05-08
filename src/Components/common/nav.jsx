@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import NavLinks from './NavLinks';
@@ -34,5 +35,11 @@ const Nav = ({ history, loggedIn, user, location }) => {
 			</nav>
 		</div>
 	);
+};
+Nav.propTypes = {
+	loggedIn: PropTypes.bool.isRequired,
+	user: PropTypes.object.isRequired,
+	location: PropTypes.object.isRequired,
+	history: PropTypes.object.isRequired
 };
 export default Nav;

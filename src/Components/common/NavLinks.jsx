@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
@@ -39,5 +40,10 @@ const NavLinks = ({ loggedIn, user, location }) => {
 			}
 		</ul>
 	);
+};
+NavLinks.propTypes = {
+	loggedIn: PropTypes.bool.isRequired,
+	user: PropTypes.object.isRequired,
+	location: PropTypes.object.isRequired
 };
 export default NavLinks;

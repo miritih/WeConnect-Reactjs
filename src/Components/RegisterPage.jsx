@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
 // import components 
 import Form from './forms/RegisterForm';
@@ -22,6 +23,13 @@ class RegisterPage extends React.Component {
 		);
 	}
 }
+
+RegisterPage.propType = {
+	currentUser: PropTypes.object.isRequired,
+	loggedIn: PropTypes.bool.isRequired,
+	actions: PropTypes.object.isRequired
+};
+
 function mapStateToProps(state, ownProps) {
 	return {
 		currentUser: state.activeUser,

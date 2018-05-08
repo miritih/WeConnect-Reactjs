@@ -7,8 +7,14 @@ export function isLoggedInSuccess(isLoggedIn) {
 		isLoggedIn
 	};
 }
-const Auth = new AuthService();
+export function setLoggedIn(isLoggedIn) {
+	return {
+		'type': types.IS_LOGGED_IN_SUCCESS,
+		isLoggedIn
+	};
+}
 
+const Auth = new AuthService();
 export function isLoggedIn() {
 	return function (dispatch) {
 		return dispatch(isLoggedInSuccess(Auth.isLoggedIn()));

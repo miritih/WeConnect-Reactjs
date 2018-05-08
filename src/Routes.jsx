@@ -1,10 +1,10 @@
 import React from 'react';
 // import components
-import Home from './Components/Home';
+import Home from './Components/HomePage';
 import RegisterPage from './Components/RegisterPage';
 import Profile from './Components/Profile';
 import ResetPass from './Components/ResetPass';
-import Login from './Components/Auth/Login';
+import Login from './Components/Auth/LoginPage';
 import PrivateRoute from './Components/Auth/PrivateRoute';
 // import PrivateRoute from './Components/Auth/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
