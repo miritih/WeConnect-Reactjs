@@ -1,15 +1,17 @@
 import React from 'react';
-// import components
-import Home from './Components/HomePage';
-import RegisterPage from './Components/RegisterPage';
-import Profile from './Components/Profile';
-import ResetPass from './Components/ResetPass';
-import Login from './Components/Auth/LoginPage';
-import PrivateRoute from './Components/Auth/PrivateRoute';
-// import PrivateRoute from './Components/Auth/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
-// import react router deps
+// import react router
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import components
+import Home from './Components/containerComponents/HomePage';
+import RegisterPage from './Components/containerComponents/RegisterPage';
+import Profile from './Components/containerComponents/ProfilePage';
+import ResetPass from './Components/containerComponents/ResetPassPage';
+import Login from './Components/containerComponents/LoginPage';
+import PrivateRoute from './Components/Auth/PrivateRoute';
+
+
+
 
 
 //create a router 

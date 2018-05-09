@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
 // import components 
-import LoginForm from '../forms/Login';
+import LoginForm from '../forms/LoginForm';
 import Nav from '../common/nav';
 import * as loginActions from '../../actions/loginActions';
 class LoginPage extends Component {
@@ -16,7 +16,7 @@ class LoginPage extends Component {
 					user={this.props.currentUser.user}
 					location={this.props.location}
 				/>
-				<LoginForm history={this.props.history} />
+				<LoginForm actions={this.props.actions} history={this.props.history} />
 			</div>
 		);
 	}

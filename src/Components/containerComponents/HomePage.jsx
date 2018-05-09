@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import Search from './Search';
-import Nav from './common/nav';
+import Search from '../forms/SearchForm';
+import Nav from '../common/nav';
 
 class Home extends React.Component {
 	render() {

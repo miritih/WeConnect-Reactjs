@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import InputField from '../inputs/InputField';
 
 class LoginForm extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			username: '',
 			password: ''
@@ -26,6 +26,7 @@ class LoginForm extends Component {
 		this.auth.login(this.state.username, this.state.password)
 			.then(res => {
 				if (res.status >= 200 && res.status < 300) {
+					this.props.actions.setLoggedIn();
 					this.props.history.replace('/');
 					toast.success(({ closeToast }) => <div>
 						<h3>Success</h3>

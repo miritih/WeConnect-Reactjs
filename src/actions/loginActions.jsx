@@ -7,9 +7,9 @@ export function isLoggedInSuccess(isLoggedIn) {
 		isLoggedIn
 	};
 }
-export function setLoggedIn(isLoggedIn) {
+export function setLoggedInSuccess(isLoggedIn) {
 	return {
-		'type': types.IS_LOGGED_IN_SUCCESS,
+		'type': types.SET_LOGGED_IN_SUCCESS,
 		isLoggedIn
 	};
 }
@@ -18,5 +18,12 @@ const Auth = new AuthService();
 export function isLoggedIn() {
 	return function (dispatch) {
 		return dispatch(isLoggedInSuccess(Auth.isLoggedIn()));
+	};
+}
+
+export function setLoggedIn() {
+	debugger;
+	return function (dispatch) {
+		return dispatch(setLoggedInSuccess(Auth.isLoggedIn()));
 	};
 }

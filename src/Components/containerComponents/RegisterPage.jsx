@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
 // import components 
-import Form from './forms/RegisterForm';
-import Nav from './common/nav';
-import * as RegisterUserActions from '../actions/UserAction';
+import Form from '../forms/RegisterForm';
+import Nav from '../common/nav';
+import * as RegisterUserActions from '../../actions/UserAction';
 
 class RegisterPage extends React.Component {
 	render() {

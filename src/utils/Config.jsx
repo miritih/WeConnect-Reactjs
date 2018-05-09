@@ -1,2 +1,2 @@
 export const baseURL = 'http://127.0.0.1:5000/api/v2';
-export const cloudName = "dzmdvppit";
+export const cloudName = 'dzmdvppit';
