@@ -22,7 +22,6 @@ export function isLoggedIn() {
 }
 
 export function setLoggedIn() {
-	debugger;
 	return function (dispatch) {
 		return dispatch(setLoggedInSuccess(Auth.isLoggedIn()));
 	};

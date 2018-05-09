@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import LoginForm from '../forms/LoginForm';
 import Nav from '../common/nav';
 import * as loginActions from '../../actions/loginActions';
+import * as loadUser from '../../actions/UserAction';
 class LoginPage extends Component {
 	render() {
 		return (
@@ -16,7 +17,10 @@ class LoginPage extends Component {
 					user={this.props.currentUser.user}
 					location={this.props.location}
 				/>
-				<LoginForm actions={this.props.actions} history={this.props.history} />
+				<LoginForm
+					actions={this.props.actions}
+					userActions={this.props.userActions}
+					history={this.props.history} />
 			</div>
 		);
 	}
@@ -24,7 +28,8 @@ class LoginPage extends Component {
 LoginPage.propType = {
 	currentUser: PropTypes.object.isRequired,
 	loggedIn: PropTypes.bool.isRequired,
-	actions: PropTypes.object.isRequired
+	actions: PropTypes.object.isRequired,
+	userActions: PropTypes.object
 };
 
 function mapStateToProps(state, ownState) {
@@ -35,7 +40,8 @@ function mapStateToProps(state, ownState) {
 }
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(loginActions, dispatch)
+		actions: bindActionCreators(loginActions, dispatch),
+		userActions: bindActionCreators(loadUser, dispatch)
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

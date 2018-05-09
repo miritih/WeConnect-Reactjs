@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const InputField = ({ name, type, label, required, onChange, placeholder, value, error }) => {
+const InputField = ({ name, type, label, disabled, required, onChange, placeholder, value, error }) => {
 	let formClass = 'form-control';
 	if (error && error.length > 0) {
 		formClass += ' ' + 'is-invalid';
@@ -17,6 +17,7 @@ const InputField = ({ name, type, label, required, onChange, placeholder, value,
 				placeholder={placeholder}
 				onChange={onChange}
 				required={required}
+				disabled={disabled}
 			/>
 			{error && <small className="text-danger">{error}</small>}
 		</div>
@@ -30,6 +31,7 @@ InputField.propTypes = {
 	placeholder: PropTypes.string,
 	value: PropTypes.string,
 	error: PropTypes.string,
-	required: PropTypes.string
+	required: PropTypes.string,
+	disabled: PropTypes.string
 };
 export default InputField;

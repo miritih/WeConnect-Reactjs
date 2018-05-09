@@ -5,6 +5,8 @@ import axios from 'axios';
 import { cloudName, baseURL } from '../../utils/Config';
 import { toast } from 'react-toastify';
 import Authservice from '../Auth/AuthService';
+import Button from '../inputs/Button';
+import InputField from '../inputs/InputField';
 
 class ProfileUpdate extends React.Component {
 	constructor() {
@@ -40,11 +42,9 @@ class ProfileUpdate extends React.Component {
 			formData.append('api_key', 'Qjd1aIFSFzTBkcT8Jm5ooozuckc');
 			formData.append('timestamp', (Date.now() / 1000) | 0);
 			// Make an AJAX upload request using Axios 
-			console.log(file);
 			return axios.post('https://api.cloudinary.com/v1_1/dzmdvppit/image/upload', formData, {
 				headers: { 'X-Requested-With': 'XMLHttpRequest' },
 			}).then(response => {
-				console.log(response.data);
 				this.setState({
 					change: true,
 					image: response.data.public_id
@@ -105,45 +105,38 @@ class ProfileUpdate extends React.Component {
 			<form onSubmit={this.handleSubmit}>
 				<div className="row">
 					<div className="col-md-8 col-sm-12">
-						<label htmlFor="username" >Username</label>
-						<input
+						<InputField
 							type="text"
-							disabled
+							disabled='disabled'
 							value={this.state.username}
-							className="form-control"
 							name="username"
-							onChange={this.handleChange} />
-						<br />
-						<label htmlFor="email">Email</label>
-						<input
-							type="text"
-							disabled
-							className="form-control "
-							name="email"
+							label="Username"
+							onChange={this.handleChange}
+						/>
+						<InputField
+							type="email"
+							disabled='disabled'
 							value={this.state.email}
+							name="email"
+							label="Email"
 							onChange={this.handleChange}
 						/>
-						<br />
-						<label htmlFor="first_name">First Name</label>
-						<input
+						<InputField
 							type="text"
-							required
-							className="form-control "
-							name="first_name"
 							value={this.state.first_name}
+							name="first_name"
+							label="First Name"
+							required='required'
 							onChange={this.handleChange}
 						/>
-						<br />
-						<label htmlFor="last_name">Last Name</label>
-						<input
+						<InputField
 							type="text"
-							className="form-control "
-							name="last_name"
-							required
 							value={this.state.last_name}
+							name="last_name"
+							label="Last Name"
+							required='required'
 							onChange={this.handleChange}
 						/>
-						<br />
 					</div>
 					<div className="col-md-4 col-sm-12">
 						<p>Profile Picture</p>
@@ -157,9 +150,11 @@ class ProfileUpdate extends React.Component {
 						<br />
 					</div>
 				</div>
-				<button type="submit" className="btn btn-primary">
-					Save changes
-				</button>
+				<Button
+					type="submit"
+					className="btn btn-primary"
+					text="Save changes"
+				/>
 				{this.state.change ?
 					<p className="text-info">You have unsaved changes</p> : ''
 				}

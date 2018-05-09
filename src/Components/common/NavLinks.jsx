@@ -43,7 +43,7 @@ const NavLinks = ({ loggedIn, user, location }) => {
 };
 NavLinks.propTypes = {
 	loggedIn: PropTypes.bool.isRequired,
-	user: PropTypes.object.isRequired,
+	user: PropTypes.object,
 	location: PropTypes.object.isRequired
 };
 export default NavLinks;

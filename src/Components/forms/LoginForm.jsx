@@ -3,6 +3,7 @@ import Authservice from '../Auth/AuthService';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import InputField from '../inputs/InputField';
+import Button from '../inputs/Button';
 
 class LoginForm extends Component {
 	constructor(props) {
@@ -26,6 +27,7 @@ class LoginForm extends Component {
 		this.auth.login(this.state.username, this.state.password)
 			.then(res => {
 				if (res.status >= 200 && res.status < 300) {
+					this.props.userActions.loadCurrentUser();
 					this.props.actions.setLoggedIn();
 					this.props.history.replace('/');
 					toast.success(({ closeToast }) => <div>
@@ -86,11 +88,11 @@ class LoginForm extends Component {
 									placeholder='enter password'
 									value={this.state.password}
 								/>
-								<button
+								<Button
 									type="submit"
-									className="btn btn-lg btn-success btn-block btn-signin">
-									Login
-								</button>
+									className="btn btn-lg btn-success btn-block btn-signin"
+									text='Login'
+								/>
 								<p className="message">Not registered? <Link to="/register">Create an account</Link></p>
 							</form>
 						</div>

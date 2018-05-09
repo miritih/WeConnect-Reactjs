@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Authservice from '../Auth/AuthService';
 import { baseURL as url } from '../../utils/Config';
 import InputField from '../inputs/InputField';
-
+import Button from '../inputs/Button';
 
 class RegisterForm extends React.Component {
 	constructor(props) {
@@ -145,10 +145,11 @@ class RegisterForm extends React.Component {
 									value={this.state.cpassword}
 									error={(this.state.cpassword !== this.state.password) && 'Password mismatch'}
 								/>
-								<button
+								<Button
 									type="submit"
-									className="btn btn-lg btn-success btn-block btn-signin">Register
-								</button>
+									className="btn btn-lg btn-success btn-block btn-signin"
+									text="Register"
+								/>
 								<p className="message">Alredy registered? <Link to="/login">Signin</Link></p>
 							</form>
 						</div>

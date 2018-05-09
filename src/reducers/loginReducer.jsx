@@ -4,7 +4,6 @@ export default function LoginReducer(state = [], action) {
 		case types.IS_LOGGED_IN_SUCCESS:
 			return action.isLoggedIn;
 		case types.SET_LOGGED_IN_SUCCESS:
-			debugger;
 			return action.isLoggedIn;
 		default:
 			return state;
