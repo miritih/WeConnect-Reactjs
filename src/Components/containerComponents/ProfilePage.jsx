@@ -1,14 +1,22 @@
 import React from 'react';
-import NavBar from '../NavBar';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { bindActionCreators } from 'redux';
+import * as loginActions from '../../actions/loginActions';
+import NavBar from '../common/NavBar';
 import ProfileNav from '../common/ProfileNav';
 import ProfileUpdate from '../forms/ProfileUpdate';
 class Profile extends React.Component {
 	render() {
+		const props = this.props;
 		return (
 			<div>
 				<NavBar
-					history={this.props.history}
-					location={this.props.location}
+					history={props.history}
+					loggedIn={props.loggedIn}
+					user={props.currentUser.user}
+					location={props.location}
+					actions={props.actions}
 				/>
 				<div className="container profile">
 					<div className="card">
@@ -29,4 +37,20 @@ class Profile extends React.Component {
 		);
 	}
 }
-export default Profile;
+Profile.propType = {
+	currentUser: PropTypes.object.isRequired,
+	loggedIn: PropTypes.bool.isRequired,
+	actions: PropTypes.object.isRequired
+};
+function mapStateToProps(state, ownState) {
+	return {
+		currentUser: state.activeUser,
+		loggedIn: state.loggedIn
+	};
+}
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(loginActions, dispatch)
+	};
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

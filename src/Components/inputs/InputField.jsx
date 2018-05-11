@@ -2,9 +2,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 const InputField = ({ name, type, label, disabled, required, onChange, placeholder, value, error }) => {
-	let formClass = 'form-control';
+	let formClass = 'form-control ';
 	if (error && error.length > 0) {
-		formClass += ' ' + 'is-invalid';
+		formClass += 'is-invalid';
 	}
 	return (
 		<div className='form-group'>

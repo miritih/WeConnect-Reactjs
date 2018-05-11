@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
 // import components 
 import Form from '../forms/RegisterForm';
-import Nav from '../common/nav';
+import NavBar from '../common/NavBar';
 import * as RegisterUserActions from '../../actions/UserAction';
 
 class RegisterPage extends React.Component {
@@ -12,11 +12,12 @@ class RegisterPage extends React.Component {
 		const props = this.props;
 		return (
 			<div>
-				<Nav
+				<NavBar
 					history={props.history}
 					loggedIn={props.loggedIn}
 					user={props.currentUser.user}
 					location={props.location}
+					actions={props.actions}
 				/>
 				<Form history={props.history} />
 			</div>

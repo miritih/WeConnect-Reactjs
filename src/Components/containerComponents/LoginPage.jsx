@@ -4,18 +4,19 @@ import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
 // import components 
 import LoginForm from '../forms/LoginForm';
-import Nav from '../common/nav';
+import NavBar from '../common/NavBar';
 import * as loginActions from '../../actions/loginActions';
 import * as loadUser from '../../actions/UserAction';
 class LoginPage extends Component {
 	render() {
 		return (
 			<div>
-				<Nav
+				<NavBar
 					history={this.props.history}
 					loggedIn={this.props.loggedIn}
 					user={this.props.currentUser.user}
 					location={this.props.location}
+					actions={this.props.actions}
 				/>
 				<LoginForm
 					actions={this.props.actions}

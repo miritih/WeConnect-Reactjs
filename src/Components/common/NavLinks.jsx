@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
 
-const NavLinks = ({ loggedIn, user, location }) => {
+const NavLinks = ({ loggedIn, user, handleLogout, location }) => {
 	return (
 		<ul className={'navbar-nav ml-auto ' + ('/' === location.pathname ? 'white' : '')}>
 			<li className="nav-item">
@@ -30,7 +30,7 @@ const NavLinks = ({ loggedIn, user, location }) => {
 					</a>
 					<div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<Link className="dropdown-item" to="/profile/update">Manage Profile</Link>
-						<Link className="dropdown-item" to="/logout">Logout</Link>
+						<Link className="dropdown-item" to="/logout" onClick={handleLogout}>Logout</Link>
 					</div>
 				</li>
 				:
@@ -44,6 +44,7 @@ const NavLinks = ({ loggedIn, user, location }) => {
 NavLinks.propTypes = {
 	loggedIn: PropTypes.bool.isRequired,
 	user: PropTypes.object,
+	handleLogout: PropTypes.func.isRequired,
 	location: PropTypes.object.isRequired
 };
 export default NavLinks;
