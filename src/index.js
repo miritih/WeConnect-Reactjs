@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; //no-unused-var
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Routes from './Routes';
