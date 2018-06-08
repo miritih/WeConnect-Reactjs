@@ -36,7 +36,9 @@ const LoginForm = ({ handleChange, handleSubmit, username, password }) => {
 								className="btn btn-lg btn-success btn-block btn-signin"
 								text='Login'
 							/>
-							<p className="message">Not registered? <Link to="/register">Create an account</Link></p>
+							<p className="message">Not registered? <Link to="/register">Create an account. </Link>
+								<span> Forgot password?  <Link to="/forgotpass">Reset</Link> </span>
+							</p>
 						</form>
 					</div>
 				</div>
@@ -47,8 +49,8 @@ const LoginForm = ({ handleChange, handleSubmit, username, password }) => {
 LoginForm.propTypes = {
 	handleChange: PropTypes.func.isRequired,
 	handleSubmit: PropTypes.func.isRequired,
-	username: PropTypes.string.isRequired,
-	password: PropTypes.string.isRequired
+	username: PropTypes.string,
+	password: PropTypes.string
 };
 
 export default LoginForm;
