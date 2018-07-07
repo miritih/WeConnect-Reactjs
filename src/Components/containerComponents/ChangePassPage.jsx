@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as loginActions from '../../actions/loginActions';
 import NavBar from '../common/NavBar';
 import ProfileNav from '../common/ProfileNav';
-import ResetPassForm from '../forms/ResetPassForm';
+import ResetPassForm from '../forms/ChangePassForm';
 class ResetPass extends React.Component {
 	render() {
 		const props = this.props;
