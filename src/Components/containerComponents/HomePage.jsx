@@ -28,10 +28,11 @@ Home.propType = {
 	loggedIn: PropTypes.bool.isRequired,
 	actions: PropTypes.object.isRequired
 };
-function mapStateToProps(state, ownState) {
+function mapStateToProps(state) {
+	const { currentUser, loggedIn} = state;
 	return {
-		currentUser: state.activeUser,
-		loggedIn: state.loggedIn
+		currentUser,
+		loggedIn
 	};
 }
 function mapDispatchToProps(dispatch) {
