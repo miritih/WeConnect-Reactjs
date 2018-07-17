@@ -1,15 +1,18 @@
-import * as types from './actiontypes';
+import {
+	IS_LOGGED_IN_SUCCESS, 
+	SET_LOGGED_IN_SUCCESS
+} from './actiontypes';
 import AuthService from '../Components/Auth/AuthService';
 
 export function isLoggedInSuccess(isLoggedIn) {
 	return {
-		'type': types.IS_LOGGED_IN_SUCCESS,
+		'type': IS_LOGGED_IN_SUCCESS,
 		isLoggedIn
 	};
 }
 export function setLoggedInSuccess(isLoggedIn) {
 	return {
-		'type': types.SET_LOGGED_IN_SUCCESS,
+		'type': SET_LOGGED_IN_SUCCESS,
 		isLoggedIn
 	};
 }
