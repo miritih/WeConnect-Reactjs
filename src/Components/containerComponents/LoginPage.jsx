@@ -93,7 +93,7 @@ LoginPage.propType = {
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.activeUser,
+		currentUser: state.currentUser,
 		loggedIn: state.loggedIn
 	};
 }

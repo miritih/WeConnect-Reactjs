@@ -45,7 +45,6 @@ class ProfileUpdate extends React.Component {
 			return axios.post('https://api.cloudinary.com/v1_1/dzmdvppit/image/upload', formData, {
 				headers: { 'X-Requested-With': 'XMLHttpRequest' },
 			}).then(response => {
-				console.log(response);
 				this.setState({
 					change: true,
 					image: response.data.public_id

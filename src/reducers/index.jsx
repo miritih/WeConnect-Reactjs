@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import activeUser from './UserReducer';
+import currentUser from './UserReducer';
+import registerUser from './registerUserReducer';
 import loggedIn from './loginReducer';
 import passwordReset from './ResetPassReducer';
 
 const rootReducer = combineReducers({
-	activeUser,
+	currentUser,
 	loggedIn,
-	passwordReset
+	passwordReset,
+	registerUser
 });
 
 export default rootReducer;

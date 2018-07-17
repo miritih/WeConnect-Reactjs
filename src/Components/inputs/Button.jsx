@@ -1,13 +1,13 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const Button = ({ type, className, text, disabled }) => {
+const Button = ({ type, loading, className, text, disabled }) => {
 	return (
 		<button
 			type={type}
 			className={className}
 			disabled={disabled}>
-			{text}
+			{loading ? <span>{text}<img src='/img/16x16.gif' alt={text}/></span> : text }
 		</button>
 	);
 };

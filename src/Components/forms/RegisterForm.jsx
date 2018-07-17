@@ -14,7 +14,8 @@ const RegisterForm = ({
 	last_name, 
 	errors, 
 	username, 
-	password 
+	password,
+	loading
 }) => {
 	return (
 		<div className="container wrapper">
@@ -80,7 +81,9 @@ const RegisterForm = ({
 							<Button
 								type="submit"
 								className="btn btn-lg btn-success btn-block btn-signin"
-								text="Register"
+								loading={loading}
+								text={loading ? 'Saving... ' : 'Register ' }
+								disabled= {loading ? 'disabled' : null }
 							/>
 							<p className="message">Alredy registered? <Link to="/login">Signin</Link></p>
 						</form>
