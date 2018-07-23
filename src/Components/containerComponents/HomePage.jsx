@@ -13,7 +13,7 @@ class Home extends React.Component {
 			<div className="jumbotron jumbotron-home">
 				<NavBar
 					history={props.history}
-					loggedIn={props.loggedIn}
+					loggedIn={props.isLoggedIn}
 					user={props.currentUser.user}
 					location={props.location}
 					actions={props.actions}
@@ -29,10 +29,9 @@ Home.propType = {
 	actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
-	const { currentUser, loggedIn} = state;
 	return {
-		currentUser,
-		loggedIn
+		currentUser: state.currentUser,
+		isLoggedIn: state.userLogin.isLoggedIn
 	};
 }
 function mapDispatchToProps(dispatch) {

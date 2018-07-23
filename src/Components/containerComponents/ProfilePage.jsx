@@ -13,7 +13,7 @@ class Profile extends React.Component {
 			<div>
 				<NavBar
 					history={props.history}
-					loggedIn={props.loggedIn}
+					loggedIn={props.userLogin.isLoggedIn}
 					user={props.currentUser.user}
 					location={props.location}
 					actions={props.actions}
@@ -43,9 +43,13 @@ Profile.propType = {
 	actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state, ownState) {
+	const {
+		currentUser,
+		userLogin
+	} = state;
 	return {
-		currentUser: state.activeUser,
-		loggedIn: state.loggedIn
+		currentUser,
+		userLogin
 	};
 }
 function mapDispatchToProps(dispatch) {

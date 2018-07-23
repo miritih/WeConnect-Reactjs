@@ -48,7 +48,7 @@ class ForgotPassword extends React.Component {
 				<ResetPassForm
 					handleChange={this.handleChange}
 					email={this.state.email}
-					error={props.resetPass['0']}
+					error={props.passwordReset['0']}
 					handleSubmit={this.handleSubmit}
 				/>
 			</div>
@@ -61,10 +61,15 @@ ForgotPassword.propType = {
 	actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
+	const {
+		currentUser,
+		loggedIn,
+		passwordReset
+	} = state;
 	return {
-		currentUser: state.activeUser,
-		loggedIn: state.loggedIn,
-		resetPass: state.passwordReset
+		currentUser,
+		loggedIn,
+		passwordReset
 	};
 }
 function mapDispatchToProps(dispatch) {

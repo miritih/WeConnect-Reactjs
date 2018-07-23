@@ -31,12 +31,11 @@ class RegisterPage extends React.Component {
 			first_name,
 			last_name,
 		}=this.props.registerUser;
-		this.props.actions.registerUser({history: this.props.history, username, email, first_name, last_name, password});
+		this.props.actions.registerUser({username, email, first_name, last_name, password});
 	}
 	render() {
 		const props = this.props;
 		const inputs = this.props.registerUser;
-		console.log(inputs.redirect);
 		if (inputs.redirect) {
 			return <Redirect to='/login'/>;
 		}
@@ -44,7 +43,7 @@ class RegisterPage extends React.Component {
 			<div>
 				<NavBar
 					history={props.history}
-					loggedIn={props.loggedIn}
+					loggedIn={props.userLogin.isLoggedIn}
 					user={props.currentUser.user}
 					location={props.location}
 					actions={props.actions}
@@ -78,29 +77,12 @@ function mapStateToProps(state) {
 	const {
 		currentUser,
 		registerUser,
-		loggedIn,
-		username,
-		password,
-		email,
-		first_name,
-		last_name,
-		errors,
-		loading,
-		redirect
-
+		userLogin,		
 	} = state;
 	return {
 		currentUser,
 		registerUser,
-		loggedIn,
-		username,
-		password,
-		email,
-		first_name,
-		last_name,
-		errors,
-		loading,
-		redirect
+		userLogin
 	};
 }
 

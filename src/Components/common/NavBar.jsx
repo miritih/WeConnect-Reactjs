@@ -12,7 +12,7 @@ class NavBar extends React.Component {
 	handleLogout(e) {
 		e.preventDefault();
 		Auth.logout();
-		this.props.actions.setLoggedIn(); //sets logged in state to false after logout
+		this.props.actions.isLoggedIn(); //sets logged in state to false after logout
 		this.props.history.replace('/'); // redirect to home page
 	}
 	render() {

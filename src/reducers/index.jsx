@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import currentUser from './UserReducer';
 import registerUser from './registerUserReducer';
-import loggedIn from './loginReducer';
+import userLogin from './loginReducer';
 import passwordReset from './ResetPassReducer';
 
 const rootReducer = combineReducers({
 	currentUser,
-	loggedIn,
+	userLogin,
 	passwordReset,
 	registerUser
 });

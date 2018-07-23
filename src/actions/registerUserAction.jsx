@@ -46,7 +46,6 @@ export const registerUser = ({ username, email, first_name, last_name, password 
 					notify('success','Success', 'Your Account was successfully Created. Proceed to login');
 				}
 			}).catch((error) => {
-				console.log(error);
 				if (error.response !== undefined) {
 					registrationFailure(dispatch, error.response.data['Errors']);
 				}
