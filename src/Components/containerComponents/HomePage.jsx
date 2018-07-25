@@ -14,7 +14,7 @@ class Home extends React.Component {
 				<NavBar
 					history={props.history}
 					loggedIn={props.isLoggedIn}
-					user={props.currentUser.user}
+					user={props.currentUser}
 					location={props.location}
 					actions={props.actions}
 				/>

@@ -6,14 +6,12 @@ import {Redirect} from 'react-router-dom';
 // import components 
 import LoginForm from '../forms/LoginForm';
 import NavBar from '../common/NavBar';
-import Authservice from '../Auth/AuthService';
 import * as loginActions from '../../actions/loginActions';
 import * as loadUser from '../../actions/UserAction';
 
 class LoginPage extends Component {
 	constructor(props) {
 		super(props);
-		this.auth = new Authservice();
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
