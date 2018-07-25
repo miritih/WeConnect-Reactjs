@@ -29,7 +29,7 @@ export function updateUserSuccess(user){
 	};
 }
 
-export const updateProfileSuccess = ({payload}) => {
+export const updateProfileSuccess = (payload) => {
 	return {
 		type: UPDATE_PROFILE_SUCCESS,
 		payload
