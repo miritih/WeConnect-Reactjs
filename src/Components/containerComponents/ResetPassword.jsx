@@ -41,7 +41,7 @@ class ForgotPassword extends React.Component {
 				<NavBar
 					history={props.history}
 					loggedIn={props.loggedIn}
-					user={props.currentUser.user}
+					user={props.currentUser}
 					location={props.location}
 					actions={props.loginActions}
 				/>
