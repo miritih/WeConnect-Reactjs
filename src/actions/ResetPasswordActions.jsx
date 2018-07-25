@@ -50,12 +50,11 @@ export const updatePassword = ({old_password, password}) =>{
 				dispatch(resetPasswordError(error.response.data['Errors']));
 			}
 			else {
-				console.log(error);
 				notify('error', 'Opps!!', 'Sorry! Something went wrong. If the problem persist, contact support');
 			}
 		});
 	};
-}
+};
 
 
 export function resetPassword(email) {

@@ -12,12 +12,6 @@ import * as resetPassActions from '../../actions/ResetPasswordActions';
 class ResetPass extends React.Component {
 	constructor() {
 		super();
-		this.state = {
-			old_password: '',
-			new_password: '',
-			confirm_password: '',
-			errors: []
-		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
