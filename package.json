@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "axios-mock-adapter": "^1.15.0",
     "cloudinary-react": "^1.0.6",
     "jwt-decode": "^2.2.0",
     "react": "^16.3.1",
@@ -44,6 +43,7 @@
     "expect": "1.19.0",
     "jest": "^22.4.3",
     "mocha": "2.4.5",
+    "moxios": "^0.4.0",
     "nock": "8.0.0",
     "react-addons-test-utils": "^15.6.2",
     "redux-immutable-state-invariant": "1.2.3",
