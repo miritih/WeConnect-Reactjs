@@ -94,7 +94,7 @@ export const updateUser = ({ email, image, first_name, last_name }) => {
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(loadCurrentUser());
-				dispatch(updateProfileSuccess(response));
+				dispatch(updateProfileSuccess(response.data));
 				notify('success', 'Success', 'Your Profile was successfully updated');
 			}
 		});
