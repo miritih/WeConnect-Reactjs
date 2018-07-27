@@ -10,18 +10,18 @@ export const inputChange = ({ prop, value }) => {
 	};
 };
 
-const registrationSuccess = (dispatch, response) => {
-	dispatch({
+export const registrationSuccess = (response) => {
+	return {
 		type: IS_REGISTRATION_SUCCESS,
 		response
-	});
+	};
 };
 
-const registrationFailure = (dispatch, errors) => {
-	dispatch({
+export const registrationFailure = (errors) => {
+	return {
 		type: IS_REGISTRATION_FAILURE,
 		errors 
-	});
+	};
 };
 
 
@@ -42,12 +42,12 @@ export const registerUser = ({ username, email, first_name, last_name, password 
 		})
 			.then((response)=> {
 				if (response.status >= 200 && response.status < 300) {
-					registrationSuccess(dispatch, response);
+					dispatch(registrationSuccess(dispatch, response));
 					notify('success','Success', 'Your Account was successfully Created. Proceed to login');
 				}
 			}).catch((error) => {
 				if (error.response !== undefined) {
-					registrationFailure(dispatch, error.response.data['Errors']);
+					dispatch(registrationFailure(dispatch, error.response.data['Errors']));
 				}
 				else {
 					notify('error','Opps!!', 'Sorry! Something went wrong. If the problem persist, contact support');
