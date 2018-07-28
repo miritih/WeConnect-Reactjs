@@ -62,6 +62,8 @@ ResetPassForm.propTypes = {
 	confirm_password: PropTypes.string,
 	old_password: PropTypes.string,
 	new_password: PropTypes.string,
+	errors: PropTypes.array,
+	loading: PropTypes.bool
 };
 
 export default ResetPassForm;

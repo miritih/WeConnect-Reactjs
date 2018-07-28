@@ -9,7 +9,7 @@ import NavBar from '../common/NavBar';
 import * as loginActions from '../../actions/loginActions';
 import * as loadUser from '../../actions/UserAction';
 
-class LoginPage extends Component {
+export class LoginPage extends Component {
 	constructor(props) {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);

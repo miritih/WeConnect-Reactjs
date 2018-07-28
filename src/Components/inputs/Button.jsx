@@ -15,5 +15,7 @@ Button.propTypes = {
 	type: PropTypes.string.isRequired,
 	className: PropTypes.string.isRequired,
 	text: PropTypes.string.isRequired,
+	loading: PropTypes.bool,
+	disabled: PropTypes.string,
 };
 export default Button;

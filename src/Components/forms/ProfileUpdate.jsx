@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Image } from 'cloudinary-react';
 import Dropzone from 'react-dropzone';
 import { cloudName } from '../../utils/Config';
@@ -68,6 +69,19 @@ const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, h
 			}
 		</form>
 	);
+};
+ProfileUpdate.propTypes = {
+	handleChange: PropTypes.func.isRequired,
+	handleSubmit: PropTypes.func.isRequired,
+	email: PropTypes.string.isRequired,  
+	uploading: PropTypes.bool,
+	loading: PropTypes.bool,
+	handleDrop: PropTypes.func.isRequired,
+	username: PropTypes.string.isRequired, 
+	first_name: PropTypes.string.isRequired, 
+	change: PropTypes.bool,
+	last_name: PropTypes.string.isRequired, 
+	image: PropTypes.string.isRequired,
 };
 
 export default ProfileUpdate;

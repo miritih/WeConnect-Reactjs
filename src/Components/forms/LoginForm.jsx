@@ -11,7 +11,6 @@ const LoginForm = ({ handleChange, handleSubmit, username, password }) => {
 				<div className="card">
 					<div className="card-body">
 						<img className="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="login" />
-						<p id="profile-name" className="profile-name-card"></p>
 						<form className="form" onSubmit={handleSubmit}>
 							<InputField
 								type='text'
