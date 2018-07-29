@@ -6,10 +6,12 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
 import { loadCurrentUser } from './actions/UserAction';
 import { isLoggedIn } from './actions/loginActions';
+import {loadBusinesses} from './actions/businessActions';
 
 const store = configureStore();
 store.dispatch(loadCurrentUser());
 store.dispatch(isLoggedIn());
+store.dispatch(loadBusinesses());
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -108,3 +108,26 @@
 .navbarcolor{
   background-color: #e3f2fd;
 }
+.card{
+  margin-bottom: 15px;
+}
+.bsprofile{
+ margin-top: -90px;
+ background: #fff;
+ border-radius: 5px;
+}
+.bs-card{
+  width: 18rem;
+}
+
+.reviews{
+  
+}
+.navbar-light{
+    
+}
+.loading{
+  margin: 10% 50%;
+  width: 200px;
+}
+
