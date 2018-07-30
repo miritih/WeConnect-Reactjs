@@ -4,6 +4,7 @@ import registerUser from './registerUserReducer';
 import userLogin from './loginReducer';
 import passwordReset from './ResetPassReducer';
 import businesses from './businessReducers';
+import userBusinesses from './userBusinessReducer';
 
 const rootReducer = combineReducers({
 	currentUser,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
 	passwordReset,
 	registerUser,
 	businesses,
+	userBusinesses
 });
 
 export default rootReducer;

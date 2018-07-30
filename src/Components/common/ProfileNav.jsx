@@ -13,7 +13,7 @@ class ProfileNav extends React.Component {
 					<Link className="dropdown-item" to="/profile/admin">Change Password</Link>
 				</li>
 				<li className="list-group-item">
-					<Link className="dropdown-item" to="/profile/business">My Businesses</Link>
+					<Link className="dropdown-item" to="/admin/my-businesses">My Businesses</Link>
 				</li>
 			</ul>
 		);

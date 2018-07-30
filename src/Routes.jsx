@@ -10,6 +10,7 @@ import ChangePass from './Components/containerComponents/ChangePassPage';
 import Login from './Components/containerComponents/LoginPage';
 import PrivateRoute from './Components/Auth/PrivateRoute';
 import ForgotPassword from './Components/containerComponents/ResetPassword';
+import myBusinesses from './Components/containerComponents/myBusinesses';
 //create a router 
 const router = (
 	<Router>
@@ -20,6 +21,7 @@ const router = (
 			<PrivateRoute exact path='/profile/update' component={Profile} />
 			<PrivateRoute exact path='/profile/admin' component={ChangePass} />
 			<Route exact path='/forgotpass' component={ForgotPassword} />
+			<PrivateRoute exact path='/admin/my-businesses' component={myBusinesses} />
 			<ToastContainer />
 		</div>
 	</Router>

@@ -7,11 +7,12 @@ import configureStore from './store/configureStore';
 import { loadCurrentUser } from './actions/UserAction';
 import { isLoggedIn } from './actions/loginActions';
 import {loadBusinesses} from './actions/businessActions';
-
+import {loadUserBusinesses} from './actions/userBusinessAction';
 const store = configureStore();
 store.dispatch(loadCurrentUser());
 store.dispatch(isLoggedIn());
 store.dispatch(loadBusinesses());
+store.dispatch(loadUserBusinesses());
 
 ReactDOM.render(
 	<Provider store={store}>

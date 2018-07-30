@@ -63,7 +63,7 @@ class Home extends React.Component {
 				{ props.businesses.loading ? Loading :
 					<BusinessList businesses={props.businesses} onPaginate={this.onPaginate} />  
 				}
-					
+				
 			</div>
 		);
 	}

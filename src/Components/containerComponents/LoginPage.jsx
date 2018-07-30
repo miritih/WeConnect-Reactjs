@@ -36,7 +36,7 @@ export class LoginPage extends Component {
 				<NavBar
 					history={props.history}
 					loggedIn={props.userLogin.isLoggedIn}
-					user={props.currentUser.user}
+					user={props.currentUser}
 					location={props.location}
 					actions={props.actions}
 				/>
@@ -52,7 +52,7 @@ export class LoginPage extends Component {
 }
 LoginPage.propType = {
 	currentUser: PropTypes.object.isRequired,
-	loggedIn: PropTypes.bool.isRequired,
+	userLogin: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired,
 	userActions: PropTypes.object
 };

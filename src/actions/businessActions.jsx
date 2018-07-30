@@ -1,6 +1,6 @@
 import {
 	LOAD_BUSINESSES_SUCCESS,
-	LOAD_BUSINESS
+	LOAD_BUSINESS,
 } from './actiontypes';
 import axios from 'axios';
 import { baseURL } from '../utils/Config';

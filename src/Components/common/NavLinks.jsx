@@ -29,7 +29,7 @@ const NavLinks = ({ loggedIn, user, handleLogout, location }) => {
 						{' ' + user['username']}
 					</a>
 					<div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<Link className="dropdown-item" to="/profile/update">Manage Profile</Link>
+						<Link className="dropdown-item" to="/profile/update">Dashboard</Link>
 						<Link className="dropdown-item" to="/logout" onClick={handleLogout}>Logout</Link>
 					</div>
 				</li>
