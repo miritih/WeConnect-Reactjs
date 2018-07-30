@@ -13,19 +13,10 @@ import ListTable from '../businessComponents/myBusinessesTable';
 export class myBusinesses extends Component {
 	constructor(props) {
 		super(props);
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onPaginate = this.onPaginate.bind(this);
-	}
-	handleChange(e) {
-		console.log({prop: e.target.name, value: e.target.value});
 	}
 	onPaginate(e){
 		this.props.bizActions.loadUserBusinesses(e.currentTarget.dataset.id);
-	}
-	handleSubmit(e) {
-		e.preventDefault();
-		console.log(e);
 	}
 	componentDidMount(){
 		this.props.bizActions.loadUserBusinesses();
