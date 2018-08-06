@@ -19,7 +19,7 @@ export const SearchForm = ({onSearch, onChange, value}) => {
 										onKeyUp={onSearch}
 										value={value}
 										onChange={onChange}
-										placeholder="filter by business Name Nategory or Location" 
+										placeholder="Filter by business name, category, or location" 
 										id="example-search-input"
 									/>
 									<span className="input-group-append">

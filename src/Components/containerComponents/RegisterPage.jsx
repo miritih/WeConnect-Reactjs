@@ -36,6 +36,7 @@ class RegisterPage extends React.Component {
 	render() {
 		const props = this.props;
 		const inputs = this.props.registerUser;
+		console.log(inputs.errors);
 		if (inputs.redirect) {
 			return <Redirect to='/login'/>;
 		}

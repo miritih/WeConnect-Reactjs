@@ -13,7 +13,7 @@ const NavLinks = ({ loggedIn, user, handleLogout, location }) => {
 			{loggedIn ?
 				<span>
 					<li className="nav-item">
-						<Link className="nav-link" to="/register_business">Register business</Link>
+						<Link className="nav-link" to="/new-businesses">Register business</Link>
 					</li>
 				</span>
 				:

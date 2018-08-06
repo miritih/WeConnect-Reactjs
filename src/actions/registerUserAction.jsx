@@ -42,12 +42,12 @@ export const registerUser = ({ username, email, first_name, last_name, password 
 		})
 			.then((response)=> {
 				if (response.status >= 200 && response.status < 300) {
-					dispatch(registrationSuccess(dispatch, response));
+					dispatch(registrationSuccess(response));
 					notify('success','Success', 'Your Account was successfully Created. Proceed to login');
 				}
 			}).catch((error) => {
 				if (error.response !== undefined) {
-					dispatch(registrationFailure(dispatch, error.response.data['Errors']));
+					dispatch(registrationFailure(error.response.data['Errors']));
 				}
 				else {
 					notify('error','Opps!!', 'Sorry! Something went wrong. If the problem persist, contact support');
