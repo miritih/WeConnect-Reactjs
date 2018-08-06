@@ -5,11 +5,11 @@ import { cloudName } from '../../utils/Config';
 const BusinessItem = ({business, index}) => {
 	return(
 		<div key={index} className="col-sm-6 col-xs-12">
-			<div className="card border-info">
+			<div className="card card-margin border-info">
 				<div className="card-body">
 					<div className="row">
 						<div className="col-sm-6 col-xs-12">
-							<Image cloudName={cloudName} publicId='download_qfbj36' width="195" crop="scale" />
+							<Image cloudName={cloudName} publicId={business.logo} width="195" crop="scale" />
 						</div>
 						<div className="col-sm-6 col-xs-12">
 							<h5 className="card-title text-capitalize">{business.name}</h5>

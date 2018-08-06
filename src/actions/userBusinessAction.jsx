@@ -1,9 +1,11 @@
 import {
 	LOAD_USER_BUSINESS,
-	LOAD_USER_BUSINESSES_SUCCESS
+	LOAD_USER_BUSINESSES_SUCCESS,
+	DELETE_USER_BUSINESSES_SUCCESS
 } from './actiontypes';
 import axios from 'axios';
 import { baseURL } from '../utils/Config';
+import { notify } from '../utils/notify';
 import Authservice from '../Components/Auth/AuthService';
 
 
@@ -14,6 +16,14 @@ export function loadUserBusinessesSuccess(businesses){
 		businesses
 	};
 }
+
+export function deleteUserBusinessesSuccess(business){
+	return {
+		'type': DELETE_USER_BUSINESSES_SUCCESS,
+		business
+	};
+}
+
 
 export function loadUserBusinesses(page=1, query='') {
 	return function (dispatch) {
@@ -31,6 +41,28 @@ export function loadUserBusinesses(page=1, query='') {
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(loadUserBusinessesSuccess(response.data));
+			}
+		});
+	};
+}
+
+export function deleteUserBusinesses(id) {
+	return function (dispatch) {
+		const url = 'businesses/'+id;
+		dispatch({type: LOAD_USER_BUSINESS});
+		axios({
+			method: 'delete',
+			url: url,
+			baseURL: baseURL,
+			responseType: 'json',
+			headers: {
+				'Content-Type': 'application/json',
+				'access-token': Auth.getToken()
+			},
+		}).then((response) => {
+			if (response.status >= 200 && response.status < 300) {
+				dispatch(deleteUserBusinessesSuccess(response.data));
+				notify('success', 'Success', 'Business Deleted Successfully');
 			}
 		});
 	};

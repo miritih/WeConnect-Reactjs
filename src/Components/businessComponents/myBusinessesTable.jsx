@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BusinessItem = ({results}) => {
+const BusinessItem = ({results, onView, onEdit, onDelete}) => {
 	return(
 		results.length >= 1  ?
 			results.map(function(business, i){
@@ -10,13 +10,13 @@ const BusinessItem = ({results}) => {
 						<td>{business.location}</td>
 						<td>{business.category}</td>
 						<td>
-							<a className="link" href="">
+							<a className="link" data-id={business.id} onClick={onView} href="">
 								<i className="fa fa-eye fa-1x"></i>
 							</a>
-							<a className="link" href="">
+							<a className="link" data-id={business.id} onClick={onEdit} href="">
 								<i className="fa fa-edit fa-1x"></i>
 							</a>
-							<a className="link" href="">
+							<a className="link" data-id={business.id} onClick={onDelete} href="">
 								<i className="fa fa-times fa-1x"></i>
 							</a>
 						</td>

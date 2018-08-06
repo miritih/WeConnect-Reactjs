@@ -6,7 +6,7 @@ import Item from './businessItem';
 const ListBusinesses = ({businesses, onPaginate}) => {
 	return (
 
-		<div className="container bsprofile">
+		<div className="container bg-white bsprofile">
 			<br/>
 			<h3 className="text-center text-success">Registered Businesses</h3>
 			<br/>
