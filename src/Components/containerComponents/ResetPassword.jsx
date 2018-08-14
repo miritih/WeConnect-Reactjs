@@ -27,7 +27,6 @@ class ForgotPassword extends React.Component {
 		e.preventDefault();
 		// logic goes here
 		this.props.resetPassActions.resetPassword(this.state.email).then(res => {
-			console.log(res.status);
 			if (res.status === 200) {
 				this.props.history.replace('/login');
 			}

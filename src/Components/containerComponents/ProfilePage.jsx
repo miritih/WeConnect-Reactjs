@@ -74,7 +74,9 @@ class Profile extends React.Component {
 						<div className="card-body">
 							<div className="row">
 								<div className="col-sm-3">
-									<ProfileNav />
+									<ProfileNav 
+										history={props.history}
+									/>
 								</div>
 								<div className="col-sm-9"><h5>Edit Profile</h5>
 									<hr />

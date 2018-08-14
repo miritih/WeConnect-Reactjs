@@ -44,7 +44,9 @@ class ResetPass extends React.Component {
 						<div className="card-body">
 							<div className="row">
 								<div className="col-sm-3">
-									<ProfileNav />
+									<ProfileNav 
+										history={props.history}
+									/>
 								</div>
 								<div className="col-sm-9"><h5>Reset Password</h5>
 									<hr />

@@ -3,7 +3,7 @@ import { Pagination } from '../../utils/paginate';
 
 import Item from './businessItem';
 
-const ListBusinesses = ({businesses, onPaginate}) => {
+const ListBusinesses = ({businesses, onView, onPaginate}) => {
 	return (
 
 		<div className="container bg-white bsprofile">
@@ -14,7 +14,7 @@ const ListBusinesses = ({businesses, onPaginate}) => {
 				{
 					(businesses.businesses).length >= 1 ?
 						businesses.businesses.map(function(business, i){
-							return <Item business ={business} key ={i}/>;
+							return <Item business ={business} onView={onView} key ={i}/>;
 						}) 
 						:
 						<div className="alert  text-center col-md-12 alert-info">No results found</div>

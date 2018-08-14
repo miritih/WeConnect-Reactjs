@@ -13,7 +13,7 @@ const NavLinks = ({ loggedIn, user, handleLogout, location }) => {
 			{loggedIn ?
 				<span>
 					<li className="nav-item">
-						<Link className="nav-link" to="/new-businesses">Register business</Link>
+						<Link className="nav-link" to="/admin/my-businesses">My Businesses</Link>
 					</li>
 				</span>
 				:
@@ -29,7 +29,7 @@ const NavLinks = ({ loggedIn, user, handleLogout, location }) => {
 						{' ' + user['username']}
 					</a>
 					<div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<Link className="dropdown-item" to="/profile/update">Dashboard</Link>
+						<Link className="dropdown-item" to="/profile/update">Profile</Link>
 						<Link className="dropdown-item" to="/logout" onClick={handleLogout}>Logout</Link>
 					</div>
 				</li>

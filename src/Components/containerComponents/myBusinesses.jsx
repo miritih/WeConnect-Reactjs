@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
+import axios from 'axios';
 // import components 
 import NavBar from '../common/NavBar';
 import ProfileNav from '../common/ProfileNav';
 import * as loginActions from '../../actions/loginActions';
 import * as bizActions from '../../actions/userBusinessAction';
+import * as createAction from '../../actions/createBusinessAction';
 import { Pagination } from '../../utils/paginate';
 import ListTable from '../businessComponents/myBusinessesTable';
 import BusinessForm from '../forms/businessForm';
@@ -14,6 +16,8 @@ import BusinessForm from '../forms/businessForm';
 export class myBusinesses extends Component {
 	constructor(props) {
 		super(props);
+		this.actions = 	this.props.actions;
+		this.handleDrop = this.handleDrop.bind(this);
 		this.onPaginate = this.onPaginate.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,15 +28,37 @@ export class myBusinesses extends Component {
 	}
 
 	handleChange(e) {
-		this.actions.inputChange({prop: e.target.name, value: e.target.value});
+		this.props.createBiz.inputChange({prop: e.target.name, value: e.target.value});
 	}
 
 	handleSubmit(event) {
 		event.preventDefault();
+		const {
+			name,
+			location,
+			category,
+			description,
+			logo,
+		}=this.props.newBusiness;
+		this.props.createBiz.registerBusiness({name, location, category, description, logo});
 	}
 
 	handleDrop(file){
-		console.log(file);
+		file.map(file => {
+			const formData = new FormData();
+			formData.append('file', file);
+			formData.append('upload_preset', 'vzfp2ere');
+			formData.append('api_key', 'Qjd1aIFSFzTBkcT8Jm5ooozuckc');
+			formData.append('timestamp', (Date.now() / 1000) | 0);
+			// Make an AJAX upload request using Axios
+			this.props.createBiz.inputChange({prop: 'uploading', value: true});
+			return axios.post('https://api.cloudinary.com/v1_1/dzmdvppit/image/upload', formData, {
+				headers: { 'X-Requested-With': 'XMLHttpRequest' },
+			}).then(response => {
+				this.props.createBiz.inputChange({prop: 'uploading', value: false});
+				this.props.createBiz.inputChange({prop: 'logo', value: response.data.public_id});
+			});
+		});
 	}
 
 	onDelete(e){
@@ -44,7 +70,9 @@ export class myBusinesses extends Component {
 
 	onView(e){
 		e.preventDefault();
+		this.props.history.replace('/business/profile/'+e.currentTarget.dataset.id);
 	}
+
 	onEdit(e){
 		e.preventDefault();
 	}
@@ -70,23 +98,19 @@ export class myBusinesses extends Component {
 					<div className="card">
 						<div className="card-body">
 							<div className="row">
-								<div className="col-sm-3">
-									<ProfileNav />
-								</div>
-								<div className="col-sm-9"><h5>My Businesses</h5>
-									<hr />
+								<div className="col-sm-12"><h5>My Businesses</h5>
+									
 									<div className="table-responsive">
 										
 										<table className="table table-striped table-hover">
 											<thead>
 												<tr>
-													<th colSpan="4">
+													<th colSpan="5">
 														<a className="btn btn-success" data-toggle="modal" data-target=".newBusinessModal">New Business</a>
 													</th>
 												</tr>
-											</thead>
-											<thead className="thead-dark">
-												<tr>
+												<tr className="thead-dark">
+													<th>Logo</th>
 													<th>Name</th>
 													<th>Location</th>
 													<th>Category</th>
@@ -130,8 +154,16 @@ export class myBusinesses extends Component {
 				<BusinessForm
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
-					handleDrop={this.handleDrop}
 					modal={true}
+					handleDrop={this.handleDrop}
+					name={props.newBusiness.name}
+					errors={props.newBusiness.errors}
+					loading={props.newBusiness.loading}
+					uploading={props.newBusiness.uploading}
+					category={props.newBusiness.category} 
+					location={props.newBusiness.location}
+					logo={props.newBusiness.logo} 
+					description={props.newBusiness.description}
 				/>
 			</div>
 		);
@@ -144,17 +176,19 @@ myBusinesses.propType = {
 };
 
 function mapStateToProps(state) {
-	const {currentUser, userBusinesses, userLogin} = state;
+	const {currentUser, userBusinesses, newBusiness, userLogin} = state;
 	return {
 		currentUser,
 		userLogin,
+		newBusiness,
 		userBusinesses
 	};
 }
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(loginActions, dispatch),
-		bizActions: bindActionCreators(bizActions, dispatch)
+		bizActions: bindActionCreators(bizActions, dispatch),
+		createBiz: bindActionCreators(createAction, dispatch)
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(myBusinesses);

@@ -1,7 +1,9 @@
 import {
 	LOAD_USER_BUSINESS,
 	LOAD_USER_BUSINESSES_SUCCESS,
-	DELETE_USER_BUSINESSES_SUCCESS
+	DELETE_USER_BUSINESSES_SUCCESS,
+	VIEW_USER_BUSINESSES_SUCCESS,
+	LOAD_USER_BUSINESS_ERROR,
 } from './actiontypes';
 import axios from 'axios';
 import { baseURL } from '../utils/Config';
@@ -14,6 +16,13 @@ export function loadUserBusinessesSuccess(businesses){
 	return {
 		'type': LOAD_USER_BUSINESSES_SUCCESS,
 		businesses
+	};
+}
+
+export function viewUserBusinessesSuccess(business){
+	return {
+		'type': VIEW_USER_BUSINESSES_SUCCESS,
+		business
 	};
 }
 
@@ -63,6 +72,30 @@ export function deleteUserBusinesses(id) {
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(deleteUserBusinessesSuccess(response.data));
 				notify('success', 'Success', 'Business Deleted Successfully');
+			}
+		});
+	};
+}
+
+export function viewUserBusinesses(id){
+	return function (dispatch) {
+		dispatch({type: LOAD_USER_BUSINESS});
+		const url = 'businesses/'+id;
+		axios({
+			method: 'get',
+			url: url,
+			baseURL: baseURL,
+			responseType: 'json',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		}).then((response) => {
+			if (response.status >= 200 && response.status < 300) {
+				dispatch(viewUserBusinessesSuccess(response.data));
+			}
+		}).catch((error) => {
+			if (error.response !== undefined) {
+				dispatch({type: LOAD_USER_BUSINESS_ERROR});
 			}
 		});
 	};

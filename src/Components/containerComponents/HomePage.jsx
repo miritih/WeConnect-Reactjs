@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
+import {Redirect} from 'react-router-dom';
 import Search from '../forms/SearchForm';
 import NavBar from '../common/NavBar';
 import BusinessList from '../businessComponents/businessList';
@@ -17,6 +18,7 @@ class Home extends React.Component {
 		this.onPaginate= this.onPaginate.bind(this);
 		this.onSearch= this.onSearch.bind(this);
 		this.onChange= this.onChange.bind(this);
+		this.onView= this.onView.bind(this);
 	}
 	onPaginate(e){
 		this.props.bizActions.loadBusinesses(e.currentTarget.dataset.id);
@@ -29,6 +31,10 @@ class Home extends React.Component {
 		this.setState({
 			search: e.target.value
 		});
+	}
+	onView(e){
+		e.preventDefault();
+		this.props.history.replace('/business/profile/'+e.currentTarget.dataset.id);
 	}
 	render() {
 		const Loading =(
@@ -61,7 +67,7 @@ class Home extends React.Component {
 					/>
 				</div>
 				{ props.businesses.loading ? Loading :
-					<BusinessList businesses={props.businesses} onPaginate={this.onPaginate} />  
+					<BusinessList businesses={props.businesses} onView={this.onView} onPaginate={this.onPaginate} />  
 				}
 				
 			</div>

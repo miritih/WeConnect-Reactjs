@@ -1,12 +1,15 @@
 import {
 	LOAD_USER_BUSINESS,
 	LOAD_USER_BUSINESSES_SUCCESS,
-	DELETE_USER_BUSINESSES_SUCCESS
+	DELETE_USER_BUSINESSES_SUCCESS,
+	VIEW_USER_BUSINESSES_SUCCESS,
+	LOAD_USER_BUSINESS_ERROR
 
 } from '../actions/actiontypes';
 
 const initial_state = {
 	businesses: {},
+	business:{},
 	page: '',
 	per_page: '',
 	total_pages: '',
@@ -32,6 +35,17 @@ export default function UserBusinessReducer(state = initial_state, action) {
 			total_results: action.businesses.total_results,
 		};
 	case DELETE_USER_BUSINESSES_SUCCESS:
+		return{
+			...state,
+			loading: false
+		};
+	case VIEW_USER_BUSINESSES_SUCCESS:
+		return{
+			...state,
+			loading:false,
+			business: action.business
+		};
+	case LOAD_USER_BUSINESS_ERROR:
 		return{
 			...state,
 			loading: false
