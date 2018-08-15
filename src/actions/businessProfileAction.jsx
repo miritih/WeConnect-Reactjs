@@ -13,10 +13,16 @@ export function viewUserBusinessSuccess(business){
 		business
 	};
 }
-export function loadBusinessReviewsSuccess(business){
+export function viewBusinessError(error){
+	return{
+		'type': LOAD_BUSINESS_PROFILE_ERROR,
+		error
+	};
+}
+export function loadBusinessReviewsSuccess(reviews){
 	return {
 		'type': LOAD_BUSINESSES_REVIEWS_SUCCESS,
-		business
+		reviews
 	};
 }
 
@@ -35,14 +41,19 @@ export function loadBusinessReviews(id) {
 			},
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
-				// dispatch(loadBusinessReviewsSuccess(response.data));
+				dispatch(loadBusinessReviewsSuccess(response.data));
+			}
+		}).catch((error) => {
+			if (error.response !== undefined) {
+				console.log(error.response);
+				dispatch(viewBusinessError(error.response.data));
 			}
 		});
 	};
 }
 
 
-export function viewUserBusinesses(id){
+export function viewUserBusiness(id){
 	return function (dispatch) {
 		dispatch({type: LOAD_BUSINESS_PROFILE});
 		const url = 'businesses/'+id;
@@ -60,7 +71,7 @@ export function viewUserBusinesses(id){
 			}
 		}).catch((error) => {
 			if (error.response !== undefined) {
-				dispatch({type: LOAD_BUSINESS_PROFILE_ERROR});
+				dispatch(viewBusinessError(error));
 			}
 		});
 	};

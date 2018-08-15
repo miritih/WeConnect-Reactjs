@@ -11,25 +11,34 @@ const BusinessForm = ({
 	handleChange, 
 	handleSubmit,
 	handleDrop,
+	onclose,
 	uploading,
 	loading,
 	errors,
-	modal,
+	edit,
 	name, category, location, logo, description
 }) => {
 	return (
 		<div> 
 			<div className="container">
 				<section className="bsprofile">
-					<div className='modal fade newBusinessModal' tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+					<div className='modal fade newBusinessModal' 
+						id="BusinessModal" 
+						tabIndex="-1" 
+						data-keyboard='false'
+						data-focus='true'
+
+						role="dialog" 
+						aria-labelledby="myLargeModalLabel" 
+						aria-hidden="true">
 						<div className="modal-dialog modal-lg">
 							<div className="modal-content">
 								<div className="card  w-100">
 									<div className="card-header">
-										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+										<button type="button" className="close" id='hidePopUpBtn' onClick={onclose} data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
-										<h5>Register business</h5>
+										<h5>{edit ? 'Edit business' : 'Register business'}</h5>
 									</div>
 									<div className="card-body">
 										<form className="form" onSubmit={handleSubmit}>
@@ -91,7 +100,7 @@ const BusinessForm = ({
 												disabled={ uploading|loading ? 'disabled' : null}
 												text={uploading|loading ? 'saving....' : 'Save changes'}
 											/>
-											<button type="button" className="btn btn-secondary float-sm-right" data-dismiss="modal">Close</button>								
+											<button type="button" onClick={onclose} className="btn btn-secondary float-sm-right" data-dismiss="modal">Close</button>								
 										</form>
 									</div>
 								</div>

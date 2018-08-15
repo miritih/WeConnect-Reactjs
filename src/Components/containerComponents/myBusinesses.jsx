@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 // import components 
 import NavBar from '../common/NavBar';
-import ProfileNav from '../common/ProfileNav';
 import * as loginActions from '../../actions/loginActions';
 import * as bizActions from '../../actions/userBusinessAction';
 import * as createAction from '../../actions/createBusinessAction';
@@ -25,22 +24,26 @@ export class myBusinesses extends Component {
 		this.onEdit = this.onEdit.bind(this);
 		this.onDelete = this.onDelete.bind(this);
 		this.onView = this.onView.bind(this);
+		this.onclose = this.onclose.bind(this);
 	}
-
+	onclose(){
+		this.props.createBiz.onclose();
+	}
 	handleChange(e) {
 		this.props.createBiz.inputChange({prop: e.target.name, value: e.target.value});
 	}
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const {
-			name,
-			location,
-			category,
-			description,
-			logo,
-		}=this.props.newBusiness;
-		this.props.createBiz.registerBusiness({name, location, category, description, logo});
+		const {name, location, category, description, logo, id, edit}=this.props.newBusiness;
+		// check if its a new business or existing, 
+		// then use the id to differentiate between update and create
+		edit ?
+			this.props.createBiz.registerBusiness({name, location, category, description, logo, id})
+			:
+			this.props.createBiz.registerBusiness({name, location, category, description, logo});
+		this.props.bizActions.loadUserBusinesses(); // reload businesses after update
+		document.getElementById('hidePopUpBtn').click(); //close modal
 	}
 
 	handleDrop(file){
@@ -75,6 +78,8 @@ export class myBusinesses extends Component {
 
 	onEdit(e){
 		e.preventDefault();
+		this.props.createBiz.fetchBusiness(e.currentTarget.dataset.id);
+		this.props.createBiz.inputChange({prop: 'edit', value: true});
 	}
 
 	onPaginate(e){
@@ -154,7 +159,7 @@ export class myBusinesses extends Component {
 				<BusinessForm
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
-					modal={true}
+					onclose={this.onclose}
 					handleDrop={this.handleDrop}
 					name={props.newBusiness.name}
 					errors={props.newBusiness.errors}
@@ -162,7 +167,8 @@ export class myBusinesses extends Component {
 					uploading={props.newBusiness.uploading}
 					category={props.newBusiness.category} 
 					location={props.newBusiness.location}
-					logo={props.newBusiness.logo} 
+					logo={props.newBusiness.logo}
+					edit ={props.newBusiness.edit}
 					description={props.newBusiness.description}
 				/>
 			</div>

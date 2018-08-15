@@ -18,7 +18,11 @@ const BusinessItem = ({results, onView, onEdit, onDelete}) => {
 							<a className="link" title="View Business" data-id={business.id} onClick={onView} href="">
 								<i className="fa fa-eye fa-1x"></i>
 							</a>
-							<a className="link" title="Edit Business" data-id={business.id} onClick={onEdit} href="">
+							<a className="link" title="Edit Business"
+								data-id={business.id}
+								data-toggle="modal" 
+								data-target=".newBusinessModal" 
+								onClick={onEdit} href="">
 								<i className="fa fa-edit fa-1x"></i>
 							</a>
 							<a className="link" title="Delete Business" data-id={business.id} onClick={onDelete} href="">

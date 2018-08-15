@@ -3,7 +3,9 @@ import {
 	BUSINESS_REGISTRATION_SUCCESS, 
 	BUSINESS_INPUT_CHANGE, 
 	BUSINESS_REGISTRATION_FAILURE,
-	REGISTER_BUSINESS
+	REGISTER_BUSINESS,
+	FETCH_BUSINESS_SUCCESS,
+	ON_MODAL_CLOSE
 } from './actiontypes';
 import { baseURL as url } from '../utils/Config';
 import { notify } from '../utils/notify';
@@ -31,14 +33,26 @@ export const registrationFailure = (errors) => {
 		errors 
 	};
 };
+export const fetchBusinessSuccess = (business) =>{
+	return {
+		'type': FETCH_BUSINESS_SUCCESS,
+		business
+	};
+};
+export const onclose = () =>{
+	return {
+		'type': ON_MODAL_CLOSE
+	};
+};
 
-
-export const registerBusiness = ({ name, location, category, description, logo }) => {
+export const registerBusiness = ({ name, location, category, description, logo, id=null }) => {
 	return (dispatch) => {
+		let endpoint;
+		id !== null ? endpoint = 'businesses/'+id : endpoint = 'businesses';
 		dispatch({ type: REGISTER_BUSINESS });
 		axios({
-			method: 'post',
-			url: 'businesses',
+			method: id !== null ? 'put' :'post',
+			url: endpoint,
 			baseURL: url,
 			data: {
 				name,
@@ -56,7 +70,8 @@ export const registerBusiness = ({ name, location, category, description, logo }
 			.then((response)=> {
 				if (response.status >= 200 && response.status < 300) {
 					dispatch(registrationSuccess(response));
-					notify('success','Success', 'Business Created successfully');
+
+					notify('success','Success', id !== null ? 'Business updated successfully': 'Business Created successfully');
 				}
 			}).catch((error) => {
 				if (error.response !== undefined) {
@@ -68,3 +83,24 @@ export const registerBusiness = ({ name, location, category, description, logo }
 			});
 	};
 };
+
+export function fetchBusiness(id){
+	return function (dispatch) {
+		// dispatch({type: LOAD_BUSINESS_PROFILE});
+		const endpoint = 'businesses/'+id;
+		axios({
+			method: 'get',
+			url: endpoint,
+			baseURL: url,
+			responseType: 'json',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		}).then((response) => {
+			console.log(response);
+			if (response.status >= 200 && response.status < 300) {
+				dispatch(fetchBusinessSuccess(response.data));
+			}
+		});
+	};
+}

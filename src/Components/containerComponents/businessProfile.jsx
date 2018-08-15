@@ -5,19 +5,35 @@ import { bindActionCreators } from 'redux';
 import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
 import NavBar from '../common/NavBar';
-import * as UserBusinessActions from '../../actions/userBusinessAction';
+import ReviewForm from '../forms/reviewsForm';
+import * as BusinessProfileActions from '../../actions/businessProfileAction';
 
 class BusinessProfile extends React.Component {
 	constructor(props){
 		super(props);
+		this.state ={
+			title:'',
+			body:'',
+			errors:''
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	handleChange(e){
+		console.log(e);
+	}
+	handleSubmit(e){
+		e.preventDefault();
+		console.log(e);
 	}
 	componentDidMount(){
 		const id = this.props.match.params.id;
-		this.props.actions.viewUserBusinesses(id);
+		this.props.actions.viewUserBusiness(id);
+		this.props.actions.loadBusinessReviews(id);
 	}
 	render() {
 		const props = this.props;
-		const business = props.userBusinesses.business;
+		const business = props.businessProfile;
 		const Loading =(
 			<div className="container bsprofile">
 				<h3 className="text-center text-success"></h3>
@@ -41,7 +57,7 @@ class BusinessProfile extends React.Component {
 				/>
 				<div className="jumbotron">
 				</div>
-				{ props.userBusinesses.loading ? Loading :
+				{ props.businessProfile.loading ? Loading :
 					<div className="container">
 						<section className="bsprofile">
 							<div className="card  w-100">
@@ -57,6 +73,10 @@ class BusinessProfile extends React.Component {
 											<p>{business.description}</p>
 										</div>
 									</div>
+									<div>
+										<a className="btn btn-primary float-right" data-toggle="modal" data-target=".newReviewModal">Add review</a>
+									</div>
+									<br/>
 									<hr/>
 									<div className="reviews">
 										<Image cloudName={cloudName} publicId='download_qfbj36' width="90" crop="scale" />
@@ -80,7 +100,13 @@ class BusinessProfile extends React.Component {
 						</section>
 					</div>
 				}
-
+				<ReviewForm
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+					title = {this.state.title}
+					body = {this.state.body}
+					errors={this.state.errors}
+				/>
 			</div>
 		);
 	}
@@ -95,19 +121,19 @@ BusinessProfile.propType = {
 function mapStateToProps(state) {
 	const {
 		currentUser,
-		userBusinesses,
+		businessProfile,
 		userLogin,		
 	} = state;
 	return {
 		currentUser,
-		userBusinesses,
+		businessProfile,
 		userLogin
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(UserBusinessActions, dispatch)
+		actions: bindActionCreators(BusinessProfileActions, dispatch)
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessProfile);
