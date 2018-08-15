@@ -9,7 +9,7 @@ const ReviewForm = ({
 	handleSubmit,
 	loading,
 	errors,
-	title, body
+	title, review
 }) => {
 	return (
 		<div> 
@@ -37,11 +37,11 @@ const ReviewForm = ({
 												error={errors['title']}
 											/>
 											<TextArea
-												name='body'
+												name='review'
 												label='Description'
 												onChange={handleChange}
 												rows='10'
-												value={body}
+												value={review}
 												error={errors['body']}
 											/>
 										</div>

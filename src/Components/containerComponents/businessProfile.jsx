@@ -6,6 +6,7 @@ import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
 import NavBar from '../common/NavBar';
 import ReviewForm from '../forms/reviewsForm';
+import Item from '../businessComponents/reviewItems';
 import * as BusinessProfileActions from '../../actions/businessProfileAction';
 
 class BusinessProfile extends React.Component {
@@ -20,13 +21,17 @@ class BusinessProfile extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	handleChange(e){
-		console.log(e);
+		this.props.actions.inputChange({prop: e.target.name, value: e.target.value});
 	}
+	
 	handleSubmit(e){
 		e.preventDefault();
-		console.log(e);
+		const{review, title, id} = this.props.businessProfile;
+		this.props.actions.addReview({review,title,id});
+		// this.props.actions.viewUserBusiness(id);
+		// this.props.actions.loadBusinessReviews(id);
 	}
-	componentDidMount(){
+	componentWillMount(){
 		const id = this.props.match.params.id;
 		this.props.actions.viewUserBusiness(id);
 		this.props.actions.loadBusinessReviews(id);
@@ -62,10 +67,17 @@ class BusinessProfile extends React.Component {
 						<section className="bsprofile">
 							<div className="card  w-100">
 								<div className="card-body">
+									
 									<div className="row container">
-										<div className="col-md-6">
+										<div className="col-md-2 d-sm-none d-md-block">
+											{/* <a className="btn btn-secondary">
+												<i className="fa fa-arrow-left"/>
+												Back
+											</a> */}
+										</div>
+										<div className="col-md-4">
 											<div className="profile-img">
-												<Image cloudName={cloudName} publicId={business.logo} width="195" crop="scale" />
+												<Image cloudName={cloudName} publicId={business.logo} width="150" crop="scale" />
 											</div>
 										</div>
 										<div className="col-md-6">
@@ -74,27 +86,27 @@ class BusinessProfile extends React.Component {
 										</div>
 									</div>
 									<div>
-										<a className="btn btn-primary float-right" data-toggle="modal" data-target=".newReviewModal">Add review</a>
+										
+										{props.userLogin.isLoggedIn ? 
+											<a className="btn btn-primary float-right" data-toggle="modal" data-target=".newReviewModal">Add review</a>
+											:
+											''
+										}
+										
 									</div>
-									<br/>
-									<hr/>
-									<div className="reviews">
-										<Image cloudName={cloudName} publicId='download_qfbj36' width="90" crop="scale" />
-										<h5> review title</h5>
-										<p>Review content</p>
-									</div>
-									<hr/>
-									<div className="reviews">
-										<Image cloudName={cloudName} publicId='download_qfbj36' width="90" crop="scale" />
-										<h5> review title</h5>
-										<p>Review content</p>
-									</div>
-									<hr/>
-									<div className="reviews">
-										<Image cloudName={cloudName} publicId='download_qfbj36' width="90" crop="scale" />
-										<h5> review title</h5>
-										<p>Review content</p>
-									</div>
+									<br/><br/>
+									
+									{
+										(business.error['message'] !== undefined) ?
+											<div className="alert text-center col-md-8 offset-md-2 alert-info">{business.error['message']}</div>
+											:
+											business.reviews.reviews !== undefined ?
+												business.reviews.reviews.map(function(review, i){
+													return <Item review ={review} key ={i}/>;
+												})
+												:
+												''
+									}						
 								</div>
 							</div>
 						</section>
@@ -103,9 +115,9 @@ class BusinessProfile extends React.Component {
 				<ReviewForm
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
-					title = {this.state.title}
-					body = {this.state.body}
-					errors={this.state.errors}
+					title = {business.title}
+					review = {business.review}
+					errors={business.error}
 				/>
 			</div>
 		);

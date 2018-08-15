@@ -2,10 +2,22 @@ import {
 	VIEW_BUSINESSES_PROFILE_SUCCESS,
 	LOAD_BUSINESSES_REVIEWS_SUCCESS,
 	LOAD_BUSINESS_PROFILE,
-	LOAD_BUSINESS_PROFILE_ERROR
+	LOAD_BUSINESS_PROFILE_ERROR,
+	REVIEW_INPUT_CHANGE
 } from './actiontypes';
 import axios from 'axios';
+import { notify } from '../utils/notify';
 import { baseURL } from '../utils/Config';
+import Authservice from '../Components/Auth/AuthService';
+
+const Auth = new Authservice();
+
+export const inputChange = ({ prop, value }) => {
+	return {
+		'type': REVIEW_INPUT_CHANGE,
+		payload: { prop, value },
+	};
+};
 
 export function viewUserBusinessSuccess(business){
 	return {
@@ -45,7 +57,6 @@ export function loadBusinessReviews(id) {
 			}
 		}).catch((error) => {
 			if (error.response !== undefined) {
-				console.log(error.response);
 				dispatch(viewBusinessError(error.response.data));
 			}
 		});
@@ -72,6 +83,38 @@ export function viewUserBusiness(id){
 		}).catch((error) => {
 			if (error.response !== undefined) {
 				dispatch(viewBusinessError(error));
+			}
+		});
+	};
+}
+
+export function addReview({review, title, id}){
+	return function (dispatch) {
+		const url = 'businesses/'+id+'/reviews';
+		axios({
+			method: 'post',
+			url: url,
+			data: {
+				review,
+				title
+			},
+			baseURL: baseURL,
+			responseType: 'json',
+			headers: {
+				'Content-Type': 'application/json',
+				'access-token': Auth.getToken()
+			},
+		}).then((response) => {
+			if (response.status >= 200 && response.status < 300) {
+				console.log(response.data);
+				notify('success','Success', 'Review added successfully');
+				// dispatch(addReviewSuccess(response.data));
+			}
+		}).catch((error) => {
+			if (error.response !== undefined) {
+				console.log();
+				notify('error','Success', error.response.data['Error']);
+				// dispatch(addReviewError(error));
 			}
 		});
 	};
