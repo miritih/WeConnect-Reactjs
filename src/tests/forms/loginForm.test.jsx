@@ -1,23 +1,22 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import LoginForm from '../../Components/forms/LoginForm';
 import expect from 'expect';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import LoginForm from '../../Components/forms/LoginForm';
 
 
 function setup() {
 	const props = {
-		handleChange: jest.fn(), 
+		handleChange: jest.fn(),
 		handleSubmit: jest.fn(),
 		username: 'test',
-		password: 'text'
+		password: 'text',
 	};
 
 	const enzymeWrapper = mount(<Router><LoginForm {...props} /></Router>);
 	return {
 		props,
-		enzymeWrapper
+		enzymeWrapper,
 	};
 }
 describe('LoginForm component', () => {
@@ -43,5 +42,4 @@ describe('LoginForm component', () => {
 		form.props().onSubmit('');
 		expect(props.handleSubmit.mock.calls.length).toBe(1);
 	});
-
 });

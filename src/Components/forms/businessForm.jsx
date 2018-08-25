@@ -7,8 +7,8 @@ import InputField from '../inputs/InputField';
 import TextArea from '../inputs/textArea';
 import Button from '../inputs/Button';
 
-const BusinessForm = ({ 
-	handleChange, 
+const BusinessForm = ({
+	handleChange,
 	handleSubmit,
 	handleDrop,
 	onclose,
@@ -16,26 +16,27 @@ const BusinessForm = ({
 	loading,
 	errors,
 	edit,
-	name, category, location, logo, description
+	name, category, location, logo, description,
 }) => {
 	return (
-		<div> 
+		<div>
 			<div className="container">
 				<section className="bsprofile">
-					<div className='modal fade newBusinessModal' 
-						id="BusinessModal" 
-						tabIndex="-1" 
-						data-keyboard='false'
-						data-focus='true'
-
-						role="dialog" 
-						aria-labelledby="myLargeModalLabel" 
-						aria-hidden="true">
+					<div
+						className="modal fade newBusinessModal"
+						id="BusinessModal"
+						tabIndex="-1"
+						data-keyboard="false"
+						data-focus="true"
+						role="dialog"
+						aria-labelledby="myLargeModalLabel"
+						aria-hidden="true"
+					>
 						<div className="modal-dialog modal-lg">
 							<div className="modal-content">
 								<div className="card  w-100">
 									<div className="card-header">
-										<button type="button" className="close" id='hidePopUpBtn' onClick={onclose} data-dismiss="modal" aria-label="Close">
+										<button type="button" className="close" id="hidePopUpBtn" onClick={onclose} data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 										<h5>{edit ? 'Edit business' : 'Register business'}</h5>
@@ -45,62 +46,63 @@ const BusinessForm = ({
 											<div className="row">
 												<div className="col-md-8 col-sm-12">
 													<InputField
-														type='text'
-														name='name'
-														label='Name'
+														type="text"
+														name="name"
+														label="Name"
 														onChange={handleChange}
-														placeholder=''
+														placeholder=""
 														value={name}
-														error={errors['name']}
+														error={errors.name}
 													/>
 													<InputField
-														type='text'
-														name='category'
-														label=' Category'
+														type="text"
+														name="category"
+														label=" Category"
 														onChange={handleChange}
-														placeholder=''
+														placeholder=""
 														value={category}
-														error={errors['category']}
+														error={errors.category}
 													/>
 													<InputField
-														type='text'
-														name='location'
-														label=' Location'
+														type="text"
+														name="location"
+														label=" Location"
 														onChange={handleChange}
-														placeholder=''
+														placeholder=""
 														value={location}
-														error={errors['location']}
+														error={errors.location}
 													/>
 													<TextArea
-														name='description'
-														label='Description'
+														name="description"
+														label="Description"
 														onChange={handleChange}
-														rows='10'
+														rows="10"
 														value={description}
-														error={errors['description']}
+														error={errors.description}
 													/>
 												</div>
 												<div className="col-md-4 col-sm-12">
-													<p>Business Logo</p> 
+													<p>Business Logo</p>
 													<Dropzone
 														onDrop={handleDrop}
 														multiple={false}
-														accept="image/*">
+														accept="image/*"
+													>
 														<Image cloudName={cloudName} publicId={logo} width="195" crop="scale" />
 													</Dropzone>
-													{errors['logo'] && <small className="text-danger">{errors['logo']}</small>}
+													{errors.logo && <small className="text-danger">{errors.logo}</small>}
 													<i className="fa hand-point-up">{ uploading ? 'Uploading.......' : 'Click or drop an image to upload'}</i>
 													<br />
 												</div>
 											</div>
-											<br/>
+											<br />
 											<Button
 												type="submit"
 												className="btn btn-primary"
-												disabled={ uploading|loading ? 'disabled' : null}
-												text={uploading|loading ? 'saving....' : 'Save changes'}
+												disabled={uploading | loading ? 'disabled' : null}
+												text={uploading | loading ? 'saving....' : 'Save changes'}
 											/>
-											<button type="button" onClick={onclose} className="btn btn-secondary float-sm-right" data-dismiss="modal">Close</button>								
+											<button type="button" onClick={onclose} className="btn btn-secondary float-sm-right" data-dismiss="modal">Close</button>
 										</form>
 									</div>
 								</div>
@@ -119,6 +121,12 @@ BusinessForm.propTypes = {
 	name: PropTypes.string,
 	category: PropTypes.string,
 	location: PropTypes.string,
-	Image: PropTypes.string
+	logo: PropTypes.string,
+};
+BusinessForm.defaultProps = {
+	name: '',
+	category: '',
+	location: '',
+	logo: '',
 };
 export default BusinessForm;

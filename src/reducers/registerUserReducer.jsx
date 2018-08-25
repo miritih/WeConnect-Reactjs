@@ -1,22 +1,26 @@
-import {REGISTER_USER, INPUT_CHANGE, IS_REGISTRATION_SUCCESS, IS_REGISTRATION_FAILURE} from '../actions/actiontypes';
+import {
+	REGISTER_USER, INPUT_CHANGE, IS_REGISTRATION_SUCCESS, IS_REGISTRATION_FAILURE,
+} from '../actions/actiontypes';
+
 const INITIAL_STATE = {
 	username: '',
 	password: '',
 	first_name: '',
 	last_name: '',
-	cpassword:'',
+	cpassword: '',
 	email: '',
 	errors: {},
 	loading: false,
-	redirect: false
+	redirect: false,
 };
-export default function UserReducer(state = INITIAL_STATE,  action) {
+export default function UserReducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
 	case INPUT_CHANGE:
 		return {
 			...state,
 			loading: false,
-			[action.payload.prop]: action.payload.value };
+			[action.payload.prop]: action.payload.value,
+		};
 	case REGISTER_USER:
 		return {
 			...state,
@@ -28,14 +32,14 @@ export default function UserReducer(state = INITIAL_STATE,  action) {
 			...state,
 			...INITIAL_STATE,
 			redirect: true,
-			loading: false
+			loading: false,
 		};
 	case IS_REGISTRATION_FAILURE:
 		return {
 			...state,
 			loading: false,
 			redirect: false,
-			errors: action.errors
+			errors: action.errors,
 		};
 	default:
 		return state;

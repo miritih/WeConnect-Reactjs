@@ -1,19 +1,18 @@
-//indent = 0
 import {
 	UPDATE_CURRENT_USER, LOAD_USER_SUCCESS,
 	PROFILE_INPUT_CHANGE, UPDATE_PROFILE,
-	UPDATE_PROFILE_SUCCESS
+	UPDATE_PROFILE_SUCCESS,
 } from '../actions/actiontypes';
 
 const initial_state = {
-	email:'',
+	email: '',
 	first_name: '',
 	username: '',
 	change: false,
-	last_name:'',
-	loading:false,
-	uploading:false,
-	image:''
+	last_name: '',
+	loading: false,
+	uploading: false,
+	image: '',
 };
 
 export default function UserReducer(state = initial_state, action) {
@@ -25,35 +24,35 @@ export default function UserReducer(state = initial_state, action) {
 			first_name: action.user.first_name,
 			last_name: action.user.last_name,
 			image: action.user.image,
-			username: action.user.username
+			username: action.user.username,
 		};
 
 	case UPDATE_CURRENT_USER:
-		return{
+		return {
 			...state,
 			change: false,
 			email: action.user.email,
 			first_name: action.user.first_name,
 			last_name: action.user.last_name,
 			image: action.user.image,
-			username: action.user.username
+			username: action.user.username,
 		};
 	case PROFILE_INPUT_CHANGE:
-		return{
+		return {
 			...state,
 			loading: false,
 			change: true,
-			[action.payload.prop]: action.payload.value 
+			[action.payload.prop]: action.payload.value,
 		};
 	case UPDATE_PROFILE:
-		return{
+		return {
 			...state,
-			loading: true
+			loading: true,
 		};
 	case UPDATE_PROFILE_SUCCESS:
-		return{
+		return {
 			...state,
-			loading: false
+			loading: false,
 		};
 	default:
 		return state;

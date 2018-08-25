@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
 	businesses,
 	userBusinesses,
 	newBusiness,
-	businessProfile
+	businessProfile,
 });
 
 export default rootReducer;

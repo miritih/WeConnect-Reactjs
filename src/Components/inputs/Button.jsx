@@ -1,13 +1,16 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const Button = ({ type, loading, className, text, disabled }) => {
+const Button = ({
+	type, loading, className, text, disabled,
+}) => {
 	return (
 		<button
 			type={type}
 			className={className}
-			disabled={disabled}>
-			{loading ? <span>{text}<img src='/img/16x16.gif' alt={text}/></span> : text }
+			disabled={disabled}
+		>
+			{loading ? <span>{text}<img src="/img/16x16.gif" alt={text} /></span> : text }
 		</button>
 	);
 };
@@ -17,5 +20,9 @@ Button.propTypes = {
 	text: PropTypes.string.isRequired,
 	loading: PropTypes.bool,
 	disabled: PropTypes.string,
+};
+Button.defaultProps = {
+	loading: false,
+	disabled: null,
 };
 export default Button;

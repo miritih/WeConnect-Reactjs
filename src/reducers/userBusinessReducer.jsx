@@ -7,25 +7,25 @@ import {
 
 const initial_state = {
 	businesses: {},
-	business:{},
+	business: {},
 	page: '',
 	per_page: '',
 	total_pages: '',
 	total_results: '',
-	loading:false
+	loading: false,
 };
 
 export default function UserBusinessReducer(state = initial_state, action) {
 	switch (action.type) {
 	case LOAD_USER_BUSINESS:
-		return{
+		return {
 			...state,
-			loading: true
+			loading: true,
 		};
 	case LOAD_USER_BUSINESSES_SUCCESS:
-		return{
+		return {
 			...state,
-			loading:false,
+			loading: false,
 			businesses: action.businesses.Results,
 			page: action.businesses.page,
 			per_page: action.businesses.per_page,
@@ -33,9 +33,9 @@ export default function UserBusinessReducer(state = initial_state, action) {
 			total_results: action.businesses.total_results,
 		};
 	case DELETE_USER_BUSINESSES_SUCCESS:
-		return{
+		return {
 			...state,
-			loading: false
+			loading: false,
 		};
 	default:
 		return state;

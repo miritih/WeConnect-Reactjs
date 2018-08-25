@@ -15,14 +15,16 @@ class ResetPass extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
 	handleChange(e) {
-		this.props.resetPassActions.inputChange({prop: e.target.name, value: e.target.value});
+		this.props.resetPassActions.inputChange({ prop: e.target.name, value: e.target.value });
 	}
+
 	handleSubmit(event) {
 		event.preventDefault();
 		const data = {
 			password: this.props.passwordReset.new_password,
-			old_password: this.props.passwordReset.old_password
+			old_password: this.props.passwordReset.old_password,
 		};
 		this.props.resetPassActions.updatePassword(data);
 	}
@@ -44,7 +46,7 @@ class ResetPass extends React.Component {
 						<div className="card-body">
 							<div className="row">
 								<div className="col-sm-3">
-									<ProfileNav 
+									<ProfileNav
 										history={props.history}
 									/>
 								</div>
@@ -70,20 +72,20 @@ class ResetPass extends React.Component {
 ResetPass.propType = {
 	currentUser: PropTypes.object.isRequired,
 	loggedIn: PropTypes.bool.isRequired,
-	actions: PropTypes.object.isRequired
+	actions: PropTypes.object.isRequired,
 };
 function mapStateToProps(state) {
-	const {currentUser, passwordReset, userLogin} = state;
+	const { currentUser, passwordReset, userLogin } = state;
 	return {
 		currentUser,
 		passwordReset,
-		userLogin
+		userLogin,
 	};
 }
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(loginActions, dispatch),
-		resetPassActions: bindActionCreators(resetPassActions, dispatch)
+		resetPassActions: bindActionCreators(resetPassActions, dispatch),
 
 	};
 }

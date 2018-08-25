@@ -1,44 +1,44 @@
+import axios from 'axios';
 import {
 	RESET_PASS_INPUT_CHANGE,
 	IS_PASSWORD_RESET_SUCCESS,
-	IS_PASSWORD_RESET_ERROR
+	IS_PASSWORD_RESET_ERROR,
 } from './actiontypes';
 import { baseURL } from '../utils/Config';
-import axios from 'axios';
 import Authservice from '../Components/Auth/AuthService';
 import { notify } from '../utils/notify';
 
 const Auth = new Authservice();
-export const inputChange = ({prop, value}) => {
-	return{
+export const inputChange = ({ prop, value }) => {
+	return {
 		type: RESET_PASS_INPUT_CHANGE,
-		payload: { prop, value }
+		payload: { prop, value },
 	};
 };
 export function resetPasswordSuccess(password) {
 	return {
 		type: IS_PASSWORD_RESET_SUCCESS,
-		password
+		password,
 	};
 }
 export function resetPasswordError(error) {
 	return {
 		type: IS_PASSWORD_RESET_ERROR,
-		error
+		error,
 	};
 }
 
-export const updatePassword = ({old_password, password}) =>{
-	return function(dispatch){
+export const updatePassword = ({ old_password, password }) => {
+	return function func(dispatch) {
 		axios({
 			method: 'put',
 			url: 'auth/reset-password',
-			data: {old_password, password},
-			baseURL: baseURL,
+			data: { old_password, password },
+			baseURL,
 			responseType: 'json',
 			headers: {
 				'Content-Type': 'application/json',
-				'access-token': Auth.getToken()
+				'access-token': Auth.getToken(),
 			},
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
@@ -47,9 +47,8 @@ export const updatePassword = ({old_password, password}) =>{
 			}
 		}).catch((error) => {
 			if (error.response !== undefined) {
-				dispatch(resetPasswordError(error.response.data['Errors']));
-			}
-			else {
+				dispatch(resetPasswordError(error.response.data.Errors));
+			} else {
 				notify('error', 'Opps!!', 'Sorry! Something went wrong. If the problem persist, contact support');
 			}
 		});
@@ -58,23 +57,19 @@ export const updatePassword = ({old_password, password}) =>{
 
 
 export function resetPassword(email) {
-	return function (dispatch) { 
+	return function func(dispatch) {
 		const data = {
-			'email': email,
+			email,
 		};
 		return axios({
 			method: 'put',
-			url: baseURL + '/auth/forgot-password',
-			data: data,
+			url: `${baseURL}/auth/forgot-password`,
+			data,
 			responseType: 'json',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
-		}).then(res =>
-			// do the dispatch here
-			dispatch(resetPasswordSuccess(res))
-		).catch(error =>
-			dispatch(resetPasswordError(error.response))
-		);
+		}).then(res => dispatch(resetPasswordSuccess(res)))
+			.catch(error => dispatch(resetPasswordError(error.response)));
 	};
 }

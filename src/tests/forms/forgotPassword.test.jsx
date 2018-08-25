@@ -1,22 +1,22 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ResetPassForm from '../../Components/forms/ResetPasswordForm';
 import expect from 'expect';
+import ResetPassForm from '../../Components/forms/ResetPasswordForm';
 
 
 function setup() {
 	const props = {
-		handleChange: jest.fn(), 
-		handleSubmit: jest.fn(), 
+		handleChange: jest.fn(),
+		handleSubmit: jest.fn(),
 		email: 'email',
 		errors: 'eroor',
-		
+
 	};
 
 	const enzymeWrapper = mount(<ResetPassForm {...props} />);
 	return {
 		props,
-		enzymeWrapper
+		enzymeWrapper,
 	};
 }
 describe('Profile Update  component', () => {
@@ -41,5 +41,4 @@ describe('Profile Update  component', () => {
 		form.props().onSubmit('');
 		expect(props.handleSubmit.mock.calls.length).toBe(1);
 	});
-
 });

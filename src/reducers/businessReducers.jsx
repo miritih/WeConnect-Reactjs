@@ -1,15 +1,15 @@
 import {
 	LOAD_BUSINESSES_SUCCESS,
-	LOAD_BUSINESS
+	LOAD_BUSINESS,
 } from '../actions/actiontypes';
-
+// the initial state to be set for in businesses store
 const initial_state = {
 	businesses: {},
 	page: '',
 	per_page: '',
 	total_pages: '',
 	total_results: '',
-	loading:false
+	loading: false,
 };
 
 export default function BusinessReducer(state = initial_state, action) {
@@ -17,17 +17,17 @@ export default function BusinessReducer(state = initial_state, action) {
 	case LOAD_BUSINESSES_SUCCESS:
 		return {
 			...state,
-			loading:false,
+			loading: false,
 			businesses: action.businesses.businesses,
 			page: action.businesses.page,
 			per_page: action.businesses.per_page,
 			total_pages: action.businesses.total_pages,
-			total_results: action.businesses.total_results
+			total_results: action.businesses.total_results,
 		};
 	case LOAD_BUSINESS:
-		return{
+		return {
 			...state,
-			loading: true
+			loading: true,
 		};
 	default:
 		return state;

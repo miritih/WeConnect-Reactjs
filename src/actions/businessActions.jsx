@@ -1,32 +1,35 @@
+import axios from 'axios';
 import {
 	LOAD_BUSINESSES_SUCCESS,
 	LOAD_BUSINESS,
 } from './actiontypes';
-import axios from 'axios';
 import { baseURL } from '../utils/Config';
 
-
+// action creator to for businesses
+// it get called when the load business action succeesa
 export function loadBusinessesSuccess(businesses) {
 	return {
-		'type': LOAD_BUSINESSES_SUCCESS,
-		businesses
+		type: LOAD_BUSINESSES_SUCCESS,
+		businesses,
 	};
 }
 
 
-export function loadBusinesses(page=1, query='') {
-	return function (dispatch) {
-		const url = 'businesses/search?limit=4&page='+page+'&q='+query;
-		dispatch({type: LOAD_BUSINESS});
+export function loadBusinesses(page = 1, query = '') {
+	return function load(dispatch) {
+		const url = `businesses/search?limit=4&page=${page}&q=${query}`;
+		dispatch({ type: LOAD_BUSINESS });
 		axios({
 			method: 'get',
-			url: url,
-			baseURL: baseURL,
+			url,
+			baseURL,
 			responseType: 'json',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 		}).then((response) => {
+			// on success check if the responce status is between 200 and 300 for success
+			// if so dispatch action to load businesses
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(loadBusinessesSuccess(response.data));
 			}

@@ -8,8 +8,8 @@ const Reviewtem = ({review, index}) => {
 			<hr/>
 			<div className="reviews">
 				<Image cloudName={cloudName} publicId='download_qfbj36' width="90" crop="scale" />
-				<h5>review title</h5>
-				<p>Review content</p>
+				<h5>{review.title}</h5>
+				<p>{review.body}</p>
 			</div>
 			
 		</div>

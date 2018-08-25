@@ -6,14 +6,17 @@ import { cloudName } from '../../utils/Config';
 import Button from '../inputs/Button';
 import InputField from '../inputs/InputField';
 
-const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, handleDrop, username, first_name, change, last_name, image }) => {
+const ProfileUpdate = ({
+	handleChange, handleSubmit, email, uploading, loading, handleDrop,
+	username, first_name, change, last_name, image,
+}) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className="row">
 				<div className="col-md-8 col-sm-12">
 					<InputField
 						type="text"
-						disabled='disabled'
+						disabled="disabled"
 						value={username}
 						name="username"
 						label="Username"
@@ -21,7 +24,7 @@ const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, h
 					/>
 					<InputField
 						type="email"
-						disabled='disabled'
+						disabled="disabled"
 						value={email}
 						name="email"
 						label="Email"
@@ -30,10 +33,10 @@ const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, h
 					<InputField
 						type="text"
 						value={first_name}
-						disabled ={uploading ? 'disabled' : null}
+						disabled={uploading ? 'disabled' : null}
 						name="first_name"
 						label="First Name"
-						required='required'
+						required="required"
 						onChange={handleChange}
 					/>
 					<InputField
@@ -42,7 +45,7 @@ const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, h
 						disabled={uploading ? 'disabled' : null}
 						name="last_name"
 						label="Last Name"
-						required='required'
+						required="required"
 						onChange={handleChange}
 					/>
 				</div>
@@ -51,7 +54,8 @@ const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, h
 					<Dropzone
 						onDrop={handleDrop}
 						multiple={false}
-						accept="image/*">
+						accept="image/*"
+					>
 						<Image cloudName={cloudName} publicId={image} width="195" crop="scale" />
 					</Dropzone>
 					<i className="fa hand-point-up">{ uploading ? 'Uploading.......' : 'Click or drop an image here'}</i>
@@ -61,11 +65,11 @@ const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, h
 			<Button
 				type="submit"
 				className="btn btn-primary"
-				disabled={ uploading|loading ? 'disabled' : null}
-				text={uploading|loading ? 'Loading....' : 'Save changes'}
+				disabled={uploading | loading ? 'disabled' : null}
+				text={uploading | loading ? 'Loading....' : 'Save changes'}
 			/>
-			{change ?
-				<p className="text-info">You have unsaved changes</p> : ''
+			{change
+				? <p className="text-info">You have unsaved changes</p> : ''
 			}
 		</form>
 	);
@@ -73,15 +77,21 @@ const ProfileUpdate= ({ handleChange, handleSubmit, email, uploading, loading, h
 ProfileUpdate.propTypes = {
 	handleChange: PropTypes.func.isRequired,
 	handleSubmit: PropTypes.func.isRequired,
-	email: PropTypes.string.isRequired,  
+	email: PropTypes.string.isRequired,
 	uploading: PropTypes.bool,
 	loading: PropTypes.bool,
 	handleDrop: PropTypes.func.isRequired,
-	username: PropTypes.string.isRequired, 
-	first_name: PropTypes.string.isRequired, 
+	username: PropTypes.string.isRequired,
+	first_name: PropTypes.string.isRequired,
 	change: PropTypes.bool,
-	last_name: PropTypes.string.isRequired, 
+	last_name: PropTypes.string.isRequired,
 	image: PropTypes.string.isRequired,
+};
+
+ProfileUpdate.defaultProps = {
+	uploading: false,
+	loading: false,
+	change: false,
 };
 
 export default ProfileUpdate;

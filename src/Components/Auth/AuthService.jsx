@@ -1,6 +1,6 @@
 import decode from 'jwt-decode';
-import { baseURL } from '../../utils/Config';
 import axios from 'axios';
+import { baseURL } from '../../utils/Config';
 
 export default class Authservice {
 	constructor() {
@@ -9,36 +9,37 @@ export default class Authservice {
 
 	login(username, password) {
 		const data = {
-			'username': username,
-			'password': password
+			username,
+			password,
 		};
 		return axios({
 			method: 'post',
-			url: this.domain + '/auth/login',
-			data: data,
+			url: `${this.domain}/auth/login`,
+			data,
 			responseType: 'json',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
 		}).then((response) => {
-			this.setToken(response.data['auth_token']);
+			this.setToken(response.data.auth_token);
 			return Promise.resolve(response);
 		}).catch((error) => {
 			return Promise.resolve(error.response);
 		});
 	}
+
 	getToken() {
 		try {
 			return window.localStorage.getItem('auth_token');
-		}
-		catch (e) {
+		} catch (e) {
 			return false;
 		}
-
 	}
+
 	setToken(token) {
 		return window.localStorage.setItem('auth_token', token);
 	}
+
 	logout() {
 		// Clear user token from localStorage
 		window.localStorage.removeItem('auth_token');
@@ -49,10 +50,7 @@ export default class Authservice {
 		if (this.getToken()) {
 			return decode(this.getToken());
 		}
-		else {
-			return [];
-		}
-
+		return [];
 	}
 
 	isLoggedIn() {
@@ -67,12 +65,9 @@ export default class Authservice {
 			if (exp < Date.now() / 1000) { // Checking if token is expired.
 				return true;
 			}
-			else
-				return false;
-		}
-		catch (err) {
+			return false;
+		} catch (err) {
 			return false;
 		}
 	}
-
 }

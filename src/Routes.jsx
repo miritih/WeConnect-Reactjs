@@ -12,18 +12,18 @@ import PrivateRoute from './Components/Auth/PrivateRoute';
 import ForgotPassword from './Components/containerComponents/ResetPassword';
 import myBusinesses from './Components/containerComponents/myBusinesses';
 import BusinessProfile from './Components/containerComponents/businessProfile';
-//create a router 
+// create a router
 const router = (
 	<Router>
 		<div>
-			<Route exact path='/' component={Home} />
-			<Route exact path='/register' component={RegisterPage} />
-			<Route exact path='/login' component={Login} />
-			<Route exact path='/business/profile/:id' component={BusinessProfile} />
-			<PrivateRoute exact path='/profile/update' component={Profile} />
-			<PrivateRoute exact path='/profile/admin' component={ChangePass} />
-			<Route exact path='/forgotpass' component={ForgotPassword} />
-			<PrivateRoute exact path='/admin/my-businesses' component={myBusinesses} />
+			<Route exact path="/" component={Home} />
+			<Route exact path="/register" component={RegisterPage} />
+			<Route exact path="/login" component={Login} />
+			<Route exact path="/business/profile/:id" component={BusinessProfile} />
+			<PrivateRoute exact path="/profile/update" component={Profile} />
+			<PrivateRoute exact path="/profile/admin" component={ChangePass} />
+			<Route exact path="/forgotpass" component={ForgotPassword} />
+			<PrivateRoute exact path="/admin/my-businesses" component={myBusinesses} />
 			<ToastContainer />
 		</div>
 	</Router>

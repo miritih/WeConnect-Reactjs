@@ -10,42 +10,42 @@ import Item from '../businessComponents/reviewItems';
 import * as BusinessProfileActions from '../../actions/businessProfileAction';
 
 class BusinessProfile extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
-		this.state ={
-			title:'',
-			body:'',
-			errors:''
-		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	handleChange(e){
-		this.props.actions.inputChange({prop: e.target.name, value: e.target.value});
-	}
-	
-	handleSubmit(e){
-		e.preventDefault();
-		const{review, title, id} = this.props.businessProfile;
-		this.props.actions.addReview({review,title,id});
-		// this.props.actions.viewUserBusiness(id);
-		// this.props.actions.loadBusinessReviews(id);
-	}
-	componentWillMount(){
+
+	componentWillMount() {
 		const id = this.props.match.params.id;
 		this.props.actions.viewUserBusiness(id);
 		this.props.actions.loadBusinessReviews(id);
 	}
+
+	handleChange(e) {
+		this.props.actions.inputChange({
+			prop: e.target.name, value: e.target.value,
+		});
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		const { review, title, id } = this.props.businessProfile;
+		this.props.actions.addReview({ review, title, id });
+		document.getElementById('revieWModal').click();
+		this.props.actions.loadBusinessReviews(id);
+	}
+
+
 	render() {
 		const props = this.props;
 		const business = props.businessProfile;
-		const Loading =(
+		const Loading = (
 			<div className="container bsprofile">
-				<h3 className="text-center text-success"></h3>
-				<br/>
+				<br />
 				<div className="row">
 					<div className="loading">
-						<img src='/img/spinner.gif' alt="loading"/>
+						<img src="/img/spinner.gif" alt="loading" />
 						<i>loading ...</i>
 					</div>
 				</div>
@@ -60,63 +60,61 @@ class BusinessProfile extends React.Component {
 					location={props.location}
 					actions={props.actions}
 				/>
-				<div className="jumbotron">
-				</div>
-				{ props.businessProfile.loading ? Loading :
-					<div className="container">
-						<section className="bsprofile">
-							<div className="card  w-100">
-								<div className="card-body">
-									
-									<div className="row container">
-										<div className="col-md-2 d-sm-none d-md-block">
-											{/* <a className="btn btn-secondary">
-												<i className="fa fa-arrow-left"/>
-												Back
-											</a> */}
-										</div>
-										<div className="col-md-4">
-											<div className="profile-img">
-												<Image cloudName={cloudName} publicId={business.logo} width="150" crop="scale" />
+				<div className="jumbotron" />
+				{ props.businessProfile.loading ? Loading
+					: (
+						<div className="container">
+							<section className="bsprofile">
+								<div className="card  w-100">
+									<div className="card-body">
+
+										<div className="row container">
+											<div className="col-md-2 d-sm-none d-md-block">
+												{/* <a className="btn btn-secondary">
+													<i className="fa fa-arrow-left"/>
+													Back
+												</a> */}
+											</div>
+											<div className="col-md-4">
+												<div className="profile-img">
+													<Image cloudName={cloudName} publicId={business.logo} width="150" crop="scale" />
+												</div>
+											</div>
+											<div className="col-md-6">
+												<h4>{business.name}</h4>
+												<p>{business.description}</p>
 											</div>
 										</div>
-										<div className="col-md-6">
-											<h4>{business.name}</h4>
-											<p>{business.description}</p>
+										<div>
+
+											{props.userLogin.isLoggedIn
+												? <a className="btn btn-primary float-right" href=".newReviewModal" data-toggle="modal" data-target=".newReviewModal">Add review</a>
+												:	''
+											}
+
 										</div>
-									</div>
-									<div>
-										
-										{props.userLogin.isLoggedIn ? 
-											<a className="btn btn-primary float-right" data-toggle="modal" data-target=".newReviewModal">Add review</a>
-											:
-											''
+										<br /><br />
+
+										{
+											(business.error.message !== undefined)
+												? <div className="alert text-center col-md-8 offset-md-2 alert-info">{business.error.message}</div>
+												:											business.reviews.reviews !== undefined
+													? business.reviews.reviews.map((review, i) => {
+														return <Item review={review} key={i} />;
+													})
+													: ''
 										}
-										
 									</div>
-									<br/><br/>
-									
-									{
-										(business.error['message'] !== undefined) ?
-											<div className="alert text-center col-md-8 offset-md-2 alert-info">{business.error['message']}</div>
-											:
-											business.reviews.reviews !== undefined ?
-												business.reviews.reviews.map(function(review, i){
-													return <Item review ={review} key ={i}/>;
-												})
-												:
-												''
-									}						
 								</div>
-							</div>
-						</section>
-					</div>
+							</section>
+						</div>
+					)
 				}
 				<ReviewForm
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
-					title = {business.title}
-					review = {business.review}
+					title={business.title}
+					review={business.review}
 					errors={business.error}
 				/>
 			</div>
@@ -134,18 +132,18 @@ function mapStateToProps(state) {
 	const {
 		currentUser,
 		businessProfile,
-		userLogin,		
+		userLogin,
 	} = state;
 	return {
 		currentUser,
 		businessProfile,
-		userLogin
+		userLogin,
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(BusinessProfileActions, dispatch)
+		actions: bindActionCreators(BusinessProfileActions, dispatch),
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessProfile);

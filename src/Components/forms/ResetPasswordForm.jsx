@@ -3,7 +3,9 @@ import { PropTypes } from 'prop-types';
 import InputField from '../inputs/InputField';
 import Button from '../inputs/Button';
 
-const ResetPassForm = ({ handleChange, handleSubmit, email, error }) => {
+const ResetPassForm = ({
+	handleChange, handleSubmit, email, error,
+}) => {
 	return (
 		<div className="container wrapper">
 			<div className="main-center">
@@ -11,19 +13,19 @@ const ResetPassForm = ({ handleChange, handleSubmit, email, error }) => {
 					<div className="card-body">
 						<form className="form" onSubmit={handleSubmit}>
 							<InputField
-								type='email'
-								name='email'
-								label='Email used to register'
+								type="email"
+								name="email"
+								label="Email used to register"
 								onChange={handleChange}
-								placeholder='Your registered email'
+								placeholder="Your registered email"
 								value={email}
-								required='required'
+								required="required"
 								error={error && error.data.Errors.email.toString()}
 							/>
 							<Button
 								type="submit"
 								className="btn btn-lg btn-success btn-block btn-signin"
-								text='Request New Password'
+								text="Request New Password"
 							/>
 						</form>
 					</div>
@@ -37,5 +39,7 @@ ResetPassForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
 	email: PropTypes.string,
 };
-
+ResetPassForm.defaultProps = {
+	email: '',
+};
 export default ResetPassForm;

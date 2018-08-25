@@ -1,15 +1,17 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const TextArea = ({ name, label, disabled, rows, cols, required, onChange, value, error }) => {
+const TextArea = ({
+	name, label, disabled, rows, cols, required, onChange, value, error,
+}) => {
 	let formClass = 'form-control ';
 	if (error && error.length > 0) {
 		formClass += 'is-invalid';
 	}
 	return (
-		<div className='form-group'>
+		<div className="form-group">
 			<label htmlFor={name}>{label}</label>
-			<textarea 
+			<textarea
 				className={formClass}
 				value={value}
 				name={name}
@@ -17,7 +19,8 @@ const TextArea = ({ name, label, disabled, rows, cols, required, onChange, value
 				cols={cols}
 				onChange={onChange}
 				required={required}
-				disabled={disabled}></textarea>
+				disabled={disabled}
+			/>
 			{error && <small className="text-danger">{error}</small>}
 		</div>
 	);
@@ -26,11 +29,19 @@ TextArea.propTypes = {
 	name: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
-	rows:  PropTypes.string,
+	rows: PropTypes.string,
 	cols: PropTypes.string,
 	value: PropTypes.string,
 	error: PropTypes.array,
 	required: PropTypes.string,
-	disabled: PropTypes.string
+	disabled: PropTypes.string,
+};
+TextArea.defaultProps = {
+	rows: 10,
+	cols: 15,
+	value: '',
+	error: [],
+	required: '',
+	disabled: null,
 };
 export default TextArea;

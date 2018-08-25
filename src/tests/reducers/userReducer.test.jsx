@@ -1,25 +1,25 @@
+import expect from 'expect';
 import reducer from '../../reducers/UserReducer';
 import * as types from '../../actions/actiontypes';
-import expect from 'expect';
 
 describe('User reducer', () => {
-	const user ={
-		email:'test email',
+	const user = {
+		email: 'test email',
 		first_name: 'test',
 		username: 'test',
-		last_name:'test',
-		image:'test'
+		last_name: 'test',
+		image: 'test',
 	};
 	it('should return the initial state', () => {
 		expect(reducer(undefined, {})).toEqual({
-			email:'',
+			email: '',
 			first_name: '',
 			username: '',
 			change: false,
-			last_name:'',
-			loading:false,
-			uploading:false,
-			image:''
+			last_name: '',
+			loading: false,
+			uploading: false,
+			image: '',
 		});
 	});
 
@@ -27,33 +27,33 @@ describe('User reducer', () => {
 		expect(
 			reducer([], {
 				type: types.LOAD_USER_SUCCESS,
-				user
-			})
+				user,
+			}),
 		).toEqual(
 			{
-				email:'test email',
+				email: 'test email',
 				first_name: 'test',
 				username: 'test',
-				last_name:'test',
-				image:'test'
-			}
+				last_name: 'test',
+				image: 'test',
+			},
 		);
 	});
 	it('should handle UPDATE_CURRENT_USER', () => {
 		expect(
 			reducer([], {
 				type: types.UPDATE_CURRENT_USER,
-				user
-			})
+				user,
+			}),
 		).toEqual(
 			{
-				email:'test email',
+				email: 'test email',
 				change: false,
 				first_name: 'test',
 				username: 'test',
-				last_name:'test',
-				image:'test'
-			}
+				last_name: 'test',
+				image: 'test',
+			},
 		);
 	});
 
@@ -61,36 +61,36 @@ describe('User reducer', () => {
 		expect(
 			reducer([], {
 				type: types.PROFILE_INPUT_CHANGE,
-				payload: {prop: 'eric', value : 'mwenda'}
-			})
+				payload: { prop: 'eric', value: 'mwenda' },
+			}),
 		).toEqual(
 			{
 				loading: false,
 				change: true,
-				eric: 'mwenda'
-			}
+				eric: 'mwenda',
+			},
 		);
 	});
 	it('should handle UPDATE_PROFILE', () => {
 		expect(
 			reducer([], {
-				type: types.UPDATE_PROFILE
-			})
+				type: types.UPDATE_PROFILE,
+			}),
 		).toEqual(
 			{
-				loading: true
-			}
+				loading: true,
+			},
 		);
 	});
 	it('should handle UPDATE_PROFILE_SUCCESS', () => {
 		expect(
 			reducer([], {
-				type: types.UPDATE_PROFILE_SUCCESS
-			})
+				type: types.UPDATE_PROFILE_SUCCESS,
+			}),
 		).toEqual(
 			{
-				loading: false
-			}
+				loading: false,
+			},
 		);
 	});
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-export const SearchForm = ({onSearch, onChange, value}) => {
+export const SearchForm = ({ onSearch, onChange, value }) => {
 	return (
 		<div className="container">
 			<div className="row">
@@ -13,18 +13,18 @@ export const SearchForm = ({onSearch, onChange, value}) => {
 						<div className="card-body">
 							<form onSubmit={onSearch} className="form-inline">
 								<div className="input-group col-md-8 offset-md-2">
-									<input 
-										className="form-control form-control-lg" 
+									<input
+										className="form-control form-control-lg"
 										type="search"
 										onKeyUp={onSearch}
 										value={value}
 										onChange={onChange}
-										placeholder="Filter by business name, category, or location" 
+										placeholder="Filter by business name, category, or location"
 										id="example-search-input"
 									/>
 									<span className="input-group-append">
 										<button className="btn btn-outline-info" type="submit">
-											<i className="fa fa-search"></i>
+											<i className="fa fa-search" />
 										</button>
 									</span>
 								</div>
@@ -37,7 +37,7 @@ export const SearchForm = ({onSearch, onChange, value}) => {
 	);
 };
 SearchForm.propTypes = {
-	onSearch:PropTypes.func.isRequired, 
+	onSearch: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.string.isRequired,
 };

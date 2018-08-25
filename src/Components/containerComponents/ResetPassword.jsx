@@ -12,7 +12,6 @@ class ForgotPassword extends React.Component {
 		super();
 		this.state = {
 			email: '',
-			errors: {}
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,13 +19,14 @@ class ForgotPassword extends React.Component {
 
 	handleChange(e) {
 		this.setState({
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
 		});
 	}
+
 	handleSubmit(e) {
 		e.preventDefault();
 		// logic goes here
-		this.props.resetPassActions.resetPassword(this.state.email).then(res => {
+		this.props.resetPassActions.resetPassword(this.state.email).then((res) => {
 			if (res.status === 200) {
 				this.props.history.replace('/login');
 			}
@@ -57,24 +57,24 @@ class ForgotPassword extends React.Component {
 ForgotPassword.propType = {
 	currentUser: PropTypes.object.isRequired,
 	loggedIn: PropTypes.bool.isRequired,
-	actions: PropTypes.object.isRequired
+	actions: PropTypes.object.isRequired,
 };
 function mapStateToProps(state) {
 	const {
 		currentUser,
 		loggedIn,
-		passwordReset
+		passwordReset,
 	} = state;
 	return {
 		currentUser,
 		loggedIn,
-		passwordReset
+		passwordReset,
 	};
 }
 function mapDispatchToProps(dispatch) {
 	return {
 		loginActions: bindActionCreators(loginActions, dispatch),
-		resetPassActions: bindActionCreators(resetPassActions, dispatch)
+		resetPassActions: bindActionCreators(resetPassActions, dispatch),
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
