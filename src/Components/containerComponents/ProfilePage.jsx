@@ -9,7 +9,7 @@ import ProfileUpdate from '../forms/ProfileUpdate';
 import * as userActions from '../../actions/UserAction';
 import * as loginActions from '../../actions/loginActions';
 
-class Profile extends React.Component {
+export class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);

@@ -10,7 +10,7 @@ import * as bizActions from '../../actions/businessActions';
 import * as BusinessProfileActions from '../../actions/businessProfileAction';
 
 
-class Home extends React.Component {
+export class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

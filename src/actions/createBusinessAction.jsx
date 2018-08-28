@@ -6,6 +6,7 @@ import {
 	REGISTER_BUSINESS,
 	FETCH_BUSINESS_SUCCESS,
 	ON_MODAL_CLOSE,
+	ERROR,
 } from './actiontypes';
 import { baseURL as url } from '../utils/Config';
 import { notify } from '../utils/notify';
@@ -106,6 +107,10 @@ export function fetchBusiness(id) {
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(fetchBusinessSuccess(response.data));
+			}
+		}).catch((error) => {
+			if (error.response !== undefined) {
+				dispatch({ type: ERROR });
 			}
 		});
 	};

@@ -2,8 +2,8 @@ import React from 'react';
 import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
 
-const BusinessItem = ({business, onView, index}) => {
-	return(
+const BusinessItem = ({ business, onView, index }) => {
+	return (
 		<div key={index} className="col-sm-6 col-xs-12">
 			<div className="card card-margin border-info">
 				<div className="card-body">
@@ -14,12 +14,12 @@ const BusinessItem = ({business, onView, index}) => {
 						<div className="col-sm-6 col-xs-12">
 							<h5 className="card-title text-capitalize">{business.name}</h5>
 							<p className="card-text">{business.description}</p>
-							<p>Location: <span className="text-info">{business.location}</span><br/></p>
-							<p>Category: <span className="text-info">{business.category}</span><br/></p>
-							<a className="btn btn-info" data-id={business.id} onClick={onView} href=''>View Profile</a>
+							<p>Location: <span className="text-info">{business.location}</span><br /></p>
+							<p>Category: <span className="text-info">{business.category}</span><br /></p>
+							<a className="btn btn-info" data-id={business.id} onClick={onView} href="">View Profile</a>
 						</div>
 					</div>
-				
+
 				</div>
 			</div>
 		</div>

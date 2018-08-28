@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
 	LOAD_BUSINESSES_SUCCESS,
-	LOAD_BUSINESS,
+	LOAD_BUSINESS, 
+	ERROR,
 } from './actiontypes';
 import { baseURL } from '../utils/Config';
 
@@ -32,6 +33,10 @@ export function loadBusinesses(page = 1, query = '') {
 			// if so dispatch action to load businesses
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(loadBusinessesSuccess(response.data));
+			}
+		}).catch((error) => {
+			if (error.response !== undefined) {
+				dispatch({ type: ERROR });
 			}
 		});
 	};

@@ -42,13 +42,12 @@ describe('Register user Actions', () => {
 			store.dispatch(actions.updatePassword(user));
 			expect(store.getState()).toEqual(user);
 		});
-	});
 
-	it('Should dispatch updatePassword action ', () => {
-		const user = { old_password: 'miriti', password: 'test' };
-		const store = mockStore(user);
-		store.dispatch(actions.updatePassword(user));
-		expect(store.getState()).toEqual(user);
+		it('Should dispatch resetPassword action ', () => {
+			const user = { email: 'ericmwenda5@gmail.com' };
+			const store = mockStore(user);
+			store.dispatch(actions.resetPassword(user));
+			expect(store.getState()).toEqual(user);
+		});
 	});
-	
 });

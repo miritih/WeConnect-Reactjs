@@ -7,7 +7,7 @@ import Form from '../forms/RegisterForm';
 import NavBar from '../common/NavBar';
 import * as RegisterUserActions from '../../actions/registerUserAction';
 
-class RegisterPage extends React.Component {
+export class RegisterPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.actions = 	this.props.actions;

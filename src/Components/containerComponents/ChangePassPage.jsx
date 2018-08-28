@@ -9,7 +9,7 @@ import * as loginActions from '../../actions/loginActions';
 import * as resetPassActions from '../../actions/ResetPasswordActions';
 
 
-class ResetPass extends React.Component {
+export class ResetPass extends React.Component {
 	constructor() {
 		super();
 		this.handleChange = this.handleChange.bind(this);

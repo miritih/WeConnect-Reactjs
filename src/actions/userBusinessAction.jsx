@@ -3,6 +3,7 @@ import {
 	LOAD_USER_BUSINESS,
 	LOAD_USER_BUSINESSES_SUCCESS,
 	DELETE_USER_BUSINESSES_SUCCESS,
+	ERROR,
 } from './actiontypes';
 import { baseURL } from '../utils/Config';
 import { notify } from '../utils/notify';
@@ -42,6 +43,10 @@ export function loadUserBusinesses(page = 1, query = '') {
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(loadUserBusinessesSuccess(response.data));
 			}
+		}).catch((error) => {
+			if (error.response !== undefined) {
+				dispatch({ type: ERROR });
+			}
 		});
 	};
 }
@@ -64,6 +69,10 @@ export function deleteUserBusinesses(id) {
 				dispatch(deleteUserBusinessesSuccess(response.data));
 				dispatch(loadUserBusinesses());
 				notify('success', 'Success', 'Business Deleted Successfully');
+			}
+		}).catch((error) => {
+			if (error.response !== undefined) {
+				dispatch({ type: ERROR });
 			}
 		});
 	};

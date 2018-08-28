@@ -50,4 +50,13 @@ describe('Login reducer', () => {
 			errors: ['error'],
 		});
 	});
+	it('should handle RESET_PASSWORD', () => {
+		expect(
+			reducer([], {
+				type: types.RESET_PASSWORD,
+			}),
+		).toEqual({
+			loading: true,
+		});
+	});
 });

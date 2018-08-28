@@ -9,6 +9,7 @@ export const REGISTER_USER = 'REGISTER_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
+export const ERROR = 'ERROR';
 
 // login
 export const IS_LOGGED_IN_SUCCESS = 'IS_LOGGED_IN_SUCCESS';

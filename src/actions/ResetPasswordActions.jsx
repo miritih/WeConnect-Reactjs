@@ -60,13 +60,10 @@ export const updatePassword = ({ old_password, password }) => {
 export function resetPassword({ email }) {
 	return function func(dispatch) {
 		dispatch({ type: RESET_PASSWORD });
-		const data = {
-			email,
-		};
 		return axios({
 			method: 'put',
 			url: `${baseURL}/auth/forgot-password`,
-			data,
+			data: { email },
 			responseType: 'json',
 			headers: {
 				'Content-Type': 'application/json',
@@ -75,6 +72,10 @@ export function resetPassword({ email }) {
 			notify('success', 'Success', 'Password reset successful, check your email');
 			dispatch(resetPasswordSuccess(res));
 		})
-			.catch(error => dispatch(resetPasswordError(error.response.data.Errors)));
+			.catch((error) => {
+				if (error.response !== undefined) {
+					dispatch(resetPasswordError(error.response.data.Errors));
+				}
+			});
 	};
 }
