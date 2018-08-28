@@ -70,10 +70,12 @@ export function loadBusinessReviews(id) {
 			},
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
+				//  on success dispatch success action
 				dispatch(loadBusinessReviewsSuccess(response.data));
 			}
 		}).catch((error) => {
 			if (error.response !== undefined) {
+				// load the errors on error.
 				dispatch(viewBusinessError(error.response.data));
 			}
 		});
@@ -131,7 +133,6 @@ export function addReview({
 			},
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
-				console.log(id);
 				dispatch(loadBusinessReviews(id));
 				notify('success', 'Success', 'Review added successfully');
 			}

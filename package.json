@@ -60,7 +60,6 @@
       "!src/Components/Auth/AuthService.jsx",
       "!src/index.js",
       "!src/store/configureStore.js",
-      "!src/Routes.jsx",
       "!src/utils/notify.jsx",
       "!src/utils/paginate.jsx"
     ]

@@ -5,13 +5,16 @@ import Authservice from './AuthService';
 const Auth = new Authservice();
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
+	/**
+	 * method checks if a user is logged in before accessing a component
+	 * if user is not authenticated, redirect them to login page
+	 */
 	<Route
 		{...rest}
 		render={props => (Auth.isLoggedIn() ? (<Component {...props} />) : (
-			<Redirect
+			<Redirect // redirect users not logged in
 				to={{
 					pathname: '/login',
-					// state: { from: Auth.logout()}
 				}}
 			/>))
 		}

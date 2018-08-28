@@ -17,6 +17,7 @@ import { loadUserBusinesses } from './userBusinessAction';
 const Auth = new Authservice();
 
 export const inputChange = ({ prop, value }) => {
+	// change input values in the store
 	return {
 		type: BUSINESS_INPUT_CHANGE,
 		payload: { prop, value },
@@ -53,7 +54,8 @@ export const registerBusiness = ({
 	name, location, category, description, logo, id = null,
 }) => {
 	/**
-	 *
+	 * method is used to create or update business
+	 * If the value of id is not null then update else create business
 	 */
 	return (dispatch) => {
 		let endpoint;
@@ -78,6 +80,7 @@ export const registerBusiness = ({
 		})
 			.then((response) => {
 				if (response.status >= 200 && response.status < 300) {
+					// on success load businesses again to reload the page
 					dispatch(registrationSuccess(response));
 					dispatch(loadUserBusinesses());
 					notify('success', 'Success', id !== null ? 'Business updated successfully' : 'Business Created successfully');
@@ -94,6 +97,9 @@ export const registerBusiness = ({
 
 export function fetchBusiness(id) {
 	return function func(dispatch) {
+		/**
+		 * fetch a business
+		 */
 		dispatch({ type: REGISTER_BUSINESS });
 		const endpoint = `businesses/${id}`;
 		axios({

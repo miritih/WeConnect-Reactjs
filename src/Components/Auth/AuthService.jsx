@@ -8,6 +8,10 @@ export default class Authservice {
 	}
 
 	login(username, password) {
+		/**
+		 * method logs in a user.
+		 * then returns a promise and adds token to the local storage
+		 */
 		const data = {
 			username,
 			password,
@@ -21,14 +25,15 @@ export default class Authservice {
 				'Content-Type': 'application/json',
 			},
 		}).then((response) => {
-			this.setToken(response.data.auth_token);
-			return Promise.resolve(response);
+			this.setToken(response.data.auth_token); // add token
+			return Promise.resolve(response); // return a promise
 		}).catch((error) => {
 			return Promise.resolve(error.response);
 		});
 	}
 
 	getToken() {
+		// get token from local storage
 		try {
 			return window.localStorage.getItem('auth_token');
 		} catch (e) {
@@ -37,6 +42,7 @@ export default class Authservice {
 	}
 
 	setToken(token) {
+		// add token to local storage
 		return window.localStorage.setItem('auth_token', token);
 	}
 
