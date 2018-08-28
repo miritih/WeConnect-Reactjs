@@ -44,10 +44,11 @@ describe('Register user Actions', () => {
 		});
 	});
 
-	it('Should dispatch resetPassword action ', () => {
+	it('Should dispatch updatePassword action ', () => {
 		const user = { old_password: 'miriti', password: 'test' };
 		const store = mockStore(user);
-		store.dispatch(actions.resetPassword(user));
+		store.dispatch(actions.updatePassword(user));
 		expect(store.getState()).toEqual(user);
 	});
+	
 });

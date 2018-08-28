@@ -8,9 +8,9 @@ import {
 const initial_state = {
 	businesses: {},
 	business: {},
-	page: '',
-	per_page: '',
-	total_pages: '',
+	page: 0,
+	per_page: 0,
+	total_pages: 0,
 	total_results: '',
 	loading: false,
 };

@@ -48,6 +48,7 @@ export class LoginPage extends Component {
 					handleSubmit={this.handleSubmit}
 					username={props.userLogin.username}
 					password={props.userLogin.password}
+					loading={props.userLogin.loading}
 				/>
 			</div>
 		);

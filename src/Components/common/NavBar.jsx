@@ -77,9 +77,10 @@ NavBar.propTypes = {
 	history: PropTypes.object.isRequired,
 	location: PropTypes.object.isRequired,
 	user: PropTypes.object,
-	loggedIn: PropTypes.bool.isRequired,
+	loggedIn: PropTypes.bool,
 };
 NavBar.defaultProps = {
 	user: {},
+	loggedIn: false,
 };
 export default NavBar;

@@ -11,6 +11,8 @@ import * as createAction from '../../actions/createBusinessAction';
 import { Pagination } from '../../utils/paginate';
 import ListTable from '../businessComponents/myBusinessesTable';
 import BusinessForm from '../forms/businessForm';
+import * as BusinessProfileActions from '../../actions/businessProfileAction';
+
 
 class myBusinesses extends Component {
 	constructor(props) {
@@ -48,7 +50,8 @@ class myBusinesses extends Component {
 
 	onView(e) {
 		e.preventDefault();
-		this.props.history.replace(`/business/profile/${e.currentTarget.dataset.id}`);
+		this.props.history.push(`/business/profile/${e.currentTarget.dataset.id}`);
+		this.props.profileAction.loadBusinessReviews(e.currentTarget.dataset.id);
 	}
 
 	onEdit(e) {
@@ -71,7 +74,6 @@ class myBusinesses extends Component {
 			:	this.props.createBiz.registerBusiness({
 				name, location, category, description, logo,
 			});
-		this.props.bizActions.loadUserBusinesses(); // reload businesses after update
 		document.getElementById('hidePopUpBtn').click(); // close modal
 	}
 
@@ -98,6 +100,11 @@ class myBusinesses extends Component {
 	}
 
 	render() {
+		const Loading = (
+			<div className="loading">
+				<img src="/img/spinner.gif" alt="loading" />
+			</div>
+		);
 		const props = this.props;
 		return (
 			<div>
@@ -135,7 +142,7 @@ class myBusinesses extends Component {
 												{
 													Object.keys(props.userBusinesses).length > 0
 														? props.userBusinesses.loading
-															? <tr><td colSpan="4">Loading.....</td></tr>
+															? <tr><td colSpan="5">{Loading}</td></tr>
 															:	(
 																<ListTable
 																	results={props.userBusinesses.businesses}
@@ -188,6 +195,7 @@ myBusinesses.propType = {
 	currentUser: PropTypes.object.isRequired,
 	userLogin: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired,
+	profileAction: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -206,6 +214,7 @@ function mapDispatchToProps(dispatch) {
 		actions: bindActionCreators(loginActions, dispatch),
 		bizActions: bindActionCreators(bizActions, dispatch),
 		createBiz: bindActionCreators(createAction, dispatch),
+		profileAction: bindActionCreators(BusinessProfileActions, dispatch),
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(myBusinesses);

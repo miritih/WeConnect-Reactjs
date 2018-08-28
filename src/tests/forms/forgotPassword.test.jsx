@@ -9,7 +9,8 @@ function setup() {
 		handleChange: jest.fn(),
 		handleSubmit: jest.fn(),
 		email: 'email',
-		errors: 'eroor',
+		error: 'eroor',
+		loading: false,
 
 	};
 

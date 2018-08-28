@@ -5,7 +5,7 @@ import InputField from '../inputs/InputField';
 import Button from '../inputs/Button';
 
 const LoginForm = ({
-	handleChange, handleSubmit, username, password,
+	handleChange, handleSubmit, username, password, loading,
 }) => {
 	return (
 		<div className="container wrapper">
@@ -35,7 +35,9 @@ const LoginForm = ({
 							<Button
 								type="submit"
 								className="btn btn-lg btn-success btn-block btn-signin"
-								text="Login"
+								loading={loading}
+								text={loading ? 'loading... ' : 'Login '}
+								disabled={loading ? 'disabled' : null}
 							/>
 							<p className="message">Not registered? <Link to="/register">Create an account. </Link>
 								<span> Forgot password?  <Link to="/forgotpass">Reset</Link> </span>

@@ -30,7 +30,7 @@ const NavLinks = ({
 				<li className="nav-item dropdown">
 					<a
 						className="nav-link dropdown-toggle text-capitalize user-profile"
-						href="avascript:;"
+						href=""
 						id="navbarDropdownMenuLink"
 						data-toggle="dropdown"
 						aria-haspopup="true"

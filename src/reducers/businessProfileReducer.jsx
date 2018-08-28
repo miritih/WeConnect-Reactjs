@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 	description: '',
 	reviews: {},
 	logo: '',
-	error: '',
+	error: [],
 	title: '',
 	review: '',
 	loading: false,

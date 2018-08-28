@@ -9,6 +9,7 @@ describe('Login reducer', () => {
 			new_password: '',
 			confirm_password: '',
 			loading: false,
+			redirect: false,
 			errors: [],
 		});
 	});
@@ -31,6 +32,7 @@ describe('Login reducer', () => {
 			new_password: '',
 			confirm_password: '',
 			loading: false,
+			redirect: true,
 			errors: [],
 		});
 	});
@@ -39,10 +41,12 @@ describe('Login reducer', () => {
 		expect(
 			reducer([], {
 				type: types.IS_PASSWORD_RESET_ERROR,
+				redirect: false,
 				error: ['error'],
 			}),
 		).toEqual({
 			loading: false,
+			redirect: false,
 			errors: ['error'],
 		});
 	});

@@ -47,6 +47,7 @@ export default function NewBusinessReducer(state = INITIAL_STATE, action) {
 	case FETCH_BUSINESS_SUCCESS:
 		return {
 			...state,
+			loading: false,
 			name: action.business.name,
 			location: action.business.location,
 			category: action.business.category,

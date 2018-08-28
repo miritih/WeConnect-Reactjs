@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router-dom';
 import NavBar from '../common/NavBar';
 import ResetPassForm from '../forms/ResetPasswordForm';
 import * as loginActions from '../../actions/loginActions';
@@ -26,15 +27,14 @@ class ForgotPassword extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		// logic goes here
-		this.props.resetPassActions.resetPassword(this.state.email).then((res) => {
-			if (res.status === 200) {
-				this.props.history.replace('/login');
-			}
-		});
+		this.props.resetPassActions.resetPassword({ email: this.state.email });
 	}
 
 	render() {
 		const props = this.props;
+		if (props.passwordReset.redirect) {
+			return <Redirect to="/login" />;
+		}
 		return (
 			<div>
 				<NavBar
@@ -47,7 +47,8 @@ class ForgotPassword extends React.Component {
 				<ResetPassForm
 					handleChange={this.handleChange}
 					email={this.state.email}
-					error={props.passwordReset['0']}
+					error={props.passwordReset.errors}
+					loading={props.passwordReset.loading}
 					handleSubmit={this.handleSubmit}
 				/>
 			</div>

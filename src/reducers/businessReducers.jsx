@@ -5,10 +5,10 @@ import {
 // the initial state to be set for in businesses store
 const initial_state = {
 	businesses: {},
-	page: '',
-	per_page: '',
-	total_pages: '',
-	total_results: '',
+	page: 0,
+	per_page: 0,
+	total_pages: 0,
+	total_results: 0,
 	loading: false,
 };
 

@@ -14,12 +14,17 @@ class BusinessProfile extends React.Component {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.Back = this.Back.bind(this);
 	}
 
 	componentWillMount() {
 		const id = this.props.match.params.id;
 		this.props.actions.viewUserBusiness(id);
 		this.props.actions.loadBusinessReviews(id);
+	}
+
+	Back() {
+		this.props.history.goBack();
 	}
 
 	handleChange(e) {
@@ -32,8 +37,8 @@ class BusinessProfile extends React.Component {
 		e.preventDefault();
 		const { review, title, id } = this.props.businessProfile;
 		this.props.actions.addReview({ review, title, id });
-		document.getElementById('revieWModal').click();
 		this.props.actions.loadBusinessReviews(id);
+		document.getElementById('revieWModal').click();
 	}
 
 
@@ -70,10 +75,16 @@ class BusinessProfile extends React.Component {
 
 										<div className="row container">
 											<div className="col-md-2 d-sm-none d-md-block">
-												{/* <a className="btn btn-secondary">
-													<i className="fa fa-arrow-left"/>
+												<a
+													onClick={this.Back}
+													onKeyDown={() => {}}
+													role="button"
+													tabIndex={0}
+													className="btn btn-default"
+												>
+													<i className="fa fa-arrow-left" />
 													Back
-												</a> */}
+												</a>
 											</div>
 											<div className="col-md-4">
 												<div className="profile-img">

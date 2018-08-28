@@ -3,6 +3,7 @@ import {
 	RESET_PASS_INPUT_CHANGE,
 	IS_PASSWORD_RESET_SUCCESS,
 	IS_PASSWORD_RESET_ERROR,
+	RESET_PASSWORD,
 } from './actiontypes';
 import { baseURL } from '../utils/Config';
 import Authservice from '../Components/Auth/AuthService';
@@ -56,8 +57,9 @@ export const updatePassword = ({ old_password, password }) => {
 };
 
 
-export function resetPassword(email) {
+export function resetPassword({ email }) {
 	return function func(dispatch) {
+		dispatch({ type: RESET_PASSWORD });
 		const data = {
 			email,
 		};
@@ -69,7 +71,10 @@ export function resetPassword(email) {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		}).then(res => dispatch(resetPasswordSuccess(res)))
-			.catch(error => dispatch(resetPasswordError(error.response)));
+		}).then((res) => {
+			notify('success', 'Success', 'Password reset successful, check your email');
+			dispatch(resetPasswordSuccess(res));
+		})
+			.catch(error => dispatch(resetPasswordError(error.response.data.Errors)));
 	};
 }

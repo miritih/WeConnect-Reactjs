@@ -37,8 +37,8 @@ TextArea.propTypes = {
 	disabled: PropTypes.string,
 };
 TextArea.defaultProps = {
-	rows: 10,
-	cols: 15,
+	rows: '10',
+	cols: '15',
 	value: '',
 	error: [],
 	required: '',

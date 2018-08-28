@@ -13,6 +13,12 @@ import Authservice from '../Components/Auth/AuthService';
 const Auth = new Authservice();
 
 export function inputChange({ prop, value }) {
+	/**
+	 * this action is to set change in store values
+	 * if you want to change anything in the store, then
+	 * dispatch this action with prop as the state to change
+	 * and the value as the new value
+	*/
 	return {
 		type: REVIEW_INPUT_CHANGE,
 		payload: { prop, value },
@@ -20,18 +26,24 @@ export function inputChange({ prop, value }) {
 }
 
 export function viewUserBusinessSuccess(business) {
+	/**
+	 * dispatch this action after a successful business fetch.
+	 * accepts parameter business, the business passed will then be passed to the reducer
+	 */
 	return {
 		type: VIEW_BUSINESSES_PROFILE_SUCCESS,
 		business,
 	};
 }
 export function viewBusinessError(error) {
+	// this methods receives any error that occurs when fetching a business
 	return {
 		type: LOAD_BUSINESS_PROFILE_ERROR,
 		error,
 	};
 }
 export function loadBusinessReviewsSuccess(reviews) {
+	// method receives all business reviews
 	return {
 		type: LOAD_BUSINESSES_REVIEWS_SUCCESS,
 		reviews,
@@ -40,6 +52,9 @@ export function loadBusinessReviewsSuccess(reviews) {
 
 
 export function loadBusinessReviews(id) {
+	// fetch all business reviews
+	//  then dispatch business success action on success or
+	// error on fail
 	return function disp(dispatch) {
 		const url = `businesses/${id}/reviews`;
 		dispatch({
@@ -67,6 +82,9 @@ export function loadBusinessReviews(id) {
 
 
 export function viewUserBusiness(id) {
+	// fetch a single user business
+	//  then dispatch business success action on success or
+	// error on fail
 	return function disp(dispatch) {
 		dispatch({
 			type: LOAD_BUSINESS_PROFILE,
@@ -95,6 +113,7 @@ export function viewUserBusiness(id) {
 export function addReview({
 	review, title, id,
 }) {
+	// function to add a new review to a business.
 	return function disp(dispatch) {
 		const url = `businesses/${id}/reviews`;
 		axios({
@@ -112,14 +131,13 @@ export function addReview({
 			},
 		}).then((response) => {
 			if (response.status >= 200 && response.status < 300) {
+				console.log(id);
+				dispatch(loadBusinessReviews(id));
 				notify('success', 'Success', 'Review added successfully');
-				// dispatch(addReviewSuccess(response.data));
 			}
 		}).catch((error) => {
 			if (error.response !== undefined) {
-				notify('error', 'Success', error.response.data.Error);
-				dispatch(viewBusinessError(error));
-				// dispatch(addReviewError(error));
+				notify('error', 'Error', error.response.data.Error);
 			}
 		});
 	};

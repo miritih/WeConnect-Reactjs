@@ -6,7 +6,7 @@ import {
 import { baseURL } from '../utils/Config';
 
 // action creator to for businesses
-// it get called when the load business action succeesa
+// it get called when the load business action success
 export function loadBusinessesSuccess(businesses) {
 	return {
 		type: LOAD_BUSINESSES_SUCCESS,
@@ -28,7 +28,7 @@ export function loadBusinesses(page = 1, query = '') {
 				'Content-Type': 'application/json',
 			},
 		}).then((response) => {
-			// on success check if the responce status is between 200 and 300 for success
+			// on success check if the response status is between 200 and 300 for success
 			// if so dispatch action to load businesses
 			if (response.status >= 200 && response.status < 300) {
 				dispatch(loadBusinessesSuccess(response.data));

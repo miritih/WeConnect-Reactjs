@@ -7,6 +7,8 @@ import NavBar from '../common/NavBar';
 import BusinessList from '../businessComponents/businessList';
 import * as loginActions from '../../actions/loginActions';
 import * as bizActions from '../../actions/businessActions';
+import * as BusinessProfileActions from '../../actions/businessProfileAction';
+
 
 class Home extends React.Component {
 	constructor(props) {
@@ -43,7 +45,8 @@ class Home extends React.Component {
 	onView(e) {
 		// loads a single buiness for viewing
 		e.preventDefault();
-		this.props.history.replace(`/business/profile/${e.currentTarget.dataset.id}`);
+		this.props.history.push(`/business/profile/${e.currentTarget.dataset.id}`);
+		this.props.profileAction.loadBusinessReviews(e.currentTarget.dataset.id);
 	}
 
 	render() {
@@ -93,6 +96,7 @@ Home.propType = {
 	currentUser: PropTypes.object.isRequired,
 	loggedIn: PropTypes.bool.isRequired,
 	actions: PropTypes.object.isRequired,
+	profileAction: PropTypes.object.isRequired,
 };
 function mapStateToProps(state) {
 	return {
@@ -105,6 +109,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(loginActions, dispatch),
 		bizActions: bindActionCreators(bizActions, dispatch),
+		profileAction: bindActionCreators(BusinessProfileActions, dispatch),
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -4,7 +4,7 @@ import InputField from '../inputs/InputField';
 import Button from '../inputs/Button';
 
 const ResetPassForm = ({
-	handleChange, handleSubmit, email, error,
+	handleChange, handleSubmit, email, error, loading,
 }) => {
 	return (
 		<div className="container wrapper">
@@ -20,12 +20,14 @@ const ResetPassForm = ({
 								placeholder="Your registered email"
 								value={email}
 								required="required"
-								error={error && error.data.Errors.email.toString()}
+								error={error.email}
 							/>
 							<Button
 								type="submit"
 								className="btn btn-lg btn-success btn-block btn-signin"
-								text="Request New Password"
+								loading={loading}
+								text={loading ? 'Requesting... ' : 'Request New Password '}
+								disabled={loading ? 'disabled' : null}
 							/>
 						</form>
 					</div>

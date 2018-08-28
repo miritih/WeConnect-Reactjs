@@ -10,7 +10,9 @@ import {
 import { baseURL as url } from '../utils/Config';
 import { notify } from '../utils/notify';
 import Authservice from '../Components/Auth/AuthService';
+import { loadUserBusinesses } from './userBusinessAction';
 
+// create auth object. the object will be used to get token from local storage
 const Auth = new Authservice();
 
 export const inputChange = ({ prop, value }) => {
@@ -45,9 +47,13 @@ export const onclose = () => {
 	};
 };
 
+
 export const registerBusiness = ({
 	name, location, category, description, logo, id = null,
 }) => {
+	/**
+	 *
+	 */
 	return (dispatch) => {
 		let endpoint;
 		id !== null ? endpoint = `businesses/${id}` : endpoint = 'businesses';
@@ -72,7 +78,7 @@ export const registerBusiness = ({
 			.then((response) => {
 				if (response.status >= 200 && response.status < 300) {
 					dispatch(registrationSuccess(response));
-
+					dispatch(loadUserBusinesses());
 					notify('success', 'Success', id !== null ? 'Business updated successfully' : 'Business Created successfully');
 				}
 			}).catch((error) => {
@@ -87,7 +93,7 @@ export const registerBusiness = ({
 
 export function fetchBusiness(id) {
 	return function func(dispatch) {
-		// dispatch({type: LOAD_BUSINESS_PROFILE});
+		dispatch({ type: REGISTER_BUSINESS });
 		const endpoint = `businesses/${id}`;
 		axios({
 			method: 'get',
