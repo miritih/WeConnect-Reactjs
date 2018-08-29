@@ -2,7 +2,16 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import InputField from '../inputs/InputField';
 import Button from '../inputs/Button';
-
+/**
+ *
+ * @param {*} handleChange
+ * @param {*} handleSubmit
+ * @param {*} old_password
+ * @param {*} new_password
+ * @param {*} confirm_password
+ * @param {*} errors
+ * @param {*} loading
+ */
 const ResetPassForm = ({
 	handleChange,
 	handleSubmit,
