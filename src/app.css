@@ -1,0 +1,139 @@
+/*We connect App css */
+
+.body a {
+  color: #fff;
+}
+
+/*======================*/
+
+/*Business listings page*/
+
+/*======================*/
+
+.wrapper {
+  background-color: #fff;
+  margin-top: 10%;
+}
+
+.jumbotron-home {
+  background-image: url('/img/banner.png');
+  background-position: center;
+  background-size: cover;
+  border-radius: 0px;
+  height: 400px;
+}
+
+.navhome .navbar-nav .nav-link {
+  color: #fff;
+}
+
+
+.white {
+  color: #fff;
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+  .profile{
+    margin-top: 80px;
+  }
+}
+.review-img {
+  float: left;
+  margin-right: 20px;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+/*=============*/
+/*Login/signup form*/
+/*=============*/
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.main-center{
+ 	margin-top: 10px;
+ 	margin: 0 auto;
+ 	max-width: 500px;
+  padding: 40px 40px;
+}
+
+.btn.btn-signin {
+    /*background-color: #4d90fe; */
+    background-color: rgb(104, 145, 162);
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+  background-color: rgb(12, 97, 33);
+}
+.profile-img
+{
+    /* width: 96px;
+    height: 96px; */
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.user-profile img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-top: -5px;
+}
+.navbarcolor{
+  background-color: #e3f2fd;
+}
+.card-margin{
+  margin-bottom: 15px;
+}
+.bsprofile{
+ margin-top: -90px;
+ border-radius: 5px;
+}
+.bg-white{
+ background: #fff;
+}
+.bs-card{
+  width: 18rem;
+}
+
+.reviews{
+  
+}
+.navbar-light{
+    
+}
+.loading{
+  margin: 10% 50%;
+  width: 200px;
+}
+.link{
+  margin-right: 15px;
+}
+
