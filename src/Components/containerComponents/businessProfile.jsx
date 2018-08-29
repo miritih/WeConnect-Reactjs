@@ -17,22 +17,37 @@ class BusinessProfile extends React.Component {
 		this.Back = this.Back.bind(this);
 	}
 
+	/**
+ * loads businesses and reviews on page mount
+ */
 	componentWillMount() {
 		const id = this.props.match.params.id;
 		this.props.actions.viewUserBusiness(id);
 		this.props.actions.loadBusinessReviews(id);
 	}
 
+	/**
+ * handles going back to previous page
+ */
 	Back() {
 		this.props.history.goBack();
 	}
 
+	/**
+	 * handles change in inputs
+	 * @param {*} e event
+	 */
 	handleChange(e) {
 		this.props.actions.inputChange({
 			prop: e.target.name, value: e.target.value,
 		});
 	}
 
+	/**
+	 * handles form submit.
+	 * @param {*} e event
+	 * adds new review
+	 */
 	handleSubmit(e) {
 		e.preventDefault();
 		const { review, title, id } = this.props.businessProfile;
@@ -40,7 +55,6 @@ class BusinessProfile extends React.Component {
 		this.props.actions.loadBusinessReviews(id);
 		document.getElementById('revieWModal').click();
 	}
-
 
 	render() {
 		const props = this.props;
@@ -132,13 +146,18 @@ class BusinessProfile extends React.Component {
 		);
 	}
 }
-
+/**
+ * validate all props
+ */
 BusinessProfile.propType = {
 	currentUser: PropTypes.object,
 	userLogin: PropTypes.object,
 	actions: PropTypes.object,
 };
-
+/**
+ * methods maps states to props
+ * @param {*} state redux store
+ */
 function mapStateToProps(state) {
 	const {
 		currentUser,
@@ -151,7 +170,10 @@ function mapStateToProps(state) {
 		userLogin,
 	};
 }
-
+/**
+ * method maps redux actions to props
+ * @param {*} dispatch method to dispatch redux actions
+ */
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(BusinessProfileActions, dispatch),

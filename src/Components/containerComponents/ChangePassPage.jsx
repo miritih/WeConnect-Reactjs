@@ -16,10 +16,18 @@ export class ResetPass extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	/**
+ * hanges change in inputs
+ * @param {*} e event
+ */
 	handleChange(e) {
 		this.props.resetPassActions.inputChange({ prop: e.target.name, value: e.target.value });
 	}
 
+	/**
+ * handles submit
+ * @param {*} event
+ */
 	handleSubmit(event) {
 		event.preventDefault();
 		const data = {
@@ -69,11 +77,16 @@ export class ResetPass extends React.Component {
 		);
 	}
 }
+// validate props
 ResetPass.propType = {
 	currentUser: PropTypes.object.isRequired,
 	loggedIn: PropTypes.bool.isRequired,
 	actions: PropTypes.object.isRequired,
 };
+/**
+ * maps states to props
+ * @param {*} state redux state
+ */
 function mapStateToProps(state) {
 	const { currentUser, passwordReset, userLogin } = state;
 	return {
@@ -82,6 +95,10 @@ function mapStateToProps(state) {
 		userLogin,
 	};
 }
+/**
+ * maps redux actions to props
+ * @param {*} dispatch method to dispatch actions
+ */
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(loginActions, dispatch),

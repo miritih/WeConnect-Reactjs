@@ -6,7 +6,22 @@ import { cloudName } from '../../utils/Config';
 import InputField from '../inputs/InputField';
 import TextArea from '../inputs/textArea';
 import Button from '../inputs/Button';
-
+/**
+ * register business form
+ * @param {*} handleChange - handles change in inputs
+ * @param {*} handleSubmit - handles form submit
+ * @param {*} handleDrop - handles dropping images for upload
+ * @param {*} onclose  - handles modal close
+ * @param {*} uploading - checks if file is uploading
+ * @param {*} loading - checks if changes are loading
+ * @param {*} errors - contains all the errors
+ * @param {*} edit - handles edit
+ * @param {*} name - name of the business
+ * @param {*} category - business category
+ * @param {*} location - business location
+ * @param {*} logo - business log
+ * @param {*} description - business description
+ */
 const BusinessForm = ({
 	handleChange,
 	handleSubmit,
@@ -114,6 +129,8 @@ const BusinessForm = ({
 		</div>
 	);
 };
+
+// validate props
 BusinessForm.propTypes = {
 	handleChange: PropTypes.func.isRequired,
 	handleSubmit: PropTypes.func.isRequired,
@@ -123,6 +140,7 @@ BusinessForm.propTypes = {
 	location: PropTypes.string,
 	logo: PropTypes.string,
 };
+// define default props
 BusinessForm.defaultProps = {
 	name: '',
 	category: '',

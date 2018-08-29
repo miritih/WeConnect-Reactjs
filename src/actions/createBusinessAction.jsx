@@ -1,3 +1,6 @@
+/**
+ * contains all create business methods
+ */
 import axios from 'axios';
 import {
 	BUSINESS_REGISTRATION_SUCCESS,
@@ -16,47 +19,63 @@ import { loadUserBusinesses } from './userBusinessAction';
 // create auth object. the object will be used to get token from local storage
 const Auth = new Authservice();
 
+/**
+ *
+ * @param {*} prop - name of the field to update in store.
+ * @param {*} value -  the value of the field
+ */
 export const inputChange = ({ prop, value }) => {
-	// change input values in the store
 	return {
 		type: BUSINESS_INPUT_CHANGE,
 		payload: { prop, value },
 	};
 };
-
+/**
+ *
+ * @param {*} response - contains details of registered business.
+ */
 export const registrationSuccess = (response) => {
 	return {
 		type: BUSINESS_REGISTRATION_SUCCESS,
 		response,
 	};
 };
-
+/**
+ *
+ * @param {*} errors -errors from back end
+ */
 export const registrationFailure = (errors) => {
 	return {
 		type: BUSINESS_REGISTRATION_FAILURE,
 		errors,
 	};
 };
+/**
+ *
+ * @param {*} business - details of the business retrived from back end.
+ */
 export const fetchBusinessSuccess = (business) => {
 	return {
 		type: FETCH_BUSINESS_SUCCESS,
 		business,
 	};
 };
+/**
+ * method called when modal is closed. it resets form data to null
+ */
 export const onclose = () => {
 	return {
 		type: ON_MODAL_CLOSE,
 	};
 };
 
-
+/**
+	 * method is used to create or update business
+	 * If the value of id is not null then update else create business
+*/
 export const registerBusiness = ({
 	name, location, category, description, logo, id = null,
 }) => {
-	/**
-	 * method is used to create or update business
-	 * If the value of id is not null then update else create business
-	 */
 	return (dispatch) => {
 		let endpoint;
 		id !== null ? endpoint = `businesses/${id}` : endpoint = 'businesses';
@@ -95,11 +114,12 @@ export const registerBusiness = ({
 	};
 };
 
+/**
+ *
+ * @param {*} id - the id of the business to fetch
+ */
 export function fetchBusiness(id) {
 	return function func(dispatch) {
-		/**
-		 * fetch a business
-		 */
 		dispatch({ type: REGISTER_BUSINESS });
 		const endpoint = `businesses/${id}`;
 		axios({

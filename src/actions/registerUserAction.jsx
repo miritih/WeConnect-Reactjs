@@ -1,3 +1,6 @@
+/**
+ * all register user actions
+ */
 import axios from 'axios';
 import {
 	IS_REGISTRATION_SUCCESS, INPUT_CHANGE, REGISTER_USER, IS_REGISTRATION_FAILURE,
@@ -11,14 +14,20 @@ export const inputChange = ({ prop, value }) => {
 		payload: { prop, value },
 	};
 };
-
+/**
+ *
+ * @param {*} response - response contains registered user details.
+ */
 export const registrationSuccess = (response) => {
 	return {
 		type: IS_REGISTRATION_SUCCESS,
 		response,
 	};
 };
-
+/**
+ *
+ * @param {*} errors all errors that occured in back end
+ */
 export const registrationFailure = (errors) => {
 	return {
 		type: IS_REGISTRATION_FAILURE,
@@ -26,7 +35,15 @@ export const registrationFailure = (errors) => {
 	};
 };
 
-
+/**
+ * function to register users
+ * this user details are all required to register a user.
+ * @param {*} username
+ * @param {*} email
+ * @param {*} first_name
+ * @param {*} last_name
+ * @param {*} password
+ */
 export const registerUser = ({
 	username, email, first_name, last_name, password,
 }) => {

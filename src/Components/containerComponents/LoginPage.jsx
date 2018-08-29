@@ -16,10 +16,12 @@ export class LoginPage extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	// handles change
 	handleChange(e) {
 		this.props.actions.inputChange({ prop: e.target.name, value: e.target.value });
 	}
 
+	// handles form submit
 	handleSubmit(e) {
 		e.preventDefault();
 		const {
@@ -60,7 +62,10 @@ LoginPage.propType = {
 	actions: PropTypes.object.isRequired,
 	userActions: PropTypes.object,
 };
-
+/**
+ * maps redux state to props
+ * @param {*} state
+ */
 function mapStateToProps(state) {
 	const { currentUser, userLogin } = state;
 	return {
@@ -68,6 +73,10 @@ function mapStateToProps(state) {
 		userLogin,
 	};
 }
+/**
+ * maps actions to props
+ * @param {*} dispatch method to dispatch actions
+ */
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(loginActions, dispatch),

@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
-
+/**
+ * presentation component to dispalay navigation links
+ * @param {*} loggedIn true or false, check if user is logged in
+ * @param {*} user details of the user loogged in
+ * @param {*} handleLogout method to log user out,
+ * @param {*} location shows the current page user is viewing
+ */
 const NavLinks = ({
 	loggedIn, user, handleLogout, location,
 }) => (
@@ -11,6 +17,9 @@ const NavLinks = ({
 		<li className="nav-item">
 			<Link className="nav-link" to="/">Home</Link>
 		</li>
+		{/*
+		if user is logged in show profile links, else show login and signup
+		*/}
 		{loggedIn
 			? (
 				<span>
@@ -53,14 +62,16 @@ const NavLinks = ({
 		}
 	</ul>
 );
-
+/**
+ * validate all props received by this component
+ */
 NavLinks.propTypes = {
 	loggedIn: PropTypes.bool.isRequired,
 	user: PropTypes.object,
 	handleLogout: PropTypes.func.isRequired,
 	location: PropTypes.object.isRequired,
 };
-
+// set default props for props not required.
 NavLinks.defaultProps = {
 	user: [],
 };

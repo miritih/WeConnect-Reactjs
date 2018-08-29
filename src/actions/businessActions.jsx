@@ -1,13 +1,20 @@
+/**
+ * This file contains all business functions to get
+ * businesses from the back end api.
+ */
 import axios from 'axios';
 import {
 	LOAD_BUSINESSES_SUCCESS,
-	LOAD_BUSINESS, 
+	LOAD_BUSINESS,
 	ERROR,
 } from './actiontypes';
 import { baseURL } from '../utils/Config';
 
-// action creator to for businesses
-// it get called when the load business action success
+/**
+ * action creator to for businesses
+ * it get called when the load business action success
+ * @param {*} businesses - all businesses from back end.
+ */
 export function loadBusinessesSuccess(businesses) {
 	return {
 		type: LOAD_BUSINESSES_SUCCESS,
@@ -15,7 +22,11 @@ export function loadBusinessesSuccess(businesses) {
 	};
 }
 
-
+/**
+ * loads businesses from the back end.
+ * @param {*} page - pagination page
+ * @param {*} query - search parameter
+ */
 export function loadBusinesses(page = 1, query = '') {
 	return function load(dispatch) {
 		const url = `businesses/search?limit=4&page=${page}&q=${query}`;

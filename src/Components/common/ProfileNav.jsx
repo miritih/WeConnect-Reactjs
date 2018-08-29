@@ -1,6 +1,12 @@
+/**
+ * component to display nav links for profile page
+ */
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+/**
+ *
+ * @param {*} path - the current page path
+ */
 const ProfileNav = path => (
 	<ul className="list-group">
 		<li className="list-group-item list-group-item-dark">Manage Profile</li>

@@ -1,3 +1,6 @@
+/**
+ * handles all authentication related logic
+ */
 import decode from 'jwt-decode';
 import axios from 'axios';
 import { baseURL } from '../../utils/Config';
@@ -7,11 +10,13 @@ export default class Authservice {
 		this.domain = baseURL;
 	}
 
-	login(username, password) {
-		/**
+	/**
 		 * method logs in a user.
 		 * then returns a promise and adds token to the local storage
-		 */
+		 * @param {*} username
+		 * @param {*} password
+	*/
+	login(username, password) {
 		const data = {
 			username,
 			password,
@@ -32,8 +37,10 @@ export default class Authservice {
 		});
 	}
 
+	/**
+	 * get token from local storage
+  */
 	getToken() {
-		// get token from local storage
 		try {
 			return window.localStorage.getItem('auth_token');
 		} catch (e) {
@@ -41,30 +48,45 @@ export default class Authservice {
 		}
 	}
 
+	/**
+	 * add token to local storage
+	 * @param {*} token
+	 */
 	setToken(token) {
-		// add token to local storage
 		return window.localStorage.setItem('auth_token', token);
 	}
 
+	/**
+	 * log user out
+	 * Clear the token from local storage
+	 *
+	*/
 	logout() {
-		// Clear user token from localStorage
-		window.localStorage.removeItem('auth_token');
+		window.localStorage.removeItem('auth_token'); // Clear user token from localStorage
 	}
 
+	/**
+ 		* decode token to get username
+	*/
 	getUser() {
-		// decode token to get username
 		if (this.getToken()) {
 			return decode(this.getToken());
 		}
 		return [];
 	}
 
+	/**
+	 * Checks if there is a saved token and it's still valid
+  */
 	isLoggedIn() {
-		// Checks if there is a saved token and it's still valid
-		const token = this.getToken(); // GEtting token from localstorage
+		const token = this.getToken(); // Getting token from local storage
 		return !!token && !this.isTokenExpired(token);
 	}
 
+	/**
+	 * checks if token is expired
+	 * @param {*} token
+	*/
 	isTokenExpired(token) {
 		try {
 			const { exp } = decode(token);

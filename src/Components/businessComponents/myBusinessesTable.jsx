@@ -1,12 +1,18 @@
 import React from 'react';
 import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
-
+/**
+ * presentations component to display business items
+ * @param {*} results - all businesses to display
+ * @param {*} onView - function to to fetch single business the redirect to profile
+ * @param {*} onEdit - function to edit business
+ * @param {*} onDelete - function to delete business
+ */
 const BusinessItem = ({
 	results, onView, onEdit, onDelete,
 }) => {
 	return (
-		results.length >= 1
+		results.length >= 1 // check if business are present else print no businesses
 			? results.map((business, i) => {
 				return (
 					<tr key={i}>

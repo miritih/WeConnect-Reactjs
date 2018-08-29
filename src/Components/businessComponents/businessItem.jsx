@@ -1,7 +1,12 @@
 import React from 'react';
 import { Image } from 'cloudinary-react';
 import { cloudName } from '../../utils/Config';
-
+/**
+ * presentations component to display business items
+ * @param {*} business - single business details
+ * @param {*} onView - function to to fetch single business the redirect to profile
+ * @param {*} index - every item requires a unique index
+ */
 const BusinessItem = ({ business, onView, index }) => {
 	return (
 		<div key={index} className="col-sm-6 col-xs-12">

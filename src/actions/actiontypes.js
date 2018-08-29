@@ -1,8 +1,9 @@
-// All actions and reducers in redux need actions
-// typing this action names every time you need to use them
-// might be tiresome and leads to typos
-
-// This file defines all actions that will be used by this application.
+/**
+ * All actions and reducers in redux need actions
+ * typing this action names every time you need to use them
+ * might be tiresome and leads to typos
+ * This file defines all actions that will be used by this application.
+ */
 
 // Register user actions
 export const REGISTER_USER = 'REGISTER_USER';

@@ -1,3 +1,6 @@
+/**
+ * reset password actions
+ */
 import axios from 'axios';
 import {
 	RESET_PASS_INPUT_CHANGE,
@@ -10,25 +13,42 @@ import Authservice from '../Components/Auth/AuthService';
 import { notify } from '../utils/notify';
 
 const Auth = new Authservice();
+/**
+ * sets inputs value in store
+ * @param {*} prop - name of the field to update in store.
+ * @param {*} value -  the value of the field
+ */
 export const inputChange = ({ prop, value }) => {
 	return {
 		type: RESET_PASS_INPUT_CHANGE,
 		payload: { prop, value },
 	};
 };
+/**
+ *
+ * @param {*} password - details of the new password from back end
+ */
 export function resetPasswordSuccess(password) {
 	return {
 		type: IS_PASSWORD_RESET_SUCCESS,
 		password,
 	};
 }
+/**
+ *
+ * @param {*} error -  all errors that occurred on password reset from back end
+ */
 export function resetPasswordError(error) {
 	return {
 		type: IS_PASSWORD_RESET_ERROR,
 		error,
 	};
 }
-
+/**
+ *
+ * @param {*} old_password - old password that need to be changed
+ * @param {*} password - the new password
+ */
 export const updatePassword = ({ old_password, password }) => {
 	return function func(dispatch) {
 		axios({
@@ -56,7 +76,10 @@ export const updatePassword = ({ old_password, password }) => {
 	};
 };
 
-
+/**
+ * if a user forgets their password they can request a new one via the email.
+ * @param {*} email - the email of user who needs to receive a new password.
+ */
 export function resetPassword({ email }) {
 	return function func(dispatch) {
 		dispatch({ type: RESET_PASSWORD });

@@ -11,50 +11,60 @@ import { baseURL } from '../utils/Config';
 import Authservice from '../Components/Auth/AuthService';
 
 const Auth = new Authservice();
-
+/**
+ *
+	* this action is to set change in store values
+	* if you want to change anything in the store, then
+	* dispatch this action with prop as the state to change
+	* and the value as the new value
+ * @param {*} prop - the field to update in store
+ * @param {*} value - the value of the field
+ */
 export function inputChange({ prop, value }) {
-	/**
-	 * this action is to set change in store values
-	 * if you want to change anything in the store, then
-	 * dispatch this action with prop as the state to change
-	 * and the value as the new value
-	*/
 	return {
 		type: REVIEW_INPUT_CHANGE,
 		payload: { prop, value },
 	};
 }
-
+/**
+ *
+ * dispatch this action after a successful business fetch.
+ * accepts parameter business, the business passed will then be passed to the reducer
+ * @param {*} business - single business details.
+ */
 export function viewUserBusinessSuccess(business) {
-	/**
-	 * dispatch this action after a successful business fetch.
-	 * accepts parameter business, the business passed will then be passed to the reducer
-	 */
 	return {
 		type: VIEW_BUSINESSES_PROFILE_SUCCESS,
 		business,
 	};
 }
+/**
+ *this methods receives any error that occurs when fetching a business
+ * @param {*} error - error received from the back end
+ */
 export function viewBusinessError(error) {
-	// this methods receives any error that occurs when fetching a business
 	return {
 		type: LOAD_BUSINESS_PROFILE_ERROR,
 		error,
 	};
 }
+/**
+ * method receives all business reviews
+ * @param {*} reviews - all business reviews
+ */
 export function loadBusinessReviewsSuccess(reviews) {
-	// method receives all business reviews
 	return {
 		type: LOAD_BUSINESSES_REVIEWS_SUCCESS,
 		reviews,
 	};
 }
 
-
+/**
+ * fetch all business reviews then
+ * dispatch business success action on success or error on fail
+ * @param {*} id - id of business to load
+ */
 export function loadBusinessReviews(id) {
-	// fetch all business reviews
-	//  then dispatch business success action on success or
-	// error on fail
 	return function disp(dispatch) {
 		const url = `businesses/${id}/reviews`;
 		dispatch({
@@ -82,11 +92,11 @@ export function loadBusinessReviews(id) {
 	};
 }
 
-
+/**
+ *
+ * @param {*} id - id of business to view
+ */
 export function viewUserBusiness(id) {
-	// fetch a single user business
-	//  then dispatch business success action on success or
-	// error on fail
 	return function disp(dispatch) {
 		dispatch({
 			type: LOAD_BUSINESS_PROFILE,
@@ -111,11 +121,15 @@ export function viewUserBusiness(id) {
 		});
 	};
 }
-
+/**
+ * function to add a new review to a business.
+ * @param {*} review - the review body
+ * @param {*} title  - Review title
+ * @param {*} id - id of business to review.
+ */
 export function addReview({
 	review, title, id,
 }) {
-	// function to add a new review to a business.
 	return function disp(dispatch) {
 		const url = `businesses/${id}/reviews`;
 		axios({

@@ -11,32 +11,37 @@ import Authservice from '../Components/Auth/AuthService';
 
 
 const Auth = new Authservice();
+/**
+ * 	action get dispatched after a successful businesses GET
+ * @param {*} businesses - details of all registered businesses fetched from back end
+ */
 export function loadUserBusinessesSuccess(businesses) {
-	// action get dispatched after a successful businesses GET
 	return {
 		type: LOAD_USER_BUSINESSES_SUCCESS,
 		businesses,
 	};
 }
-
+/**
+ * dispatch on business delete success
+ * @param {*} business details of deleted business
+ */
 export function deleteUserBusinessesSuccess(business) {
-	// dispatch on business delete success
 	return {
 		type: DELETE_USER_BUSINESSES_SUCCESS,
 		business,
 	};
 }
-
-
+/**
+ * this methods loads all businesses and implements
+	* search and pagination.
+	* to paginate the function received the page and loads current
+	* businesses from the server
+	* To search the function receives a query parameter
+ * @param {*} page
+ * @param {*} query
+ */
 export function loadUserBusinesses(page = 1, query = '') {
-	return function func(dispatch) {
-		/**
-		 * this methods loads all businesses and implements
-		 * search and pagination.
-		 * to paginate the function received the page and loads current
-		 * businesses from the server
-		 * To search the function receives a query parameter
-		 */
+	return function func(dispatch) {		
 		const url = `businesses/user?limit=10&page=${page}&q=${query}`;
 		dispatch({ type: LOAD_USER_BUSINESS });
 		axios({
@@ -60,12 +65,12 @@ export function loadUserBusinesses(page = 1, query = '') {
 		});
 	};
 }
-
+/**
+ * delete a business
+ * @param {*} id id of business to delete
+ */
 export function deleteUserBusinesses(id) {
 	return function func(dispatch) {
-		/**
-		 * delete a business
-		 */
 		const url = `businesses/${id}`;
 		dispatch({ type: LOAD_USER_BUSINESS });
 		axios({

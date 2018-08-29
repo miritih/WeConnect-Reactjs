@@ -29,18 +29,30 @@ class myBusinesses extends Component {
 		this.onclose = this.onclose.bind(this);
 	}
 
+	/**
+	* loads user business when page loads
+	*/
 	componentDidMount() {
 		this.props.bizActions.loadUserBusinesses();
 	}
 
+	/**
+	 * paginates user businesses
+	 */
 	onPaginate(e) {
 		this.props.bizActions.loadUserBusinesses(e.currentTarget.dataset.id);
 	}
 
+	/**
+	 * clear form data on modal close
+	 */
 	onclose() {
 		this.props.createBiz.onclose();
 	}
 
+	/**
+ * delete business
+ */
 	onDelete(e) {
 		e.preventDefault();
 		if (window.confirm('Do you really want to delete this business?')) {
@@ -48,18 +60,29 @@ class myBusinesses extends Component {
 		}
 	}
 
+	/**
+	 * load single business data and redirect to profile page
+	 * @param {*} e event
+	 */
 	onView(e) {
 		e.preventDefault();
 		this.props.history.push(`/business/profile/${e.currentTarget.dataset.id}`);
 		this.props.profileAction.loadBusinessReviews(e.currentTarget.dataset.id);
 	}
 
+	/**
+	 * Fetch business for edit
+	 * @param {*} e event
+	 */
 	onEdit(e) {
 		e.preventDefault();
 		this.props.createBiz.fetchBusiness(e.currentTarget.dataset.id);
 		this.props.createBiz.inputChange({ prop: 'edit', value: true });
 	}
 
+	/**
+	* save business on form save
+	*/
 	handleSubmit(event) {
 		event.preventDefault();
 		const {
@@ -77,6 +100,10 @@ class myBusinesses extends Component {
 		document.getElementById('hidePopUpBtn').click(); // close modal
 	}
 
+	/**
+	 * allows user to drop images for upload
+	 * @param {*} files files to upload
+	 */
 	handleDrop(files) {
 		files.map((file) => {
 			const formData = new FormData();
@@ -95,6 +122,10 @@ class myBusinesses extends Component {
 		});
 	}
 
+	/**
+	 * handles input change
+	 * @param {*} e event
+	 */
 	handleChange(e) {
 		this.props.createBiz.inputChange({ prop: e.target.name, value: e.target.value });
 	}
@@ -191,6 +222,8 @@ class myBusinesses extends Component {
 		);
 	}
 }
+
+// validate props
 myBusinesses.propType = {
 	currentUser: PropTypes.object.isRequired,
 	userLogin: PropTypes.object.isRequired,
@@ -198,6 +231,10 @@ myBusinesses.propType = {
 	profileAction: PropTypes.object.isRequired,
 };
 
+/**
+ * maps state to props
+ * @param {*} state redux
+ */
 function mapStateToProps(state) {
 	const {
 		currentUser, userBusinesses, newBusiness, userLogin,
@@ -209,6 +246,11 @@ function mapStateToProps(state) {
 		userBusinesses,
 	};
 }
+
+/**
+ * maps redux actions to props
+ * @param {*} dispatch method to dispatch action
+ */
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(loginActions, dispatch),
