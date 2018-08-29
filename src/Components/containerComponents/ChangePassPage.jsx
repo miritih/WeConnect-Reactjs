@@ -9,20 +9,30 @@ import * as loginActions from '../../actions/loginActions';
 import * as resetPassActions from '../../actions/ResetPasswordActions';
 
 
-class ResetPass extends React.Component {
+export class ResetPass extends React.Component {
 	constructor() {
 		super();
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+	/**
+ * hanges change in inputs
+ * @param {*} e event
+ */
 	handleChange(e) {
-		this.props.resetPassActions.inputChange({prop: e.target.name, value: e.target.value});
+		this.props.resetPassActions.inputChange({ prop: e.target.name, value: e.target.value });
 	}
+
+	/**
+ * handles submit
+ * @param {*} event
+ */
 	handleSubmit(event) {
 		event.preventDefault();
 		const data = {
 			password: this.props.passwordReset.new_password,
-			old_password: this.props.passwordReset.old_password
+			old_password: this.props.passwordReset.old_password,
 		};
 		this.props.resetPassActions.updatePassword(data);
 	}
@@ -44,7 +54,9 @@ class ResetPass extends React.Component {
 						<div className="card-body">
 							<div className="row">
 								<div className="col-sm-3">
-									<ProfileNav />
+									<ProfileNav
+										history={props.history}
+									/>
 								</div>
 								<div className="col-sm-9"><h5>Reset Password</h5>
 									<hr />
@@ -65,23 +77,32 @@ class ResetPass extends React.Component {
 		);
 	}
 }
+// validate props
 ResetPass.propType = {
 	currentUser: PropTypes.object.isRequired,
 	loggedIn: PropTypes.bool.isRequired,
-	actions: PropTypes.object.isRequired
+	actions: PropTypes.object.isRequired,
 };
+/**
+ * maps states to props
+ * @param {*} state redux state
+ */
 function mapStateToProps(state) {
-	const {currentUser, passwordReset, userLogin} = state;
+	const { currentUser, passwordReset, userLogin } = state;
 	return {
 		currentUser,
 		passwordReset,
-		userLogin
+		userLogin,
 	};
 }
+/**
+ * maps redux actions to props
+ * @param {*} dispatch method to dispatch actions
+ */
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(loginActions, dispatch),
-		resetPassActions: bindActionCreators(resetPassActions, dispatch)
+		resetPassActions: bindActionCreators(resetPassActions, dispatch),
 
 	};
 }

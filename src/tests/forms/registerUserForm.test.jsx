@@ -1,29 +1,29 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import RegisterForm from '../../Components/forms/RegisterForm';
 import expect from 'expect';
 import { BrowserRouter as Router } from 'react-router-dom';
+import RegisterForm from '../../Components/forms/RegisterForm';
 
 
 function setup() {
 	const props = {
-		confirmPass: jest.fn(), 
-		handleChange: jest.fn(), 
-		handleSubmit: jest.fn(), 
+		confirmPass: jest.fn(),
+		handleChange: jest.fn(),
+		handleSubmit: jest.fn(),
 		cpassword: 'new',
 		password: 'old',
 		username: 'username',
 		email: 'email',
 		first_name: 'name',
 		last_name: 'name',
-		errors:['eroor'],
-		loading: false
+		errors: ['eroor'],
+		loading: false,
 	};
 
 	const enzymeWrapper = mount(<Router><RegisterForm {...props} /></Router>);
 	return {
 		props,
-		enzymeWrapper
+		enzymeWrapper,
 	};
 }
 describe('Register user component', () => {
@@ -49,5 +49,4 @@ describe('Register user component', () => {
 		form.props().onSubmit('');
 		expect(props.handleSubmit.mock.calls.length).toBe(1);
 	});
-
 });

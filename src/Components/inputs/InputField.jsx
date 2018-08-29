@@ -1,13 +1,15 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
-const InputField = ({ name, type, label, disabled, required, onChange, placeholder, value, error }) => {
+const InputField = ({
+	name, type, label, disabled, required, onChange, placeholder, value, error,
+}) => {
 	let formClass = 'form-control ';
 	if (error && error.length > 0) {
 		formClass += 'is-invalid';
 	}
 	return (
-		<div className='form-group'>
+		<div className="form-group">
 			<label htmlFor={name}>{label}</label>
 			<input
 				type={type}
@@ -32,6 +34,13 @@ InputField.propTypes = {
 	value: PropTypes.string,
 	error: PropTypes.array,
 	required: PropTypes.string,
-	disabled: PropTypes.string
+	disabled: PropTypes.string,
+};
+InputField.defaultProps = {
+	value: '',
+	error: [],
+	required: null,
+	disabled: null,
+	placeholder: '',
 };
 export default InputField;

@@ -1,23 +1,35 @@
-{
+{  
+    "extends": "airbnb",
     "env": {
         "browser": true,
+        "commonjs": true,
         "es6": true,
-        "node": true,
-        "mocha": true
+        "node": true
     },
-    "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": [
         "react"
     ],
     "rules": {
+        "prefer-destructuring":0,
+        "react/jsx-indent":0,
+        "no-unused-expressions":0,
+        "react/no-array-index-key":0,
+        "no-nested-ternary":0,
+        "no-undef":0,
+        "react/button-has-type":0,
+        "jsx-a11y/anchor-is-valid":0,
         "indent": [
+            "error",
+            "tab"
+        ],
+        "react/jsx-indent-props":[
             "error",
             "tab"
         ],
@@ -25,6 +37,9 @@
             "error",
             "unix"
         ],
+        "react/prop-types":0,
+        "react/jsx-one-expression-per-line":0,
+        "react/jsx-filename-extension":0,
         "quotes": [
             "error",
             "single"
@@ -33,8 +48,22 @@
             "error",
             "always"
         ],
-        "no-undef": 1,
-        "no-unused-vars": 1,
-        "no-console": 1
+        "jsx-a11y/label-has-for": [ 2, {
+            "components": [ "Label" ],
+            "required": {
+                "some": [ "nesting", "id" ]
+            },
+            "allowChildren": false
+        }],
+        "camelcase":0,
+        "react/require-default-props": 2,
+        "react/forbid-prop-types":0,
+        "arrow-body-style":0,
+        "no-bitwise":0,
+        "no-tabs": 0,
+        "no-shadow":0,
+        "react/destructuring-assignment":0,
+        "import/prefer-default-export":0,
+        "class-methods-use-this":0
     }
 }

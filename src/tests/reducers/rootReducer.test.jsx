@@ -1,20 +1,20 @@
-import rootReducer from '../../reducers/index';
-import { createStore} from 'redux';
+import { createStore } from 'redux';
 import expect from 'expect';
+import rootReducer from '../../reducers/index';
 
 describe('Login reducer', () => {
 	it('should return the initial state', () => {
-		let store = createStore(rootReducer);
+		const store = createStore(rootReducer);
 		expect(store.getState().registerUser).toEqual({
 			username: '',
 			password: '',
 			first_name: '',
 			last_name: '',
-			cpassword:'',
+			cpassword: '',
 			email: '',
 			errors: {},
 			loading: false,
-			redirect: false
+			redirect: false,
 		});
 	});
 });

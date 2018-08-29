@@ -1,19 +1,19 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ProfileUpdate from '../../Components/forms/ProfileUpdate';
 import expect from 'expect';
 import { BrowserRouter as Router } from 'react-router-dom';
+import ProfileUpdate from '../../Components/forms/ProfileUpdate';
 
 
 function setup() {
 	const props = {
-		handleChange: jest.fn(), 
-		handleSubmit: jest.fn(), 
+		handleChange: jest.fn(),
+		handleSubmit: jest.fn(),
 		username: 'username',
 		email: 'email',
 		first_name: 'name',
 		last_name: 'name',
-		errors:['eroor'],
+		errors: ['eroor'],
 		loading: false,
 		uploading: false,
 		handleDrop: jest.fn(),
@@ -24,7 +24,7 @@ function setup() {
 	const enzymeWrapper = mount(<Router><ProfileUpdate {...props} /></Router>);
 	return {
 		props,
-		enzymeWrapper
+		enzymeWrapper,
 	};
 }
 describe('Profile Update  component', () => {
@@ -49,5 +49,4 @@ describe('Profile Update  component', () => {
 		form.props().onSubmit('');
 		expect(props.handleSubmit.mock.calls.length).toBe(1);
 	});
-
 });

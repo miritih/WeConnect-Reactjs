@@ -1,25 +1,25 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import InputField from '../../Components/inputs/InputField';
 import expect from 'expect';
+import InputField from '../../Components/inputs/InputField';
 
 function setup() {
 	const props = {
 		name: 'test',
 		type: 'text',
 		label: 'input',
-		disabled: 'disabled', 
-		required:'required',
-		onChange: jest.fn(), 
-		placeholder:'place holder', 
+		disabled: 'disabled',
+		required: 'required',
+		onChange: jest.fn(),
+		placeholder: 'place holder',
 		value: 'value',
-		error: ['error']
+		error: ['error'],
 	};
 
 	const enzymeWrapper = mount(<InputField {...props} />);
 	return {
 		props,
-		enzymeWrapper
+		enzymeWrapper,
 	};
 }
 describe('InputField components', () => {
@@ -38,7 +38,6 @@ describe('InputField components', () => {
 			const input = enzymeWrapper.find('InputField');
 			input.props().onChange('');
 			expect(props.onChange.mock.calls.length).toBe(1);
-			
 		});
 	});
 });

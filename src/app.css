@@ -31,6 +31,7 @@
 .white {
   color: #fff;
 }
+
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 
   .profile{
@@ -91,8 +92,8 @@
 }
 .profile-img
 {
-    width: 96px;
-    height: 96px;
+    /* width: 96px;
+    height: 96px; */
     margin: 0 auto 10px;
     display: block;
     -moz-border-radius: 50%;
@@ -108,3 +109,31 @@
 .navbarcolor{
   background-color: #e3f2fd;
 }
+.card-margin{
+  margin-bottom: 15px;
+}
+.bsprofile{
+ margin-top: -90px;
+ border-radius: 5px;
+}
+.bg-white{
+ background: #fff;
+}
+.bs-card{
+  width: 18rem;
+}
+
+.reviews{
+  
+}
+.navbar-light{
+    
+}
+.loading{
+  margin: 10% 50%;
+  width: 200px;
+}
+.link{
+  margin-right: 15px;
+}
+

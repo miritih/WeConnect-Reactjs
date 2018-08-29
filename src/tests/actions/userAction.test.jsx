@@ -7,42 +7,42 @@ import * as types from '../../actions/actiontypes';
 
 const mockStore = configureMockStore([thunk]);
 
-describe('User Actions',()=>{
+describe('User Actions', () => {
 	beforeEach(() => moxios.install());
 	afterEach(() => moxios.uninstall());
 	describe('Test actions types', () => {
 		it('should create an action to check input change', () => {
-			const payload = {prop: 'username', value : 'test'};
+			const payload = { prop: 'username', value: 'test' };
 			const expectedAction = {
 				type: types.PROFILE_INPUT_CHANGE,
-				payload
+				payload,
 			};
 			expect(actions.inputChange(payload)).toEqual(expectedAction);
 		});
 
 		it('should loader current logged in user', () => {
-			const user = {prop: 'username', value : 'test'};
+			const user = { prop: 'username', value: 'test' };
 			const expectedAction = {
 				type: types.LOAD_USER_SUCCESS,
-				user
+				user,
 			};
 			expect(actions.loadUserSuccess(user)).toEqual(expectedAction);
 		});
 
 		it('should update user', () => {
-			const user = {prop: 'username', value : 'test'};
+			const user = { prop: 'username', value: 'test' };
 			const expectedAction = {
 				type: types.UPDATE_CURRENT_USER,
-				user
+				user,
 			};
 			expect(actions.updateUserSuccess(user)).toEqual(expectedAction);
 		});
 
 		it('should update user profile', () => {
-			const payload = {prop: 'username', value : 'test'};
+			const payload = { prop: 'username', value: 'test' };
 			const expectedAction = {
 				type: types.UPDATE_PROFILE_SUCCESS,
-				payload
+				payload,
 			};
 			expect(actions.updateProfileSuccess(payload)).toEqual(expectedAction);
 		});
@@ -55,12 +55,12 @@ describe('User Actions',()=>{
 				username: 'test',
 				image: 'image',
 				first_name: 'first_name',
-				last_name: 'last_name'
+				last_name: 'last_name',
 			};
 			const returnedAction = [{
 				type: types.UPDATE_CURRENT_USER,
-				user
-			}]; 
+				user,
+			}];
 			const store = mockStore({});
 			store.dispatch(actions.updateUserProfile(user));
 			expect(store.getActions()).toEqual(returnedAction);
@@ -70,11 +70,11 @@ describe('User Actions',()=>{
 				email: 'test',
 				image: 'image',
 				first_name: 'first_name',
-				last_name: 'last_name'
+				last_name: 'last_name',
 			};
 			const returnedAction = [{
 				type: types.UPDATE_PROFILE,
-			}]; 
+			}];
 			const store = mockStore({});
 			store.dispatch(actions.updateUser(user));
 			expect(store.getActions()).toEqual(returnedAction);
