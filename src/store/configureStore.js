@@ -8,7 +8,7 @@ export default function configureStore(initialstate) {
 		initialstate,
 		compose(
 			applyMiddleware(thunk), // apply thunk middleware
-			window.devToolsExtension ? window.devToolsExtension() : f => f,
+			// window.devToolsExtension ? window.devToolsExtension() : f => f,
 		),
 	);
 }
